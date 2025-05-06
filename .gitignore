@@ -1,0 +1,43 @@
+# node.js npm related
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Configurator Build process
+cache/
+apps/
+dist/
+debug/
+release/
+testresults/
+.eslintcache
+
+# OSX
+.DS_store
+
+# artefacts for Visual Studio Code
+.vscode/*
+!.vscode/extensions.json
+
+# NetBeans
+nbproject/
+
+# IntelliJ
+.idea
+
+# Eclipse
+.project
+.settings/
+test-results-junit/
+/src/package.json
+
+# Capacitor config file, we generate it at runtime
+capacitor.config.json
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
