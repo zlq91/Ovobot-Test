@@ -740,7 +740,10 @@
         "message": "EEPROM <span class=\"message-positive\">saved</span>"
     },
     "defaultWelcomeIntro": {
-        "message": "Welcome to <strong>Betaflight - Configurator</strong>, a utility designed to simplify updating, configuring and tuning of your flight controller."
+        "message": "Welcome to use the window cleaning machine production testing software."
+    },
+    "defaultCopyRight": {
+        "message": "Shenzhen Ovobot Co., Ltd. All rights reserved"
     },
     "defaultWelcomeHead": {
         "message": "Hardware"

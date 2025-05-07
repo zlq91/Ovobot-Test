@@ -161,7 +161,6 @@ options.initDarkTheme = function () {
         .val(DarkTheme.configSetting)
         .change(function () {
             const value = parseInt($(this).val());
-
             setConfig({ darkTheme: value });
             setDarkTheme(value);
         })

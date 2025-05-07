@@ -452,13 +452,14 @@ function startProcess() {
     result = getConfig("cliAutoComplete");
     CliAutoComplete.setEnabled(typeof result.cliAutoComplete === "undefined" || result.cliAutoComplete); // On by default
 
-    result = getConfig("darkTheme");
-    if (result.darkTheme === undefined || typeof result.darkTheme !== "number") {
-        // sets dark theme to auto if not manually changed
-        setDarkTheme(2);
-    } else {
-        setDarkTheme(result.darkTheme);
-    }
+    // result = getConfig("darkTheme");
+    // if (result.darkTheme === undefined || typeof result.darkTheme !== "number") {
+    //     // sets dark theme to auto if not manually changed
+    //     setDarkTheme(2);
+    // } else {
+    //     setDarkTheme(result.darkTheme);
+    // }
+    setDarkTheme(0);
 
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
         DarkTheme.autoSet();

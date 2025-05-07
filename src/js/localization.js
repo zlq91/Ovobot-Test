@@ -11,25 +11,8 @@ const i18n = {};
 window.i18n = i18n;
 
 const languagesAvailables = [
-    "ca",
-    "da",
-    "de",
     "en",
-    "es",
-    "eu",
-    "fr",
-    "gl",
-    "it",
-    "ja",
-    "ko",
-    "nl",
-    "pt",
-    "pt_BR",
-    "pl",
-    "ru",
-    "uk",
     "zh_CN",
-    "zh_TW",
 ];
 
 const languageFallback = {

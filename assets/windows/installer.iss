@@ -38,29 +38,7 @@ Name: "{group}\Uninstall {#ApplicationName}"; Filename: "{uninstallexe}"; Check:
 ; English default, it must be first
 Name: "en"; MessagesFile: "compiler:Default.isl"
 ; Official languages
-Name: "ca"; MessagesFile: "compiler:Languages\Catalan.isl"
-Name: "da"; MessagesFile: "compiler:Languages\Danish.isl"
-Name: "de"; MessagesFile: "compiler:Languages\German.isl"
-Name: "es"; MessagesFile: "compiler:Languages\Spanish.isl"
-Name: "fr"; MessagesFile: "compiler:Languages\French.isl"
-Name: "it"; MessagesFile: "compiler:Languages\Italian.isl"
-Name: "ja"; MessagesFile: "compiler:Languages\Japanese.isl"
-Name: "nl"; MessagesFile: "compiler:Languages\Dutch.isl"
-Name: "pt"; MessagesFile: "compiler:Languages\Portuguese.isl"
-Name: "pl"; MessagesFile: "compiler:Languages\Polish.isl"
-Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl"
-Name: "uk"; MessagesFile: "compiler:Languages\Ukrainian.isl"
-; Not official. Sometimes not updated to latest version (strings missing)
-Name: "ga"; MessagesFile: "unofficial_inno_languages\Galician.isl"
-Name: "eu"; MessagesFile: "unofficial_inno_languages\Basque.isl"
-Name: "hr"; MessagesFile: "unofficial_inno_languages\Croatian.isl"
-Name: "hu"; MessagesFile: "unofficial_inno_languages\Hungarian.isl"
-Name: "id"; MessagesFile: "unofficial_inno_languages\Indonesian.isl"
-Name: "ko"; MessagesFile: "unofficial_inno_languages\Korean.isl"
-Name: "lv"; MessagesFile: "unofficial_inno_languages\Latvian.isl"
-Name: "sv"; MessagesFile: "unofficial_inno_languages\Swedish.isl"
 Name: "zh_CN"; MessagesFile: "unofficial_inno_languages\ChineseSimplified.isl"
-Name: "zh_TW"; MessagesFile: "unofficial_inno_languages\ChineseTraditional.isl"
 ; Not available
 ; pt_BR (Portuguese Brasileiro)
 

@@ -543,7 +543,10 @@
         "message": "EEPROM <span class=\"message-positive\">已保存<\/span>"
     },
     "defaultWelcomeIntro": {
-        "message": "欢迎使用 <strong>Betaflight - 配置程序<\/strong>，为简化固件升级，设置和调校飞控而生的工具。"
+        "message": "欢迎使用 <strong>擦窗机生产测试软件</strong>。"
+    },
+    "defaultCopyRight": {
+        "message": "<strong>深圳奥瓦机器人有限公司</strong>版权所有"
     },
     "defaultWelcomeHead": {
         "message": "硬件"
