@@ -206,6 +206,9 @@
     "tabSetup": {
         "message": "设置"
     },
+    "tabAutoTest": {
+        "message": "自动测试"
+    },
     "tabSetupOSD": {
         "message": "OSD 设置"
     },
@@ -5718,5 +5721,78 @@
     "presetsReviewOptionsWarning": {
         "message": "请在选择此预设之前查看选项列表。",
         "description": "Dialog text to prompt user to review options for the preset"
+    },
+    "autoTestButton": {
+        "message": "开始自动化测试"
+    },
+    "gyroTitle": {
+        "message": "陀螺仪"
+    },
+    "adpterTitle": {
+        "message": "适配器"
+    },
+    "fanTitle": {
+        "message": "风机"
+    },
+    "motorTitle": {
+        "message": "马达"
+    },
+    "waterpumpTitle": {
+        "message": "喷水"
+    },
+    "cliffTitle": {
+        "message": "光电"
+    },
+    "voiceTitle": {
+        "message": "语音"
+    },
+    "testStatus": {
+        "message": "测试状态:"
+    },
+    "notTested": {
+        "message": "未测试"
+    },
+    "underTesting": {
+        "message": "测试中..."
+    },
+    "testPassed": {
+        "message": "测试通过"
+    },
+    "testFailed": {
+        "message": "测试失败"
+    },
+    "retest": {
+        "message": "单独测试"
+    },
+    "dialogConfirmUnderingTestTitle": {
+        "message": "测试中..."
+    },
+    "dialogConfirmAutoTestSart-WarningText": {
+        "message": "警告：请确认已经将<strong>风机，马达</strong>摆放到安全位置！"
+    },
+    "dialogConfirmUnderingTest-ready": {
+        "message": "测试准备中..."
+    },
+    "underingTestMessage": {
+        "message": "功能正在测试中..."
+    },
+    "confirmSpary": {
+        "message": "请确认是否喷水？"
+    },
+    "confirmVoice": {
+        "message": "请确认是否播报语音？"
+    },
+    "dialogConfirmUnderingTest-Gyro": {
+        "message": "<strong>陀螺仪</strong> "
+    },
+    "dialogConfirmUnderingTest-adapter": {
+        "message": "<strong>适配器</strong>"
+    },
+    "dialogConfirmUnderingTest-fan": {
+        "message": "<strong>风机</strong>"
+    },
+    "dialogConfirmUnderingTest-motor": {
+        "message": "<strong>马达</strong>"
     }
+
 }

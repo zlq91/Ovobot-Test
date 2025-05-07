@@ -23,22 +23,7 @@ class GuiControl {
 
         this.defaultAllowedTabs = [
             "setup",
-            "failsafe",
-            "power",
-            "adjustments",
-            "auxiliary",
-            "presets",
-            "cli",
-            "configuration",
-            "logging",
-            "onboard_logging",
-            "modes",
-            "motors",
-            "pid_tuning",
-            "ports",
-            "receiver",
-            "sensors",
-            "vtx",
+            "auto_test"
         ];
 
         this.defaultCloudBuildTabOptions = ["gps", "led_strip", "osd", "servos", "transponder"];

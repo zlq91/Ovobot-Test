@@ -271,6 +271,11 @@ function startProcess() {
                     case "setup":
                         import("./tabs/setup").then(({ setup }) => setup.initialize(content_ready));
                         break;
+                    case 'auto_test':
+                        import("./tabs/auto_test").then(({ auto_test }) =>
+                            auto_test.initialize(content_ready),
+                        );
+                        break;
                     case "setup_osd":
                         import("./tabs/setup_osd").then(({ setup_osd }) => setup_osd.initialize(content_ready));
                         break;

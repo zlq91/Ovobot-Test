@@ -9,6 +9,7 @@ import "../css/main.less";
 import "../css/tabs/static_tab.less";
 import "../css/tabs/landing.less";
 import "../css/tabs/setup.less";
+import "../css/tabs/auto_test.less";
 import "../css/tabs/help.less";
 import "../css/tabs/ports.less";
 import "../css/tabs/configuration.less";
