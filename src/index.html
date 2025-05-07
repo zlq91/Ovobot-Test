@@ -35,62 +35,7 @@
             :show-manual-option="PortHandler.showManualMode"
             :disabled="PortHandler.portPickerDisabled"
         ></port-picker>
-        <div class="header-wrapper">
-            <div id="quad-status_wrapper">
-                <battery-icon
-                    :voltage="FC.ANALOG.voltage"
-                    :vbatmincellvoltage="FC.BATTERY_CONFIG.vbatmincellvoltage"
-                    :vbatmaxcellvoltage="FC.BATTERY_CONFIG.vbatmaxcellvoltage"
-                    :vbatwarningcellvoltage="FC.BATTERY_CONFIG.vbatwarningcellvoltage"
-                    :batteryState="FC.BATTERY_STATE?.batteryState"
-                >
-                </battery-icon>
-                <battery-legend
-                    :voltage="FC.ANALOG.voltage"
-                    :vbatmaxcellvoltage="FC.BATTERY_CONFIG.vbatmaxcellvoltage"
-                ></battery-legend>
-                <div class="bottomStatusIcons">
-                    <div class="armedicon cf_tip" i18n_title="mainHelpArmed"></div>
-                    <div class="failsafeicon cf_tip" i18n_title="mainHelpFailsafe"></div>
-                    <div class="linkicon cf_tip" i18n_title="mainHelpLink"></div>
-                </div>
-            </div>
-            <div id="sensor-status" class="sensor_state mode-connected">
-                <ul>
-                    <li class="gyro" i18n_title="sensorStatusGyro">
-                        <div class="gyroicon" i18n="sensorStatusGyroShort"></div>
-                    </li>
-                    <li class="accel" i18n_title="sensorStatusAccel">
-                        <div class="accicon" i18n="sensorStatusAccelShort"></div>
-                    </li>
-                    <li class="mag" i18n_title="sensorStatusMag">
-                        <div class="magicon" i18n="sensorStatusMagShort"></div>
-                    </li>
-                    <li class="baro" i18n_title="sensorStatusBaro">
-                        <div class="baroicon" i18n="sensorStatusBaroShort"></div>
-                    </li>
-                    <li class="gps" i18n_title="sensorStatusGPS">
-                        <div class="gpsicon" i18n="sensorStatusGPSShort"></div>
-                    </li>
-                    <li class="sonar" i18n_title="sensorStatusSonar">
-                        <div class="sonaricon" i18n="sensorStatusSonarShort"></div>
-                    </li>
-                </ul>
-            </div>
-            <div id="dataflash_wrapper_global">
-                <div class="noflash_global" i18n="sensorDataFlashNotFound"></div>
-                <ul class="dataflash-contents_global">
-                    <div class="legend" i18n="sensorDataFlashFreeSpace"></div>
-                    <progress class="dataflash-progress_global" max="100"></progress>
-                </ul>
-                <div id="expertMode">
-                    <label>
-                        <input name="expertModeCheckbox" class="togglesmall" type="checkbox"/>
-                        <span i18n="expertMode" class="expertModeText"></span>
-                    </label>
-                </div>
-            </div>
-        </div>
+
         <div id="header_buttons">
 
             <div class="connection_button">
