@@ -159,6 +159,7 @@ class WebSerial extends EventTarget {
 
     async connect(path, options = { baudRate: 115200 }) {
         // Prevent double connections
+        console.log("=========webserial connect")
         if (this.connected) {
             console.log(`${logHead} Already connected, not connecting again`);
             return true;
@@ -234,6 +235,7 @@ class WebSerial extends EventTarget {
 
     async readLoop() {
         try {
+            console.log("===============enter readLoop")
             for await (let value of streamAsyncIterable(this.reader, () => this.reading)) {
                 this.dispatchEvent(new CustomEvent("receive", { detail: value }));
             }

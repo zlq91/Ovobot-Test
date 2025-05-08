@@ -60,8 +60,7 @@ class MSPConnectorImpl {
 
             const mspHelper = new MspHelper();
             MSP.listen(mspHelper.process_data.bind(mspHelper));
-
-            MSP.send_message(MSPCodes.MSP_API_VERSION, false, false, () => {
+            MSP.send_message(MSPCodes.CMD_VERSION, false, false, () => {
                 CONFIGURATOR.connectionValid = true;
 
                 GUI.timeout_remove("msp_connector");

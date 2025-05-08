@@ -4,7 +4,10 @@ import { API_VERSION_1_45, API_VERSION_1_46 } from "./data_storage";
 import semver from "semver";
 
 const INITIAL_CONFIG = {
+    hw:0,
+    firmwareVersion:"1.0.0",
     apiVersion: "0.0.0",
+    build:0,
     flightControllerIdentifier: "",
     flightControllerVersion: "",
     version: 0,
@@ -51,11 +54,22 @@ const INITIAL_CONFIG = {
     sampleRateHz: 0,
     configurationProblems: 0,
     hardwareName: "",
+    isConfig: 0,//0不显示配置tab；1显示
+    pidType: 1,//pidtype类型，1速度，2吸力
+    isBattery: 0,//0不显示电池tab；1显示
+    isCollision: 0,//0不显示碰撞检测table；1显示
 };
 
 const INITIAL_ANALOG = {
     voltage: 0,
     mAhdrawn: 0,
+    leftMotorAdc: 0,
+    rightMotorAdc: 0,
+    fanAdc: 0,
+    batt: 0,
+    adapter: 0,
+    waterstate: 0,
+    corner: 0,
     rssi: 0,
     amperage: 0,
     last_received_timestamp: 0,
@@ -126,7 +140,51 @@ const FIRMWARE_BUILD_OPTIONS = {
     USE_WING: 16424,
     USE_POSITION_HOLD: 16425,
 };
+const INITIAL_WIN_FUNCTION = {
+    pwmvalue: 0,
+    pwmvaluemax: 0,
+    pwmvaluemin: 0,
+    fanpwmvalueatidel: 0,
+    fanpwmmax: 0,
+    fanpwmmin: 0,
+    defaulttargetfanpwmvalue: 0,
+    maxtargetfanpwmvalue: 0,
+    mintargetfanpwmvalue: 0,
+    minpwmvalue: 0,
+    upminpwmvalue: 0,
+    waterpump: 0,
+    waterpumpduration: 0,
+    waterpumpstartangle: 0,
+    waterpumpmovecnt: 0,
+    fanthrdadd: 0,
+    fanupthrdadd: 0,
+    hangcnt: 0,
+    gyrodiffthreshold: 0,
+    gyrothreshold: 0,
+    gyroupdiffthreshold: 0,
+    gyroupthreshold: 0,
+    //气压
+    barodiff: 0,//差值
+    baroOriginal: 0,//实时值
+    baroStandard: 0,//标准值
 
+    //pid
+    pidKpVal: 0,
+    pidKiVal: 0,
+    pidKdVal: 0,
+    targetVal: 0,
+    realVal: 0,
+
+    //电池
+    batteryStatusVal: 0,
+    batteryVoltageVal: 0,
+    batteryCurrentVal: 0,
+
+    isSprayFun: 0,
+    isVoiceFun: 0,
+    voiceIndex: 0,
+
+};
 const FC = {
     // define all the global variables that are uses to hold FC state
     // the default state must be defined inside the resetState() method
@@ -146,6 +204,7 @@ const FC = {
     // Shallow copy of original config and added getter
     // getter allows this to be used with simple dot notation
     // and bridges the vue and rest of the code
+    OVOBOT_FUNCTION: { ...INITIAL_WIN_FUNCTION },
     CONFIG: {
         ...INITIAL_CONFIG,
     },

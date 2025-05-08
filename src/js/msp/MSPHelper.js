@@ -113,7 +113,9 @@ function MspHelper() {
 function getMSPCodeName(code) {
     return Object.keys(MSPCodes).find((key) => MSPCodes[key] === code);
 }
-
+function bitIsOne(x, bitIndex) {
+    return (((x >> bitIndex) & 1) == 0) ? false : true;
+}
 MspHelper.readPidSliderSettings = function (data) {
     FC.TUNING_SLIDERS.slider_pids_mode = data.readU8();
     FC.TUNING_SLIDERS.slider_master_multiplier = data.readU8();
@@ -197,16 +199,15 @@ MspHelper.prototype.process_data = function (dataHandler) {
     let buff = [];
     let char = "";
     let flags = 0;
-
     if (!crcError) {
         if (!dataHandler.unsupported) {
             switch (code) {
                 case MSPCodes.MSP_STATUS:
-                    FC.CONFIG.cycleTime = data.readU16();
-                    FC.CONFIG.i2cError = data.readU16();
-                    FC.CONFIG.activeSensors = data.readU16();
-                    FC.CONFIG.mode = data.readU32();
-                    FC.CONFIG.profile = data.readU8();
+                    // FC.CONFIG.cycleTime = data.readU16();
+                    // FC.CONFIG.i2cError = data.readU16();
+                    // FC.CONFIG.activeSensors = data.readU16();
+                    // FC.CONFIG.mode = data.readU32();
+                    // FC.CONFIG.profile = data.readU8();
 
                     break;
                 case MSPCodes.MSP_STATUS_EX:
@@ -437,49 +438,6 @@ MspHelper.prototype.process_data = function (dataHandler) {
                 case MSPCodes.MSP_SET_BATTERY_CONFIG:
                     console.log("Battery configuration saved");
                     break;
-                case MSPCodes.MSP_RC_TUNING:
-                    FC.RC_TUNING.RC_RATE = parseFloat((data.readU8() / 100).toFixed(2));
-                    FC.RC_TUNING.RC_EXPO = parseFloat((data.readU8() / 100).toFixed(2));
-                    FC.RC_TUNING.roll_pitch_rate = 0;
-                    FC.RC_TUNING.roll_rate = parseFloat((data.readU8() / 100).toFixed(2));
-                    FC.RC_TUNING.pitch_rate = parseFloat((data.readU8() / 100).toFixed(2));
-                    FC.RC_TUNING.yaw_rate = parseFloat((data.readU8() / 100).toFixed(2));
-                    if (semver.lt(FC.CONFIG.apiVersion, API_VERSION_1_45)) {
-                        FC.RC_TUNING.dynamic_THR_PID = parseFloat((data.readU8() / 100).toFixed(2));
-                    } else {
-                        data.readU8();
-                    }
-                    FC.RC_TUNING.throttle_MID = parseFloat((data.readU8() / 100).toFixed(2));
-                    FC.RC_TUNING.throttle_EXPO = parseFloat((data.readU8() / 100).toFixed(2));
-                    if (semver.lt(FC.CONFIG.apiVersion, API_VERSION_1_45)) {
-                        FC.RC_TUNING.dynamic_THR_breakpoint = data.readU16();
-                    } else {
-                        data.readU16();
-                    }
-                    FC.RC_TUNING.RC_YAW_EXPO = parseFloat((data.readU8() / 100).toFixed(2));
-                    FC.RC_TUNING.rcYawRate = parseFloat((data.readU8() / 100).toFixed(2));
-                    FC.RC_TUNING.rcPitchRate = parseFloat((data.readU8() / 100).toFixed(2));
-                    FC.RC_TUNING.RC_PITCH_EXPO = parseFloat((data.readU8() / 100).toFixed(2));
-                    FC.RC_TUNING.throttleLimitType = data.readU8();
-                    FC.RC_TUNING.throttleLimitPercent = data.readU8();
-                    FC.RC_TUNING.roll_rate_limit = data.readU16();
-                    FC.RC_TUNING.pitch_rate_limit = data.readU16();
-                    FC.RC_TUNING.yaw_rate_limit = data.readU16();
-                    FC.RC_TUNING.rates_type = data.readU8();
-                    if (semver.gte(FC.CONFIG.apiVersion, API_VERSION_1_47)) {
-                        FC.RC_TUNING.throttle_HOVER = parseFloat((data.readU8() / 100).toFixed(2));
-                    }
-                    break;
-                case MSPCodes.MSP_PID:
-                    // PID data arrived, we need to scale it and save to appropriate bank / array
-                    for (let i = 0, needle = 0; i < data.byteLength / 3; i++, needle += 3) {
-                        // main for loop selecting the pid section
-                        for (let j = 0; j < 3; j++) {
-                            FC.PIDS_ACTIVE[i][j] = data.readU8();
-                            FC.PIDS[i][j] = FC.PIDS_ACTIVE[i][j];
-                        }
-                    }
-                    break;
 
                 case MSPCodes.MSP_ARMING_CONFIG:
                     FC.ARMING_CONFIG.auto_disarm_delay = data.readU8();
@@ -674,9 +632,6 @@ MspHelper.prototype.process_data = function (dataHandler) {
                 case MSPCodes.MSP_SET_GPS_CONFIG:
                     console.log("GPS Configuration saved");
                     break;
-                case MSPCodes.MSP_SET_GPS_RESCUE:
-                    console.log("GPS Rescue Configuration saved");
-                    break;
                 case MSPCodes.MSP_SET_RSSI_CONFIG:
                     console.log("RSSI Configuration saved");
                     break;
@@ -712,11 +667,12 @@ MspHelper.prototype.process_data = function (dataHandler) {
                 case MSPCodes.MSP_SET_MOTOR:
                     break;
                 case MSPCodes.MSP_UID:
-                    FC.CONFIG.uid[0] = data.readU32();
-                    FC.CONFIG.uid[1] = data.readU32();
-                    FC.CONFIG.uid[2] = data.readU32();
-                    FC.CONFIG.deviceIdentifier =
-                        FC.CONFIG.uid[0].toString(16) + FC.CONFIG.uid[1].toString(16) + FC.CONFIG.uid[2].toString(16);
+                    FC.CONFIG.deviceIdentifier=0;
+                    // FC.CONFIG.uid[0] = data.readU32();
+                    // FC.CONFIG.uid[1] = data.readU32();
+                    // FC.CONFIG.uid[2] = data.readU32();
+                    // FC.CONFIG.deviceIdentifier =
+                    //     FC.CONFIG.uid[0].toString(16) + FC.CONFIG.uid[1].toString(16) + FC.CONFIG.uid[2].toString(16);
                     break;
                 case MSPCodes.MSP_ACC_TRIM:
                     FC.CONFIG.accelerometerTrims[0] = data.read16(); // pitch
@@ -785,25 +741,37 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     console.log("Reboot request accepted");
                     break;
 
-                case MSPCodes.MSP_API_VERSION:
-                    FC.CONFIG.mspProtocolVersion = data.readU8();
+                case MSPCodes.CMD_VERSION:
+                    FC.CONFIG.hw = data.readU8();
+                    FC.CONFIG.firmwareVersion = `${data.readU8()}.${data.readU8()}.${data.readU8()}`;
                     FC.CONFIG.apiVersion = `${data.readU8()}.${data.readU8()}.0`;
+                    FC.CONFIG.build = data.readU8();
+                    let val = data.readU8();
+                    // 创建位掩码
+                    let bitValue = bitIsOne(val, 0);  // 对于第一位，应该是 1 << 0
+                    FC.CONFIG.isConfig = bitValue;
+                    bitValue = bitIsOne(val, 1);
+                    FC.CONFIG.pidType = bitValue;
+                    bitValue = bitIsOne(val, 2);
+                    FC.CONFIG.isBattery = bitValue;
+                    bitValue = bitIsOne(val, 3);
+                    FC.CONFIG.isCollision = bitValue;
                     break;
 
                 case MSPCodes.MSP_FC_VARIANT:
-                    let fcVariantIdentifier = "";
-                    for (let i = 0; i < 4; i++) {
-                        fcVariantIdentifier += String.fromCharCode(data.readU8());
-                    }
-                    FC.CONFIG.flightControllerIdentifier = fcVariantIdentifier;
+                    // let fcVariantIdentifier = "";
+                    // for (let i = 0; i < 4; i++) {
+                    //     fcVariantIdentifier += String.fromCharCode(data.readU8());
+                    // }
+                    // FC.CONFIG.flightControllerIdentifier = fcVariantIdentifier;
                     break;
 
                 case MSPCodes.MSP_FC_VERSION:
-                    FC.CONFIG.flightControllerVersion = `${data.readU8()}.${data.readU8()}.${data.readU8()}`;
+                    // FC.CONFIG.flightControllerVersion = `${data.readU8()}.${data.readU8()}.${data.readU8()}`;
                     break;
 
-                case MSPCodes.MSP_BUILD_INFO: {
-                    const dateLength = 11;
+                case MSPCodes.CMD_BUILD_INFO: 
+                    const dateLength = 10;
                     buff = [];
 
                     for (let i = 0; i < dateLength; i++) {
@@ -816,60 +784,39 @@ MspHelper.prototype.process_data = function (dataHandler) {
                         buff.push(data.readU8());
                     }
                     FC.CONFIG.buildInfo = String.fromCharCode.apply(null, buff);
-
-                    const gitRevisionLength = 7;
-                    buff = [];
-                    for (let i = 0; i < gitRevisionLength; i++) {
-                        buff.push(data.readU8());
-                    }
-
-                    FC.CONFIG.gitRevision = String.fromCharCode.apply(null, buff);
-                    console.log("Fw git rev:", FC.CONFIG.gitRevision);
-
-                    if (semver.gte(FC.CONFIG.apiVersion, API_VERSION_1_46)) {
-                        FC.CONFIG.buildOptions = [];
-                        let option;
-                        while ((option = data.readU16())) {
-                            FC.CONFIG.buildOptions.push(option);
-                        }
-                        // Humanize the build options
-                        FC.processBuildOptions();
-                    }
-
                     break;
-                }
 
                 case MSPCodes.MSP_BOARD_INFO:
-                    FC.CONFIG.boardIdentifier = "";
+                    // FC.CONFIG.boardIdentifier = "";
 
-                    for (let i = 0; i < 4; i++) {
-                        FC.CONFIG.boardIdentifier += String.fromCharCode(data.readU8());
-                    }
+                    // for (let i = 0; i < 4; i++) {
+                    //     FC.CONFIG.boardIdentifier += String.fromCharCode(data.readU8());
+                    // }
 
-                    FC.CONFIG.boardVersion = data.readU16();
-                    FC.CONFIG.boardType = data.readU8();
+                    // FC.CONFIG.boardVersion = data.readU16();
+                    // FC.CONFIG.boardType = data.readU8();
 
-                    FC.CONFIG.targetCapabilities = data.readU8();
-                    FC.CONFIG.targetName = this.getText(data);
+                    // FC.CONFIG.targetCapabilities = data.readU8();
+                    // FC.CONFIG.targetName = this.getText(data);
 
-                    FC.CONFIG.boardName = this.getText(data);
-                    FC.CONFIG.manufacturerId = this.getText(data);
-                    FC.CONFIG.signature = [];
+                    // FC.CONFIG.boardName = this.getText(data);
+                    // FC.CONFIG.manufacturerId = this.getText(data);
+                    // FC.CONFIG.signature = [];
 
-                    for (let i = 0; i < self.SIGNATURE_LENGTH; i++) {
-                        FC.CONFIG.signature.push(data.readU8());
-                    }
+                    // for (let i = 0; i < self.SIGNATURE_LENGTH; i++) {
+                    //     FC.CONFIG.signature.push(data.readU8());
+                    // }
 
-                    FC.CONFIG.mcuTypeId = data.readU8();
-                    // Introduced in API version 1.42
-                    FC.CONFIG.configurationState = data.readU8();
+                    // FC.CONFIG.mcuTypeId = data.readU8();
+                    // // Introduced in API version 1.42
+                    // FC.CONFIG.configurationState = data.readU8();
 
-                    // Introduced in API version 1.43
-                    FC.CONFIG.sampleRateHz = data.readU16();
-                    FC.CONFIG.configurationProblems = data.readU32();
+                    // // Introduced in API version 1.43
+                    // FC.CONFIG.sampleRateHz = data.readU16();
+                    // FC.CONFIG.configurationProblems = data.readU32();
 
-                    // Refresh the hardware name (it's a calculated field)
-                    FC.calculateHardwareName();
+                    // // Refresh the hardware name (it's a calculated field)
+                    // FC.calculateHardwareName();
 
                     break;
 
@@ -1397,9 +1344,6 @@ MspHelper.prototype.process_data = function (dataHandler) {
                         FC.LED_MODE_COLORS.push(modeColor);
                     }
                     break;
-                case MSPCodes.MSP_SET_LED_STRIP_MODECOLOR:
-                    console.log("Led strip mode colors saved");
-                    break;
 
                 case MSPCodes.MSP_DATAFLASH_SUMMARY:
                     if (data.byteLength >= 13) {
@@ -1547,36 +1491,6 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     console.log("Tuning Sliders sent");
                     break;
 
-                case MSPCodes.MSP_SIMPLIFIED_TUNING:
-                    MspHelper.readPidSliderSettings(data);
-                    MspHelper.readDtermFilterSliderSettings(data);
-                    MspHelper.readGyroFilterSliderSettings(data);
-
-                    break;
-                case MSPCodes.MSP_CALCULATE_SIMPLIFIED_PID:
-                    if (FC.TUNING_SLIDERS.slider_pids_mode > 0) {
-                        FC.PIDS[0][0] = data.readU8();
-                        FC.PIDS[0][1] = data.readU8();
-                        FC.PIDS[0][2] = data.readU8();
-                        FC.ADVANCED_TUNING.dMaxRoll = data.readU8();
-                        FC.ADVANCED_TUNING.feedforwardRoll = data.readU16();
-
-                        FC.PIDS[1][0] = data.readU8();
-                        FC.PIDS[1][1] = data.readU8();
-                        FC.PIDS[1][2] = data.readU8();
-                        FC.ADVANCED_TUNING.dMaxPitch = data.readU8();
-                        FC.ADVANCED_TUNING.feedforwardPitch = data.readU16();
-                    }
-
-                    if (FC.TUNING_SLIDERS.slider_pids_mode > 1) {
-                        FC.PIDS[2][0] = data.readU8();
-                        FC.PIDS[2][1] = data.readU8();
-                        FC.PIDS[2][2] = data.readU8();
-                        FC.ADVANCED_TUNING.dMaxYaw = data.readU8();
-                        FC.ADVANCED_TUNING.feedforwardYaw = data.readU16();
-                    }
-
-                    break;
                 case MSPCodes.MSP_CALCULATE_SIMPLIFIED_GYRO:
                     MspHelper.readGyroFilterSliderSettings(data);
 
@@ -1627,9 +1541,7 @@ MspHelper.prototype.process_data = function (dataHandler) {
                 case MSPCodes.MSP_SET_RC_DEADBAND:
                     console.log("Rc controls settings saved");
                     break;
-                case MSPCodes.MSP_SET_SENSOR_ALIGNMENT:
-                    console.log("Sensor alignment saved");
-                    break;
+
                 case MSPCodes.MSP_SET_RX_CONFIG:
                     console.log("Rx config saved");
                     break;
@@ -1730,7 +1642,22 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     }
 
                     break;
-
+                case MSPCodes.MSP_GET_FUNCTION:
+                    // 创建位掩码
+                    let isFun = data.readU8();
+                    let bitValue_f = bitIsOne(isFun, 0);  // 对于第一位，应该是 1 << 0
+                    FC.OVOBOT_FUNCTION.isSprayFun = bitValue_f;
+                    bitValue_f = bitIsOne(isFun, 1);
+                    FC.OVOBOT_FUNCTION.isVoiceFun = bitValue_f;
+                    FC.OVOBOT_FUNCTION.voiceIndex = data.readU16();
+                    break;
+                case MSPCodes.MSP_ADAPTER:
+                    FC.ANALOG.adapter = data.readU8();//parseFloat((data.read32() / 100.0).toFixed(2)); // correct scale factor
+                    break;
+                case MSPCodes.MSP_FOURCORNER:
+                    FC.ANALOG.corner = data.readU8();//parseFloat((data.read32() / 100.0).toFixed(2)); // correct scale factor
+                    FC.ANALOG.hitCorner = data.readU8();
+                    break;
                 default:
                     console.log(`Unknown code detected: ${code} (${getMSPCodeName(code)})`);
             }
@@ -1887,26 +1814,6 @@ MspHelper.prototype.crunch = function (code, modifierCode = undefined) {
                 .push8(Math.round(FC.MISC.vbatmaxcellvoltage * 10))
                 .push8(Math.round(FC.MISC.vbatwarningcellvoltage * 10));
             break;
-        case MSPCodes.MSP_SET_MOTOR_CONFIG:
-            buffer
-                .push16(FC.MOTOR_CONFIG.minthrottle)
-                .push16(FC.MOTOR_CONFIG.maxthrottle)
-                .push16(FC.MOTOR_CONFIG.mincommand);
-
-            // Introduced in 1.42
-            buffer.push8(FC.MOTOR_CONFIG.motor_poles);
-            buffer.push8(FC.MOTOR_CONFIG.use_dshot_telemetry ? 1 : 0);
-            break;
-        case MSPCodes.MSP_SET_GPS_CONFIG:
-            buffer
-                .push8(FC.GPS_CONFIG.provider)
-                .push8(FC.GPS_CONFIG.ublox_sbas)
-                .push8(FC.GPS_CONFIG.auto_config)
-                .push8(FC.GPS_CONFIG.auto_baud);
-
-            // Introduced in 1.43
-            buffer.push8(FC.GPS_CONFIG.home_point_once).push8(FC.GPS_CONFIG.ublox_use_galileo);
-            break;
         case MSPCodes.MSP_SET_GPS_RESCUE:
             buffer
                 .push16(FC.GPS_RESCUE.angle)
@@ -1931,11 +1838,6 @@ MspHelper.prototype.crunch = function (code, modifierCode = undefined) {
 
             // Introduced in 1.46
             buffer.push16(FC.GPS_RESCUE.initialClimbM);
-            break;
-        case MSPCodes.MSP_SET_COMPASS_CONFIG:
-            if (semver.gte(FC.CONFIG.apiVersion, API_VERSION_1_46)) {
-                buffer.push16(Math.round(10.0 * parseFloat(FC.COMPASS_CONFIG.mag_declination)));
-            }
             break;
         case MSPCodes.MSP_SET_RSSI_CONFIG:
             buffer.push8(FC.RSSI_CONFIG.channel);
@@ -2390,26 +2292,6 @@ MspHelper.prototype.crunch = function (code, modifierCode = undefined) {
 
         case MSPCodes.MSP2_SEND_DSHOT_COMMAND:
             buffer.push8(1);
-            break;
-
-        case MSPCodes.MSP_SET_SIMPLIFIED_TUNING:
-            MspHelper.writePidSliderSettings(buffer);
-            MspHelper.writeDtermFilterSliderSettings(buffer);
-            MspHelper.writeGyroFilterSliderSettings(buffer);
-
-            break;
-        case MSPCodes.MSP_CALCULATE_SIMPLIFIED_PID:
-            MspHelper.writePidSliderSettings(buffer);
-
-            break;
-
-        case MSPCodes.MSP_CALCULATE_SIMPLIFIED_GYRO:
-            MspHelper.writeGyroFilterSliderSettings(buffer);
-
-            break;
-        case MSPCodes.MSP_CALCULATE_SIMPLIFIED_DTERM:
-            MspHelper.writeDtermFilterSliderSettings(buffer);
-
             break;
 
         default:

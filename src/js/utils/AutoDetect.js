@@ -143,7 +143,7 @@ class AutoDetect {
         if (semver.gte(FC.CONFIG.apiVersion, API_VERSION_1_45) && FC.CONFIG.flightControllerIdentifier === "BTFL") {
             await MSP.promise(MSPCodes.MSP2_GET_TEXT, mspHelper.crunch(MSPCodes.MSP2_GET_TEXT, MSPCodes.BUILD_KEY));
             await MSP.promise(MSPCodes.MSP2_GET_TEXT, mspHelper.crunch(MSPCodes.MSP2_GET_TEXT, MSPCodes.CRAFT_NAME));
-            await MSP.promise(MSPCodes.MSP_BUILD_INFO);
+            await MSP.promise(MSPCodes.CMD_BUILD_INFO);
 
             // store FC.CONFIG.buildKey as the object gets destroyed after disconnect
             TABS.firmware_flasher.cloudBuildKey = FC.CONFIG.buildKey;
@@ -168,7 +168,7 @@ class AutoDetect {
     }
 
     async requestBoardInformation() {
-        await MSP.promise(MSPCodes.MSP_API_VERSION);
+        await MSP.promise(MSPCodes.CMD_VERSION);
         gui_log(i18n.getMessage("apiVersionReceived", FC.CONFIG.apiVersion));
 
         if (FC.CONFIG.apiVersion.includes("null") || semver.lt(FC.CONFIG.apiVersion, "1.39.0")) {

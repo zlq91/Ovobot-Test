@@ -42,7 +42,7 @@ PortHandler.initialize = function () {
     // Use serial for all protocol events
     serial.addEventListener("addedDevice", (event) => {
         const detail = event.detail;
-
+        console.log("==============enter  addedDevice")
         if (detail?.path?.startsWith("bluetooth")) {
             this.handleDeviceAdded(detail, "bluetooth");
         } else {
@@ -257,6 +257,7 @@ PortHandler.selectActivePort = function (suggestedDevice = false) {
 
 // Create a unified handler for device addition
 PortHandler.handleDeviceAdded = function (device, deviceType) {
+    console.log("==========enter handleDeviceAdded")
     if (!device) {
         console.warn(`${this.logHead} Invalid ${deviceType} device added event`);
         return;

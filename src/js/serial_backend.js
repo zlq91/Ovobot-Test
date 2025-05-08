@@ -227,6 +227,7 @@ function setConnectionTimeout() {
     GUI.timeout_add(
         "connecting",
         function () {
+            console.log("==============!CONFIGURATOR.connectionValid:"+!CONFIGURATOR.connectionValid)
             if (!CONFIGURATOR.connectionValid) {
                 gui_log(i18n.getMessage("noConfigurationReceived"));
 
@@ -300,9 +301,8 @@ function onOpen(openInfo) {
         MSP.timeout = 250;
         console.log(`${logHead} Requesting configuration data`);
 
-        MSP.send_message(MSPCodes.MSP_API_VERSION, false, false, function () {
+        MSP.send_message(MSPCodes.CMD_VERSION, false, false, function () {
             gui_log(i18n.getMessage("apiVersionReceived", FC.CONFIG.apiVersion));
-
             if (FC.CONFIG.apiVersion.includes("null")) {
                 abortConnection();
                 return;
@@ -310,19 +310,18 @@ function onOpen(openInfo) {
 
             if (semver.gte(FC.CONFIG.apiVersion, CONFIGURATOR.API_VERSION_ACCEPTED)) {
                 MSP.send_message(MSPCodes.MSP_FC_VARIANT, false, false, function () {
+                    FC.CONFIG.flightControllerIdentifier = 'BTFL';
                     if (FC.CONFIG.flightControllerIdentifier === "BTFL") {
                         MSP.send_message(MSPCodes.MSP_FC_VERSION, false, false, function () {
                             gui_log(
-                                i18n.getMessage("fcInfoReceived", [
-                                    FC.CONFIG.flightControllerIdentifier,
-                                    FC.CONFIG.flightControllerVersion,
-                                ]),
+                                i18n.getMessage("fcInfoReceived", [FC.CONFIG.firmwareVersion]),
                             );
 
-                            MSP.send_message(MSPCodes.MSP_BUILD_INFO, false, false, function () {
-                                gui_log(i18n.getMessage("buildInfoReceived", [FC.CONFIG.buildInfo]));
+                            MSP.send_message(MSPCodes.CMD_BUILD_INFO, false, false, function () {
+                                // gui_log(i18n.getMessage("buildInfoReceived", [FC.CONFIG.buildInfo]));
 
                                 MSP.send_message(MSPCodes.MSP_BOARD_INFO, false, false, processBoardInfo);
+                                // processBoardInfo();
                             });
                         });
                     } else {
@@ -360,9 +359,9 @@ function onOpen(openInfo) {
                     dialog.close();
                 });
 
-                dialog.showModal();
+                // dialog.showModal();
 
-                connectCli();
+                // connectCli();
             }
         });
     } else {
@@ -380,7 +379,6 @@ function onOpenVirtual() {
     mspHelper = new MspHelper();
 
     VirtualFC.setVirtualConfig();
-
     processBoardInfo();
 
     update_dataflash_global();
@@ -389,11 +387,11 @@ function onOpenVirtual() {
 }
 
 function processCustomDefaults() {
-    if (
-        bit_check(FC.CONFIG.targetCapabilities, FC.TARGET_CAPABILITIES_FLAGS.SUPPORTS_CUSTOM_DEFAULTS) &&
-        bit_check(FC.CONFIG.targetCapabilities, FC.TARGET_CAPABILITIES_FLAGS.HAS_CUSTOM_DEFAULTS) &&
-        FC.CONFIG.configurationState === FC.CONFIGURATION_STATES.DEFAULTS_BARE
-    ) {
+    // if (
+    //     bit_check(FC.CONFIG.targetCapabilities, FC.TARGET_CAPABILITIES_FLAGS.SUPPORTS_CUSTOM_DEFAULTS) &&
+    //     bit_check(FC.CONFIG.targetCapabilities, FC.TARGET_CAPABILITIES_FLAGS.HAS_CUSTOM_DEFAULTS) &&
+    //     FC.CONFIG.configurationState === FC.CONFIGURATION_STATES.DEFAULTS_BARE
+    // ) {
         const dialog = $("#dialogResetToCustomDefaults")[0];
 
         $("#dialogResetToCustomDefaults-acceptbtn").click(function () {
@@ -401,7 +399,7 @@ function processCustomDefaults() {
 
             const buffer = [];
             buffer.push(mspHelper.RESET_TYPES.CUSTOM_DEFAULTS);
-            MSP.send_message(MSPCodes.MSP_RESET_CONF, buffer, false);
+            // MSP.send_message(MSPCodes.MSP_RESET_CONF, buffer, false);
 
             dialog.close();
 
@@ -427,19 +425,20 @@ function processCustomDefaults() {
         dialog.showModal();
 
         GUI.timeout_remove("connecting"); // kill connecting timer
-    } else {
-        checkReportProblems();
-    }
+    // } else {
+    //     checkReportProblems();
+    // }
 }
 
 function processBoardInfo() {
-    gui_log(i18n.getMessage("boardInfoReceived", [FC.CONFIG.hardwareName, FC.CONFIG.boardVersion]));
 
-    if (semver.gte(FC.CONFIG.apiVersion, API_VERSION_1_46)) {
-        checkReportProblems();
-    } else {
-        processCustomDefaults();
-    }
+    // gui_log(i18n.getMessage("boardInfoReceived", [FC.CONFIG.hardwareName, FC.CONFIG.boardVersion]));
+
+    // if (semver.gte(FC.CONFIG.apiVersion, API_VERSION_1_46)) {
+    //     checkReportProblems();
+    // } else {
+        // processCustomDefaults();
+    // }
     tracking.sendEvent(tracking.EVENT_CATEGORIES.FLIGHT_CONTROLLER, "Loaded", {
         boardIdentifier: FC.CONFIG.boardIdentifier,
         targetName: FC.CONFIG.targetName,
@@ -451,6 +450,8 @@ function processBoardInfo() {
         flightControllerIdentifier: FC.CONFIG.flightControllerIdentifier,
         mcu: FC.CONFIG.targetName,
     });
+    finishOpen();
+    GUI.timeout_remove('connecting'); // kill connecting timer
 }
 
 function checkReportProblems() {
@@ -603,17 +604,17 @@ function setRtc() {
 function finishOpen() {
     CONFIGURATOR.connectionValid = true;
 
-    if (semver.gte(FC.CONFIG.apiVersion, API_VERSION_1_45) && FC.CONFIG.buildOptions.length) {
+    // if (semver.gte(FC.CONFIG.apiVersion, API_VERSION_1_45) && FC.CONFIG.buildOptions.length) {
         GUI.allowedTabs = Array.from(GUI.defaultAllowedTabs);
 
-        for (const tab of GUI.defaultCloudBuildTabOptions) {
-            if (FC.CONFIG.buildOptions.some((opt) => opt.toLowerCase().includes(tab))) {
-                GUI.allowedTabs.push(tab);
-            }
-        }
-    } else {
-        GUI.allowedTabs = Array.from(GUI.defaultAllowedFCTabsWhenConnected);
-    }
+    //     for (const tab of GUI.defaultCloudBuildTabOptions) {
+    //         if (FC.CONFIG.buildOptions.some((opt) => opt.toLowerCase().includes(tab))) {
+    //             GUI.allowedTabs.push(tab);
+    //         }
+    //     }
+    // } else {
+    //     GUI.allowedTabs = Array.from(GUI.defaultAllowedFCTabsWhenConnected);
+    // }
 
     onConnect();
 

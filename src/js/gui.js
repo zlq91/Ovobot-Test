@@ -22,7 +22,7 @@ class GuiControl {
         this.defaultAllowedTabsWhenDisconnected = ["landing", "firmware_flasher", "privacy_policy", "options", "help"];
 
         this.defaultAllowedTabs = [
-            "setup",
+            // "setup",
             "auto_test"
         ];
 
@@ -317,7 +317,7 @@ class GuiControl {
         const tab =
             result.rememberLastTab && result.lastTab && this.allowedTabs.includes(result.lastTab.substring(4))
                 ? result.lastTab
-                : "tab_setup";
+                : "tab_auto_test";
 
         $(`#tabs ul.mode-connected .${tab} a`).trigger("click");
     }

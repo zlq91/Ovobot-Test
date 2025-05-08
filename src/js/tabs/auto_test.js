@@ -1,6 +1,8 @@
 import { data, isEmptyObject, indexOf } from "jquery";
 import { i18n } from "../localization";
 import GUI, { TABS } from "../../js/gui";
+import MSPCodes from "../msp/MSPCodes";
+import FC from "../fc";
 
 const auto_test = {
 };

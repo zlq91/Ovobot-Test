@@ -36,11 +36,11 @@ describe("MspHelper", () => {
 
             expect(callbackCalled).toEqual(true);
         });
-        it("handles MSP_API_VERSION correctly", () => {
+        it("handles CMD_VERSION correctly", () => {
             let randomValues = crypto.getRandomValues(new Uint8Array(3));
             const [mspProtocolVersion, apiVersionMajor, apiVersionMinor] = randomValues;
             mspHelper.process_data({
-                code: MSPCodes.MSP_API_VERSION,
+                code: MSPCodes.CMD_VERSION,
                 dataView: new DataView(randomValues.buffer),
                 crcError: false,
                 callbacks: [],
