@@ -70,6 +70,7 @@ const INITIAL_ANALOG = {
     adapter: 0,
     waterstate: 0,
     corner: 0,
+    hitCorner:0,
     rssi: 0,
     amperage: 0,
     last_received_timestamp: 0,

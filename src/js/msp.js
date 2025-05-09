@@ -377,14 +377,15 @@ const MSP = {
             bufferOut = new ArrayBuffer(bufferSize);
             let bufView = new Uint8Array(bufferOut);
 
-            bufView[0] = 36; // $
-            bufView[1] = 77; // M
-            bufView[2] = 60; // <
-            bufView[3] = dataLength;
-            bufView[4] = code;
+            bufView[0] = 0xff; // $
+            bufView[1] = 0xff; // M
+            console.log("hw:" + FC.CONFIG.hw);
+            bufView[2] = FC.CONFIG.hw; // device
+            bufView[3] = code;
+            bufView[4] = dataLength;
 
-            let checksum = bufView[3] ^ bufView[4];
-
+            let checksum = bufView[2] ^ bufView[3];
+            checksum ^= bufView[4];
             for (let i = 0; i < dataLength; i++) {
                 bufView[i + 5] = data[i];
                 checksum ^= bufView[i + 5];

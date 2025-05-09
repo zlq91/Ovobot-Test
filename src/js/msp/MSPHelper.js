@@ -244,22 +244,17 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     break;
 
                 case MSPCodes.MSP_RAW_IMU:
-                    // 2048 for mpu6050, 1024 for mma (times 4 since we don't scale in the firmware)
-                    // currently we are unable to differentiate between the sensor types, so we are going with 2048
-                    FC.SENSOR_DATA.accelerometer[0] = data.read16() / 2048;
-                    FC.SENSOR_DATA.accelerometer[1] = data.read16() / 2048;
-                    FC.SENSOR_DATA.accelerometer[2] = data.read16() / 2048;
+                    // 512 for mpu6050, 256 for mma
+                    // currently we are unable to differentiate between the sensor types, so we are goign with 512
+                    FC.SENSOR_DATA.gyroscope[0] = data.read16();
+                    FC.SENSOR_DATA.gyroscope[1] = data.read16();
+                    FC.SENSOR_DATA.gyroscope[2] = data.read16();
 
-                    // properly scaled
-                    FC.SENSOR_DATA.gyroscope[0] = data.read16() * (4 / 16.4);
-                    FC.SENSOR_DATA.gyroscope[1] = data.read16() * (4 / 16.4);
-                    FC.SENSOR_DATA.gyroscope[2] = data.read16() * (4 / 16.4);
-
-                    // no clue about scaling factor
-                    FC.SENSOR_DATA.magnetometer[0] = data.read16();
-                    FC.SENSOR_DATA.magnetometer[1] = data.read16();
-                    FC.SENSOR_DATA.magnetometer[2] = data.read16();
+                    FC.SENSOR_DATA.accelerometer[0] = data.read16();
+                    FC.SENSOR_DATA.accelerometer[1] = data.read16();
+                    FC.SENSOR_DATA.accelerometer[2] = data.read16();
                     break;
+
                 case MSPCodes.MSP_SERVO:
                     const servoCount = data.byteLength / 2;
                     for (let i = 0; i < servoCount; i++) {
@@ -336,12 +331,9 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     FC.SENSOR_DATA.sonar = data.read32();
                     break;
                 case MSPCodes.MSP_ANALOG:
-                    FC.ANALOG.voltage = data.readU8() / 10.0;
-                    FC.ANALOG.mAhdrawn = data.readU16();
-                    FC.ANALOG.rssi = data.readU16(); // 0-1023
-                    FC.ANALOG.amperage = data.read16() / 100; // A
-                    FC.ANALOG.voltage = data.readU16() / 100;
-                    FC.ANALOG.last_received_timestamp = performance.now();
+                    FC.ANALOG.leftMotorAdc = data.readU16();
+                    FC.ANALOG.rightMotorAdc = data.readU16();
+                    FC.ANALOG.fanAdc = data.readU16();
                     break;
                 case MSPCodes.MSP_VOLTAGE_METERS:
                     FC.VOLTAGE_METERS = [];
@@ -626,12 +618,12 @@ MspHelper.prototype.process_data = function (dataHandler) {
                 case MSPCodes.MSP_MAG_CALIBRATION:
                     console.log("Mag calibration executed");
                     break;
-                case MSPCodes.MSP_SET_MOTOR_CONFIG:
-                    console.log("Motor Configuration saved");
-                    break;
-                case MSPCodes.MSP_SET_GPS_CONFIG:
-                    console.log("GPS Configuration saved");
-                    break;
+                // case MSPCodes.MSP_SET_MOTOR_CONFIG:
+                //     console.log("Motor Configuration saved");
+                //     break;
+                // case MSPCodes.MSP_SET_GPS_CONFIG:
+                //     console.log("GPS Configuration saved");
+                //     break;
                 case MSPCodes.MSP_SET_RSSI_CONFIG:
                     console.log("RSSI Configuration saved");
                     break;
@@ -1658,6 +1650,16 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     FC.ANALOG.corner = data.readU8();//parseFloat((data.read32() / 100.0).toFixed(2)); // correct scale factor
                     FC.ANALOG.hitCorner = data.readU8();
                     break;
+                case MSPCodes.MSP_SET_SPRAY:
+                    break;
+                case MSPCodes.MSP_SET_AUTO_PLAY_VOICE:
+                    break; 
+                case MSPCodes.MSP_SET_FAN:
+                    console.log('FAN Speeds Updated');
+                    break;  
+                case MSPCodes.MSP_SET_MOTOR:
+                    console.log('Motor Speeds Updated');
+                    break;
                 default:
                     console.log(`Unknown code detected: ${code} (${getMSPCodeName(code)})`);
             }
@@ -1814,31 +1816,31 @@ MspHelper.prototype.crunch = function (code, modifierCode = undefined) {
                 .push8(Math.round(FC.MISC.vbatmaxcellvoltage * 10))
                 .push8(Math.round(FC.MISC.vbatwarningcellvoltage * 10));
             break;
-        case MSPCodes.MSP_SET_GPS_RESCUE:
-            buffer
-                .push16(FC.GPS_RESCUE.angle)
-                .push16(FC.GPS_RESCUE.returnAltitudeM)
-                .push16(FC.GPS_RESCUE.descentDistanceM)
-                .push16(FC.GPS_RESCUE.groundSpeed)
-                .push16(FC.GPS_RESCUE.throttleMin)
-                .push16(FC.GPS_RESCUE.throttleMax)
-                .push16(FC.GPS_RESCUE.throttleHover)
-                .push8(FC.GPS_RESCUE.sanityChecks)
-                .push8(FC.GPS_RESCUE.minSats);
+        // case MSPCodes.MSP_SET_GPS_RESCUE:
+        //     buffer
+        //         .push16(FC.GPS_RESCUE.angle)
+        //         .push16(FC.GPS_RESCUE.returnAltitudeM)
+        //         .push16(FC.GPS_RESCUE.descentDistanceM)
+        //         .push16(FC.GPS_RESCUE.groundSpeed)
+        //         .push16(FC.GPS_RESCUE.throttleMin)
+        //         .push16(FC.GPS_RESCUE.throttleMax)
+        //         .push16(FC.GPS_RESCUE.throttleHover)
+        //         .push8(FC.GPS_RESCUE.sanityChecks)
+        //         .push8(FC.GPS_RESCUE.minSats);
 
-            // Introduced in 1.43
-            buffer
-                .push16(FC.GPS_RESCUE.ascendRate)
-                .push16(FC.GPS_RESCUE.descendRate)
-                .push8(FC.GPS_RESCUE.allowArmingWithoutFix)
-                .push8(FC.GPS_RESCUE.altitudeMode);
+        //     // Introduced in 1.43
+        //     buffer
+        //         .push16(FC.GPS_RESCUE.ascendRate)
+        //         .push16(FC.GPS_RESCUE.descendRate)
+        //         .push8(FC.GPS_RESCUE.allowArmingWithoutFix)
+        //         .push8(FC.GPS_RESCUE.altitudeMode);
 
-            // Introduced in 1.44
-            buffer.push16(FC.GPS_RESCUE.minStartDistM);
+        //     // Introduced in 1.44
+        //     buffer.push16(FC.GPS_RESCUE.minStartDistM);
 
-            // Introduced in 1.46
-            buffer.push16(FC.GPS_RESCUE.initialClimbM);
-            break;
+        //     // Introduced in 1.46
+        //     buffer.push16(FC.GPS_RESCUE.initialClimbM);
+        //     break;
         case MSPCodes.MSP_SET_RSSI_CONFIG:
             buffer.push8(FC.RSSI_CONFIG.channel);
             break;

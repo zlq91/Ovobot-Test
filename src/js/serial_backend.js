@@ -736,8 +736,8 @@ export function read_serial(info) {
 export async function update_sensor_status() {
     const statuswrapper = $("#quad-status_wrapper");
 
-    await MSP.promise(MSPCodes.MSP_ANALOG);
-    await MSP.promise(MSPCodes.MSP_BATTERY_STATE);
+    // await MSP.promise(MSPCodes.MSP_ANALOG);
+    // await MSP.promise(MSPCodes.MSP_BATTERY_STATE);
 
     if (FC.ANALOG !== undefined) {
         let nbCells = Math.floor(FC.ANALOG.voltage / FC.BATTERY_CONFIG.vbatmaxcellvoltage) + 1;

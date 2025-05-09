@@ -3,6 +3,8 @@ import { i18n } from "../localization";
 import GUI, { TABS } from "../../js/gui";
 import MSPCodes from "../msp/MSPCodes";
 import FC from "../fc";
+import { mspHelper } from "../msp/MSPHelper";
+import MSP from "../msp";
 
 const auto_test = {
 };
@@ -83,9 +85,6 @@ auto_test.initialize = function (callback) {
             }).length > 0;
             if (!atLeastOneDialogOpen) {//没有弹框弹出
                 buttonsObj = $("#auto-test-button a");
-                // console.log("==========================buttonsObj:" + JSON.stringify(buttonsObj, null, 2));
-                // buttonsObj = buttonsObj.filter(obj => $(this).closest(".grid-row-content").parent().hasClass("model-display") === false);
-                // console.log("==========================buttonsObj:" + JSON.stringify(buttonsObj, null, 2));
             } else {
                 buttonsObj = $("#" + showModel.find("div.buttons").attr("id") + " a");
             }
@@ -367,6 +366,7 @@ auto_test.initialize = function (callback) {
         function test_adapter() {
             updateDialogMessages(model_adpter_status, 1);
             MSP.send_message(MSPCodes.MSP_ADAPTER, false, false, function () {
+                // console.log("======FC.ANALOG.adapter:"+FC.ANALOG.adapter);
                 if (FC.ANALOG.adapter >= 22 && FC.ANALOG.adapter <= 26) {
                     testResult[0] = 2;
                 } else {
@@ -505,7 +505,6 @@ auto_test.initialize = function (callback) {
             //调用喷水功能并弹出确认弹框
             updateDialogMessages(model_waterpump_status, 1);
             let timerIdWaterPunmp = setTimeout(() => {
-                // console.log("====================isSprayFun:" + isSprayFun);
                 if (isSprayFun) {
                     //调用喷水
                     MSP.send_message(MSPCodes.MSP_SET_SPRAY, [1], false, function () {
@@ -524,13 +523,10 @@ auto_test.initialize = function (callback) {
         function test_voice() {
             updateDialogMessages(model_voice_status, 1);
             let timerIdVoice = setTimeout(() => {
-                // console.log("||==============isVoiceFun:" + isVoiceFun);
                 if (isVoiceFun) {
-                    //显示弹框
-                    dialogConfirmUnderingTestVoice.showModal();
-                    MSP.send_message(MSPCodes.MSP_SET_AUTO_PLAY_VOICE, [FC.OVOBOT_FUNCTION.voiceIndex], false, function () {
-                        console.log("==============FC.OVOBOT_FUNCTION.voiceIndex:" + FC.OVOBOT_FUNCTION.voiceIndex);
-                        // focused(".button-voice");
+                    MSP.send_message(MSPCodes.MSP_SET_AUTO_PLAY_VOICE,[FC.OVOBOT_FUNCTION.voiceIndex], false, function () {
+                        //显示弹框
+                        dialogConfirmUnderingTestVoice.showModal();
                         focusedButtons();
                     });
                 } else {
