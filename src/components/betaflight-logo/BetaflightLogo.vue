@@ -1,12 +1,12 @@
 <template>
     <div class="logo">
         <div class="logo_text">
-            <span> {{ $t("versionLabelConfigurator") }}: {{ configuratorVersion }} </span>
+            <!-- <span> {{ $t("versionLabelConfigurator") }}: {{ configuratorVersion }} </span>
             <span v-if="firmwareVersion && firmwareId">
                 {{ $t("versionLabelFirmware") }}: {{ firmwareVersion }}
                 {{ firmwareId }}
             </span>
-            <span v-if="hardwareId"> {{ $t("versionLabelTarget") }}: {{ hardwareId }} </span>
+            <span v-if="hardwareId"> {{ $t("versionLabelTarget") }}: {{ hardwareId }} </span> -->
         </div>
     </div>
 </template>
@@ -46,7 +46,8 @@ export default {
 }
 
 .dark-theme .logo {
-    background-image: url(../../images/light-wide-2.svg);
+    /* background-image: url(../../images/light-wide-2.svg); */
+    background-image: url(../../images/ovobot_images/ovobot_logo_md.png);
 }
 
 .logo_text {

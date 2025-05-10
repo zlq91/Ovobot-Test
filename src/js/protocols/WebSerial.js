@@ -107,7 +107,7 @@ class WebSerial extends EventTarget {
             : `VID:${portInfo.usbVendorId} PID:${portInfo.usbProductId}`;
         return {
             path: `serial_${this.portCounter++}`,
-            displayName: `Betaflight ${displayName}`,
+            displayName: `Ovobot ${displayName}`,
             vendorId: portInfo.usbVendorId,
             productId: portInfo.usbProductId,
             port: port,

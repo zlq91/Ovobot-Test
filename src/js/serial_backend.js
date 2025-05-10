@@ -669,24 +669,24 @@ function onConnect() {
         })
         .show();
 
-    if (FC.CONFIG.flightControllerVersion !== "") {
-        FC.FEATURE_CONFIG.features = new Features(FC.CONFIG);
-        FC.BEEPER_CONFIG.beepers = new Beepers(FC.CONFIG);
-        FC.BEEPER_CONFIG.dshotBeaconConditions = new Beepers(FC.CONFIG, ["RX_LOST", "RX_SET"]);
+    // if (FC.CONFIG.flightControllerVersion !== "") {
+    //     FC.FEATURE_CONFIG.features = new Features(FC.CONFIG);
+    //     FC.BEEPER_CONFIG.beepers = new Beepers(FC.CONFIG);
+    //     FC.BEEPER_CONFIG.dshotBeaconConditions = new Beepers(FC.CONFIG, ["RX_LOST", "RX_SET"]);
 
-        $("#tabs ul.mode-connected").show();
+    //     $("#tabs ul.mode-connected").show();
 
-        MSP.send_message(MSPCodes.MSP_FEATURE_CONFIG, false, false);
-        MSP.send_message(MSPCodes.MSP_BATTERY_CONFIG, false, false);
-        MSP.send_message(MSPCodes.MSP_BLACKBOX_CONFIG, false, false);
-        MSP.send_message(MSPCodes.MSP_DATAFLASH_SUMMARY, false, false);
-        MSP.send_message(MSPCodes.MSP_SDCARD_SUMMARY, false, false);
+    //     MSP.send_message(MSPCodes.MSP_FEATURE_CONFIG, false, false);
+    //     MSP.send_message(MSPCodes.MSP_BATTERY_CONFIG, false, false);
+    //     MSP.send_message(MSPCodes.MSP_BLACKBOX_CONFIG, false, false);
+    //     MSP.send_message(MSPCodes.MSP_DATAFLASH_SUMMARY, false, false);
+    //     MSP.send_message(MSPCodes.MSP_SDCARD_SUMMARY, false, false);
 
-        if (FC.CONFIG.boardType === 0 || FC.CONFIG.boardType === 2) {
-            startLiveDataRefreshTimer();
-        }
-    }
-
+    //     if (FC.CONFIG.boardType === 0 || FC.CONFIG.boardType === 2) {
+    //         startLiveDataRefreshTimer();
+    //     }
+    // }
+    $("#tabs ul.mode-connected").show();
     // header bar
     $("#sensor-status").show();
     $("#portsinput").hide();

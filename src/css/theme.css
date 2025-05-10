@@ -9,16 +9,16 @@ body {
     --primary-100: #fff4d6;
     --primary-200: #ffe9ad;
     --primary-300: #ffdc7a;
-    --primary-400: #ffcd42;
-    --primary-500: #ffbb00;
-    --primary-600: #e6a800;
+    --primary-400: rgb(156, 241, 210);
+    --primary-500: rgba(121, 213, 179, 1);
+    --primary-600: rgba(121, 213, 179, 1);
     --primary-700: #cc9600;
     --primary-800: #a87b00;
     --primary-900: #7a5a00;
     --primary-950: #5c4300;
 
     --primary-transparent-1: rgba(255, 187, 0, 0.1);
-    --primary-transparent-2: rgba(255, 187, 0, 0.2);
+    --primary-transparent-2: rgb(89, 102, 97);
     --primary-transparent-3: rgba(255, 187, 0, 0.3);
     --primary-transparent-4: rgba(255, 187, 0, 0.4);
 
@@ -45,9 +45,9 @@ body {
     --error-transparent-3: rgba(226, 18, 63, 0.3);
     --error-transparent-4: rgba(226, 18, 63, 0.4);
 
-    --success-400: #90f042;
-    --success-500: #70e212;
-    --success-600: #5cb10f;
+    --success-400: rgb(156, 241, 210);
+    --success-500: rgba(121, 213, 179, 1);
+    --success-600: rgba(0, 220, 220, 1);
 
     --success-transparent-1: rgba(112, 226, 18, 0.1);
     --success-transparent-2: rgba(112, 226, 18, 0.2);
