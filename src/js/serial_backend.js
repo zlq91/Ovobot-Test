@@ -93,7 +93,7 @@ export function initializeSerialBackend() {
     PortUsage.initialize();
 }
 
-function connectDisconnect() {
+export function connectDisconnect() {
     const selectedPort = PortHandler.portPicker.selectedPort;
     const portName = selectedPort === "manual" ? PortHandler.portPicker.portOverride : selectedPort;
 

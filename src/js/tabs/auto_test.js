@@ -1,10 +1,10 @@
 import { data, isEmptyObject, indexOf } from "jquery";
-import { i18n } from "../localization";
-import GUI, { TABS } from "../../js/gui";
-import MSPCodes from "../msp/MSPCodes";
-import FC from "../fc";
-import { mspHelper } from "../msp/MSPHelper";
-import MSP from "../msp";
+import { i18n } from "../localization.js";
+import GUI, { TABS } from "../../js/gui.js";
+import MSPCodes from "../msp/MSPCodes.js";
+import FC from "../fc.js";
+import MSP from "../msp.js";
+import { connectDisconnect } from "../serial_backend.js";
 
 const auto_test = {
 };
@@ -63,6 +63,8 @@ auto_test.initialize = function (callback) {
         let model_id;
         let isAutoTest = true;
         let isTestedGyro = false;//是否已经测试完陀螺仪
+
+        let pingValue = 0;
 
         // let fanCurrentStatic = [];
         // let motorCurrentStatic = [];
@@ -617,12 +619,42 @@ auto_test.initialize = function (callback) {
             }
             GUI.interval_remove('setup_auto_test_fast');
             GUI.interval_remove('setup_auto_test_cliff_fast');
+            GUI.interval_add('setup_getRec_fast', getRec, 500, true);
+        }
+        function getRec(){
+            // console.log("===========enter getRec");
+            // for (const instance of MSP.callbacks) {
+            //     console.log("==============instance.code:"+instance.code);
+                    
+            // }
+            MSP.callbacks=[];
+            // console.log("==================GUI.connected_to:"+GUI.connected_to);
+            MSP.send_message(MSPCodes.CMD_BUILD_INFO, false, false, function (obj) {
+                // console.log("===========enter getRec CMD_BUILD_INFO");
+                // console.log("===================obj:"+JSON.stringify(obj));
+                if(pingValue==0){//未赋值前为上一次的值,上一次值为0，说明换过板子，不为0说明没有换过板子，不需要自动再次测试（否则会陷入死循环）
+                    if(!GUI.connected_to){
+                        connectDisconnect();
+                    }
+                    
+                    pingValue = FC.CONFIG.buildInfo;
+                    if(pingValue!=0){
+                        GUI.interval_remove('setup_getRec_fast');
+                        auto_test_button.trigger("click");
+                    }
+                }
+            });
         }
 
+        function clickAutoTestBtn(){
+            GUI.interval_add('setup_getRec_fast', getRec, 500, true);
+        }
+        clickAutoTestBtn();
         // GUI.interval_add('setup_data_pull_fast', get_fast_data, 50, true); // 30 fps
         // GUI.interval_add('setup_data_pull_slow', get_slow_data, 250, true); // 4 fps
 
         GUI.content_ready(callback);
+
     }
 };
 

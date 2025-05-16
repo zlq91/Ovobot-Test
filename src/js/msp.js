@@ -453,7 +453,7 @@ const MSP = {
     },
     send_message(code, data, callback_sent, callback_msp, doCallbackOnError) {
         const connected = serial.connected;
-
+        // console.log("==================code:"+code+" || =======!connected:"+!connected+" || =========CONFIGURATOR.virtualMode："+CONFIGURATOR.virtualMode)
         if (code === undefined || !connected || CONFIGURATOR.virtualMode) {
             if (callback_msp) {
                 callback_msp();
@@ -482,11 +482,11 @@ const MSP = {
 
         if (!requestExists) {
             obj.timer = setTimeout(() => {
-                // console.warn(
-                //     `MSP: data request timed-out: ${code} ID: ${serial.connectionId} TAB: ${GUI.active_tab} TIMEOUT: ${
-                //         this.timeout
-                //     } QUEUE: ${this.callbacks.length} (${this.callbacks.map((e) => e.code)})`,
-                // );
+                console.warn(
+                    `MSP: data request timed-out: ${code} ID: ${serial.connectionId} TAB: ${GUI.active_tab} TIMEOUT: ${
+                        this.timeout
+                    } QUEUE: ${this.callbacks.length} (${this.callbacks.map((e) => e.code)})`,
+                );
                 serial.send(bufferOut, (_sendInfo) => {
                     obj.stop = performance.now();
                     const executionTime = Math.round(obj.stop - obj.start);

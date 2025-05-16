@@ -7,6 +7,7 @@ async function* streamAsyncIterable(reader, keepReadingFlag) {
     try {
         while (keepReadingFlag()) {
             try {
+                console.log("==================reader:"+JSON.stringify(reader))
                 const { done, value } = await reader.read();
                 if (done) {
                     return;
@@ -235,7 +236,7 @@ class WebSerial extends EventTarget {
 
     async readLoop() {
         try {
-            console.log("===============enter readLoop")
+            console.log("===============enter readLoop || =======this.reader:"+this.reader)
             for await (let value of streamAsyncIterable(this.reader, () => this.reading)) {
                 this.dispatchEvent(new CustomEvent("receive", { detail: value }));
             }
