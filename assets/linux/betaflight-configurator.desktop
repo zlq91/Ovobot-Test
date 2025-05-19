@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=Betaflight Configurator
-Comment=Crossplatform configuration tool for the Betaflight flight control system
-Exec=/opt/betaflight/betaflight-configurator/betaflight-configurator
-Icon=/opt/betaflight/betaflight-configurator/icon/ovobot_images/cleanrobot_icon128.png
+Name=Ovobot Configurator
+Comment=Crossplatform configuration tool for the Ovobot flight control system
+Exec=/opt/Ovobot/Ovobot-configurator/Ovobot-configurator
+Icon=/opt/Ovobot/Ovobot-configurator/icon/ovobot_images/cleanrobot_icon128.png
 Terminal=false
 Type=Application
 Categories=Utility

@@ -1,8 +1,8 @@
 {
-  "name": "betaflight-configurator",
-  "productName": "Betaflight",
-  "displayName": "Betaflight - Configuration and management tool",
-  "description": "Crossplatform configuration and management tool for the Betaflight flight control firmware.",
+  "name": "Ovobot-configurator",
+  "productName": "Ovobot",
+  "displayName": "Ovobot - Configuration and management tool",
+  "description": "Crossplatform configuration and management tool for the Ovobot flight control firmware.",
   "version": "11.0.0",
   "type": "module",
   "main": "index.html",
@@ -29,13 +29,13 @@
     "id": "main-window",
     "min_width": 1024,
     "min_height": 550,
-    "title": "Betaflight Configurator"
+    "title": "Ovobot Configurator"
   },
   "repository": {
     "type": "git",
-    "url": "github.com/betaflight/betaflight-configurator"
+    "url": "github.com/Ovobot/Ovobot-configurator"
   },
-  "author": "The Betaflight open source project.",
+  "author": "The Ovobot open source project.",
   "license": "GPL-3.0",
   "engines": {
     "node": "20.x"

@@ -1,9 +1,9 @@
 {
   "definitions": {},
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://betaflight.com/vtxconfig_schema-1.0.json",
+  "$id": "http://Ovobot.com/vtxconfig_schema-1.0.json",
   "type": "object",
-  "title": "Betaflight VTX Table JSON Schema",
+  "title": "Ovobot VTX Table JSON Schema",
   "required": [
     "description",
     "version",
@@ -16,7 +16,7 @@
       "title": "The Description Schema",
       "default": "",
       "examples": [
-        "Betaflight VTX Config file for SmartAudio 2.0 (US version)"
+        "Ovobot VTX Config file for SmartAudio 2.0 (US version)"
       ],
       "pattern": "^(.*)$"
     },

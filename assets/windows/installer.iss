@@ -1,5 +1,5 @@
 ; ------------------------------------------
-; Installer for Betaflight Configurator
+; Installer for Ovobot Configurator
 ; ------------------------------------------
 ; It receives from the command line with /D the parameters: 
 ; version
@@ -9,18 +9,18 @@
 ; sourceFolder
 ; targetFolder
 
-#define ApplicationName "Betaflight Configurator"
-#define CompanyName "The Betaflight open source project"
-#define CompanyUrl "https://betaflight.com/"
-#define ExecutableFileName "betaflight-configurator.exe"
-#define GroupName "Betaflight"
-#define InstallerFileName "betaflight-configurator_" + version + "_" + archName + "-installer"
-#define SourcePath "..\..\" + sourceFolder + "\betaflight-configurator\" + archName
-#define TargetFolderName "Betaflight-Configurator"
-#define UpdatesUrl "https://github.com/betaflight/betaflight-configurator/releases"
+#define ApplicationName "Ovobot Configurator"
+#define CompanyName "The Ovobot open source project"
+#define CompanyUrl "https://Ovobot.com/"
+#define ExecutableFileName "Ovobot-configurator.exe"
+#define GroupName "Ovobot"
+#define InstallerFileName "Ovobot-configurator_" + version + "_" + archName + "-installer"
+#define SourcePath "..\..\" + sourceFolder + "\Ovobot-configurator\" + archName
+#define TargetFolderName "Ovobot-Configurator"
+#define UpdatesUrl "https://github.com/Ovobot/Ovobot-configurator/releases"
 
 [CustomMessages]
-AppName=betaflight-configurator
+AppName=Ovobot-configurator
 LaunchProgram=Start {#ApplicationName}
 
 [Files]
@@ -47,7 +47,7 @@ Name: "zh_CN"; MessagesFile: "unofficial_inno_languages\ChineseSimplified.isl"
 Filename: {app}\{cm:AppName}.exe; Description: {cm:LaunchProgram,{cm:AppName}}; Flags: nowait postinstall skipifsilent
 
 [Setup]
-AppId=e72c90bb-45eb-48dc-9cf3-ac2e8ec52f8c
+AppId=5F5BA9A9-D006-1382-77CE-EDB293520B46
 AppName={#ApplicationName}
 AppPublisher={#CompanyName}
 AppPublisherURL={#CompanyUrl}
@@ -79,11 +79,11 @@ var
 begin
     Result := '';
     // Look into the different registry entries: win32, win64 and without user rights
-    if not RegQueryStringValue(HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Betaflight Configurator', 'UninstallString', Result) then
+    if not RegQueryStringValue(HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Ovobot Configurator', 'UninstallString', Result) then
     begin
-        if not RegQueryStringValue(HKLM, 'SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Betaflight Configurator', 'UninstallString', Result) then
+        if not RegQueryStringValue(HKLM, 'SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Ovobot Configurator', 'UninstallString', Result) then
         begin
-            RegQueryStringValue(HKCU, 'SOFTWARE\Betaflight\Betaflight Configurator', 'UninstallString', Result)
+            RegQueryStringValue(HKCU, 'SOFTWARE\Ovobot\Ovobot Configurator', 'UninstallString', Result)
         end;
     end;
 end;

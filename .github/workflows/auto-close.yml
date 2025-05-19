@@ -19,4 +19,4 @@ jobs:
       - name: autoclose
         shell: bash
         if: github.head_ref == 'master'
-        run: gh pr close ${{github.event.pull_request.number}} --comment "Auto-closing pull request because the source branch is named 'master'. Please create a feature branch instead. https://betaflight.com/docs/development#using-git-and-github"
+        run: gh pr close ${{github.event.pull_request.number}} --comment "Auto-closing pull request because the source branch is named 'master'. Please create a feature branch instead. https://Ovobot.com/docs/development#using-git-and-github"

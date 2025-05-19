@@ -34,7 +34,7 @@ const VirtualFC = {
             "USE_TRANSPONDER",
         ];
 
-        virtualFC.CONFIG.craftName = "BetaFlight";
+        virtualFC.CONFIG.craftName = "Ovobot";
         virtualFC.CONFIG.pilotName = "BF pilot";
 
         virtualFC.FEATURE_CONFIG.features = new Features(FC.CONFIG);
@@ -186,7 +186,7 @@ const VirtualFC = {
             virtualFC.RC.channels[i] = 1500;
         }
 
-        // from https://betaflight.com/docs/development/Modes or msp/msp_box.c
+        // from https://Ovobot.com/docs/development/Modes or msp/msp_box.c
         virtualFC.AUX_CONFIG = [
             "ARM",
             "ANGLE",

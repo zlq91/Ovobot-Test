@@ -1,4 +1,4 @@
-package betaflight.configurator;
+package Ovobot.configurator;
 
 import com.getcapacitor.BridgeActivity;
 

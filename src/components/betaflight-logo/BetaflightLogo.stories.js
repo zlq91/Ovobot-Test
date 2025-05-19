@@ -1,16 +1,16 @@
-import BetaflightLogo from "./BetaflightLogo.vue";
+import OvobotLogo from "./OvobotLogo.vue";
 
 // More on default export: https://storybook.js.org/docs/vue/writing-stories/introduction#default-export
 export default {
     title: "Logo",
-    component: BetaflightLogo,
+    component: OvobotLogo,
 };
 
 // More on component templates: https://storybook.js.org/docs/vue/writing-stories/introduction#using-args
 const Template = (_args, { argTypes }) => ({
     props: Object.keys(argTypes),
-    components: { BetaflightLogo },
-    template: '<betaflight-logo v-bind="$props" />',
+    components: { OvobotLogo },
+    template: '<Ovobot-logo v-bind="$props" />',
 });
 
 export const Primary = Template.bind({});

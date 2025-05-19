@@ -901,7 +901,7 @@ vtx.initialize = function (callback) {
     // Copies from the MSP data to the vtxInfo object (JSON)
     function createVtxConfigInfo() {
         const vtxConfig = {
-            description: "Betaflight VTX Config file",
+            description: "Ovobot VTX Config file",
             version: "1.0",
         };
 

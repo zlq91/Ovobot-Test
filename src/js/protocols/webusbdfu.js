@@ -94,7 +94,7 @@ class WEBUSBDFU_protocol extends EventTarget {
     createPort(port) {
         return {
             path: `usb_${port.serialNumber}`,
-            displayName: `Betaflight ${port.productName}`,
+            displayName: `Ovobot ${port.productName}`,
             vendorId: port.manufacturerName,
             productId: port.productName,
             port: port,
@@ -1215,7 +1215,7 @@ class WEBUSBDFU_protocol extends EventTarget {
 
                                 // Show notification
                                 if (getConfig("showNotifications").showNotifications) {
-                                    NotificationManager.showNotification("Betaflight Configurator", {
+                                    NotificationManager.showNotification("Ovobot Configurator", {
                                         body: i18n.getMessage("programmingSuccessfulNotification"),
                                         icon: "/images/pwa/favicon.ico",
                                     });
@@ -1233,7 +1233,7 @@ class WEBUSBDFU_protocol extends EventTarget {
 
                                 // Show notification
                                 if (getConfig("showNotifications").showNotifications) {
-                                    NotificationManager.showNotification("Betaflight Configurator", {
+                                    NotificationManager.showNotification("Ovobot Configurator", {
                                         body: i18n.getMessage("programmingFailedNotification"),
                                         icon: "/images/pwa/favicon.ico",
                                     });

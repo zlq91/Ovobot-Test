@@ -446,7 +446,7 @@ onboard_logging.initialize = function (callback) {
         $(".dataflash-saving").addClass("done");
 
         if (getConfig("showNotifications").showNotifications) {
-            NotificationManager.showNotification("Betaflight Configurator", {
+            NotificationManager.showNotification("Ovobot Configurator", {
                 body: i18n.getMessage("flashDownloadDoneNotification"),
                 icon: "/images/pwa/favicon.ico",
             });
@@ -569,7 +569,7 @@ onboard_logging.initialize = function (callback) {
                 if (FC.DATAFLASH.ready) {
                     $(".dataflash-confirm-erase")[0].close();
                     if (getConfig("showNotifications").showNotifications) {
-                        NotificationManager.showNotification("Betaflight Configurator", {
+                        NotificationManager.showNotification("Ovobot Configurator", {
                             body: i18n.getMessage("flashEraseDoneNotification"),
                             icon: "/images/pwa/favicon.ico",
                         });

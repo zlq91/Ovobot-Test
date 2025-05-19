@@ -73,8 +73,8 @@ export default class PresetsSourcesDialog {
 
     _createOfficialSource() {
         const officialSource = new PresetSource(
-            "Betaflight Official Presets",
-            "https://api.betaflight.com/firmware-presets/",
+            "Ovobot Official Presets",
+            "https://api.Ovobot.com/firmware-presets/",
             "",
         );
         officialSource.official = true;
@@ -83,8 +83,8 @@ export default class PresetsSourcesDialog {
 
     _createSecondaryOfficialSource() {
         const officialSource = new PresetSource(
-            "Betaflight Presets - GitHub BACKUP",
-            "https://github.com/betaflight/firmware-presets",
+            "Ovobot Presets - GitHub BACKUP",
+            "https://github.com/Ovobot/firmware-presets",
             "backup",
         );
         officialSource.official = false;

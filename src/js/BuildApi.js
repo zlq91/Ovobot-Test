@@ -5,7 +5,7 @@ import $ from "jquery";
 
 export default class BuildApi {
     constructor() {
-        this._url = "https://build.betaflight.com";
+        this._url = "https://build.Ovobot.com";
         this._cacheExpirationPeriod = 3600 * 1000;
     }
 

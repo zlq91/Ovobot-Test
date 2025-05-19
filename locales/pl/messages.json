@@ -243,7 +243,7 @@
         "message": "Pokaż powiadomienia o aktualizacji dla niestabilnych wersji konfiguratora."
     },
     "configuratorUpdateNotice": {
-        "message": "Używasz przestarzałej wersji <b>Konfiguratora Betaflight<\/b>.<br>$t(configuratorUpdateHelp.message)"
+        "message": "Używasz przestarzałej wersji <b>Konfiguratora Ovobot<\/b>.<br>$t(configuratorUpdateHelp.message)"
     },
     "configuratorUpdateHelp": {
         "message": "Gdy masz dostęp do internetu, aplikacja powinna automatycznie sprawdzić dostępne aktualizacje."
@@ -487,7 +487,7 @@
         "message": "Ta wersja oprogramowania kontrolera lotu <span class=\"message-negative\">nie jest wspierana<\/span>. Proszę uaktualnij oprogramowanie do wersji, która wspiera API <strong>$1<\/strong>, lub wyższej. Użyj CLI, aby zgrać bieżącą konfigurację. Opis zgrywania oraz przywrócenia konfiguracji opisany jest w dokumentacji.<br \/>Możesz również pobrać starszą wersję konfiguratora, jeżeli nie chcesz aktualizować oprogramowania kontrolera lotu."
     },
     "firmwareTypeNotSupported": {
-        "message": "Oprogramowanie inne niż Betaflight <span class=\"message-negative\">nie jest wspierane<\/span>, z wyjątkiem trybu CLI."
+        "message": "Oprogramowanie inne niż Ovobot <span class=\"message-negative\">nie jest wspierane<\/span>, z wyjątkiem trybu CLI."
     },
     "firmwareUpgradeRequired": {
         "message": "Oprogramowanie na tym urządzeniu wymaga aktualizacji do nowszej wersji. Najpierw użyj Wiersza Poleceń CLI, aby zapisać do pliku bieżącą konfigurację. Procedura zapisu\/odczytu konfiguracji opisana jest w dokumentacji.<br \/>Alternatywnie pobierz starszą wersję konfiguratora, jeśli nie chcesz aktualizować oprogramowania urządzenia."
@@ -531,7 +531,7 @@
         "message": "Użycie informacji o kompilacji z bufora dla $1."
     },
     "buildServerSupportRequestSubmission": {
-        "message": "<br>*** Zgłoszono problem *** <br>Id: $1<br><br><br># skopiuj identyfikator i prześlij zespołowi betaflight."
+        "message": "<br>*** Zgłoszono problem *** <br>Id: $1<br><br><br># skopiuj identyfikator i prześlij zespołowi Ovobot."
     },
     "buildKey": {
         "message": "Zbuduj klucz: <strong>$1<\/strong>"
@@ -540,7 +540,7 @@
         "message": "Potwierdź przesłanie danych"
     },
     "supportWarningDialogText": {
-        "message": "Potwierdź przesłanie danych do zespołu Betaflight<br><br>Ten proces uruchomi kilka poleceń i prześle dane wyjściowe na serwer kompilacji.<br><br>Następnie otrzymasz unikalny identyfikator twojego zgłoszenia.<br><br>Upewnij się, że podasz ten unikalny identyfikator zespołowi Betaflight podczas używania Discorda lub otwierania nowego tematu na Githubie."
+        "message": "Potwierdź przesłanie danych do zespołu Ovobot<br><br>Ten proces uruchomi kilka poleceń i prześle dane wyjściowe na serwer kompilacji.<br><br>Następnie otrzymasz unikalny identyfikator twojego zgłoszenia.<br><br>Upewnij się, że podasz ten unikalny identyfikator zespołowi Ovobot podczas używania Discorda lub otwierania nowego tematu na Githubie."
     },
     "supportWarningDialogInputPlaceHolder": {
         "message": "Opisz problem"
@@ -661,28 +661,28 @@
         "message": "<span class=\"message-positive\">Zapisano<\/span> zmiany w EEPROM"
     },
     "defaultWelcomeIntro": {
-        "message": "Witaj w <strong>Betaflight Configurator<\/strong>, narzędziu zaprojektowanym, aby uprościć aktualizację, konfigurację oraz tuning twojego kontrolera lotu."
+        "message": "Witaj w <strong>Ovobot Configurator<\/strong>, narzędziu zaprojektowanym, aby uprościć aktualizację, konfigurację oraz tuning twojego kontrolera lotu."
     },
     "defaultWelcomeHead": {
         "message": "Sprzęt"
     },
     "defaultWelcomeText": {
-        "message": "Ten program obsługuje każdy sprzęt komputerowy, pracujący na Betaflight. Pełną listę sprzętu znajdziesz w zakładce Wgraj Oprogramowanie.<br \/><br \/> <a href=\"https:\/\/github.com\/betaflight\/blackbox-log-viewer\/releases\" target=\"_blank\" rel=\"noopener noreferrer \">Pobierz program Betaflight Blackbox Log Viewer<\/a><br \/><br \/><a href=\"https:\/\/github.com\/betaflight\/betaflight-tx-lua-scripts\/releases\" target=\"_blank\" rel =\"noopener noreferrer\">Pobierz Lua skrypt Betaflight dla nadajnika<\/a><br \/><br \/>Kod źródłowy oprogramowania układowego można pobrać <a href=\"https:\/\/github.com\/betaflight\/betaflight\" target= \"_blank\" rel=\"noopener noreferrer\">tutaj<\/a><br \/><br \/>Dla starszego sprzętu korzystającego z portu szeregowego USB CP210x:<br \/>Najnowsze <b>sterowniki CP210x<\/b> można pobrać <a href=\"https:\/\/www.silabs.com\/products\/development-tools\/software\/usb-to-uart-bridge-vcp-drivers\" target=\"_blank\" rel=\"noopener noreferrer\"> tutaj<\/a><br \/>Najnowsze sterowniki USB <b>Zadig<\/b> dla systemu Windows można pobrać <a href=\"http:\/\/zadig.akeo.ie\/\" target=\"_blank\" rel =\"noopener noreferrer\">tutaj<\/a><br \/><b>ImpulseRC Driver Fixer<\/b> można pobrać <a href=\"https:\/\/impulserc.com\/pages\/downloads\" target=\"blank\" rel=\"noopener noreferrer\">tutaj<\/a>"
+        "message": "Ten program obsługuje każdy sprzęt komputerowy, pracujący na Ovobot. Pełną listę sprzętu znajdziesz w zakładce Wgraj Oprogramowanie.<br \/><br \/> <a href=\"https:\/\/github.com\/Ovobot\/blackbox-log-viewer\/releases\" target=\"_blank\" rel=\"noopener noreferrer \">Pobierz program Ovobot Blackbox Log Viewer<\/a><br \/><br \/><a href=\"https:\/\/github.com\/Ovobot\/Ovobot-tx-lua-scripts\/releases\" target=\"_blank\" rel =\"noopener noreferrer\">Pobierz Lua skrypt Ovobot dla nadajnika<\/a><br \/><br \/>Kod źródłowy oprogramowania układowego można pobrać <a href=\"https:\/\/github.com\/Ovobot\/Ovobot\" target= \"_blank\" rel=\"noopener noreferrer\">tutaj<\/a><br \/><br \/>Dla starszego sprzętu korzystającego z portu szeregowego USB CP210x:<br \/>Najnowsze <b>sterowniki CP210x<\/b> można pobrać <a href=\"https:\/\/www.silabs.com\/products\/development-tools\/software\/usb-to-uart-bridge-vcp-drivers\" target=\"_blank\" rel=\"noopener noreferrer\"> tutaj<\/a><br \/>Najnowsze sterowniki USB <b>Zadig<\/b> dla systemu Windows można pobrać <a href=\"http:\/\/zadig.akeo.ie\/\" target=\"_blank\" rel =\"noopener noreferrer\">tutaj<\/a><br \/><b>ImpulseRC Driver Fixer<\/b> można pobrać <a href=\"https:\/\/impulserc.com\/pages\/downloads\" target=\"blank\" rel=\"noopener noreferrer\">tutaj<\/a>"
     },
     "defaultContributingHead": {
         "message": "Współtworzenie"
     },
     "defaultContributingText": {
-        "message": "Jeśli chcesz pomagać w rozwijaniu Betaflight, możesz to robić na wiele sposobów:<br \/><ul><li> Wykorzystując swoją wiedzę o Betaflight, twórz lub aktualizuj treści na <a href=\"https:\/\/betaflight.com\/docs\/wiki\" target=\"_blank\" rel=\"noopener noreferrer\">naszej Wiki<\/a> lub odpowiadaj na pytania innych użytkowników na forach internetowych.<\/li><li><a href=\"https:\/\/betaflight.com\/docs\/development\" target=\"_blank\" rel=\"noopener noreferrer\">Bierz udział w tworzeniu kodu<\/a> oprogramowania układowego oraz Konfiguratora. Kreuj nowe funkcje, poprawki i ulepszenia.<\/li><li>Testuj <a href=\"https:\/\/github.com\/Betaflight\/betaflight\/pulls\" target=\"_blank\" rel=\"noopener noreferrer\">nowe funkcje i poprawki<\/a>, nie zapominając o pozostawieniu nam feedbacku.<\/li><li> Pomagaj innym użytkownikom w rozwiązywaniu problemów, które zgłosili w <a href=\"https:\/\/github.com\/betaflight\/betaflight\/issues\" target=\"_blank\" rel=\"noopener noreferrer\"> systemie zgłaszania problemów<\/a> oraz bierz udział w dyskusjach dotyczących wniosków o nowe funkcjonalności.<\/li><li><a href=\"https:\/\/crowdin.com\/project\/betaflight-configurator#Translators\" target=\"_blank\" rel=\"noopener noreferrer\">Zostań tłumaczem<\/a> Konfiguratora Betaflight na nowy język lub pomóż w poprawianiu istniejących tłumaczeń.<\/li><\/ul>"
+        "message": "Jeśli chcesz pomagać w rozwijaniu Ovobot, możesz to robić na wiele sposobów:<br \/><ul><li> Wykorzystując swoją wiedzę o Ovobot, twórz lub aktualizuj treści na <a href=\"https:\/\/Ovobot.com\/docs\/wiki\" target=\"_blank\" rel=\"noopener noreferrer\">naszej Wiki<\/a> lub odpowiadaj na pytania innych użytkowników na forach internetowych.<\/li><li><a href=\"https:\/\/Ovobot.com\/docs\/development\" target=\"_blank\" rel=\"noopener noreferrer\">Bierz udział w tworzeniu kodu<\/a> oprogramowania układowego oraz Konfiguratora. Kreuj nowe funkcje, poprawki i ulepszenia.<\/li><li>Testuj <a href=\"https:\/\/github.com\/Ovobot\/Ovobot\/pulls\" target=\"_blank\" rel=\"noopener noreferrer\">nowe funkcje i poprawki<\/a>, nie zapominając o pozostawieniu nam feedbacku.<\/li><li> Pomagaj innym użytkownikom w rozwiązywaniu problemów, które zgłosili w <a href=\"https:\/\/github.com\/Ovobot\/Ovobot\/issues\" target=\"_blank\" rel=\"noopener noreferrer\"> systemie zgłaszania problemów<\/a> oraz bierz udział w dyskusjach dotyczących wniosków o nowe funkcjonalności.<\/li><li><a href=\"https:\/\/crowdin.com\/project\/Ovobot-configurator#Translators\" target=\"_blank\" rel=\"noopener noreferrer\">Zostań tłumaczem<\/a> Konfiguratora Ovobot na nowy język lub pomóż w poprawianiu istniejących tłumaczeń.<\/li><\/ul>"
     },
     "defaultFacebookText": {
-        "message": "Mamy również <a href=\"https:\/\/www.facebook.com\/groups\/betaflightgroup\/\" target=\"_blank\" rel=\"noopener noreferrer\">grupę na Facebooku<\/a>.<br \/>Dołącz do nas aby porozmawiać o Betaflight, spytać o konfigurację lub po prostu spędzić czas z innymi pilotami."
+        "message": "Mamy również <a href=\"https:\/\/www.facebook.com\/groups\/Ovobotgroup\/\" target=\"_blank\" rel=\"noopener noreferrer\">grupę na Facebooku<\/a>.<br \/>Dołącz do nas aby porozmawiać o Ovobot, spytać o konfigurację lub po prostu spędzić czas z innymi pilotami."
     },
     "defaultDiscordText": {
-        "message": "Betaflight <a href=\"https:\/\/discord.betaflight.com\/invite\" target=\"_blank\" rel=\"noopener noreferrer\">Serwer na Discordzie<\/a>.<br \/> Podziel się doświadczeniami z lotów, porozmawiaj o Betaflight i pomóż innym osobom albo sam uzyskaj pomoc."
+        "message": "Ovobot <a href=\"https:\/\/discord.Ovobot.com\/invite\" target=\"_blank\" rel=\"noopener noreferrer\">Serwer na Discordzie<\/a>.<br \/> Podziel się doświadczeniami z lotów, porozmawiaj o Ovobot i pomóż innym osobom albo sam uzyskaj pomoc."
     },
     "statisticsDisclaimer": {
-        "message": "Betaflight Configurator gromadzi anonimowe statystyki użytkowania. Dane te obejmują (ale nie ograniczają się do): liczbę uruchomień, region geograficzny użytkownika, rodzaje kontrolerów lotu, wybierane wersje oprogramowania, korzystanie z elementów interfejsu, otwieranych zakładek itd. Dane są gromadzone <a href=\"https:\/\/datastudio.google.com\/u\/0\/reporting\/1pK1PFw0eWmsgl2npvuzwAqscVzlhJvuF\" target=\"_blank\" rel=\"noopener noreferrer\">tutaj<\/a>. Informacje te pomagają lepiej zrozumieć, jak jest używany Betaflight Configurator, by wprowadzać ulepszenia interfejsu a także w celu poznania trendów, jakie panują w społeczności. Użytkownik może wyłączyć zbieranie danych w zakładce Opcje Ustawień."
+        "message": "Ovobot Configurator gromadzi anonimowe statystyki użytkowania. Dane te obejmują (ale nie ograniczają się do): liczbę uruchomień, region geograficzny użytkownika, rodzaje kontrolerów lotu, wybierane wersje oprogramowania, korzystanie z elementów interfejsu, otwieranych zakładek itd. Dane są gromadzone <a href=\"https:\/\/datastudio.google.com\/u\/0\/reporting\/1pK1PFw0eWmsgl2npvuzwAqscVzlhJvuF\" target=\"_blank\" rel=\"noopener noreferrer\">tutaj<\/a>. Informacje te pomagają lepiej zrozumieć, jak jest używany Ovobot Configurator, by wprowadzać ulepszenia interfejsu a także w celu poznania trendów, jakie panują w społeczności. Użytkownik może wyłączyć zbieranie danych w zakładce Opcje Ustawień."
     },
     "defaultButtonFirmwareFlasher": {
         "message": "Wgraj Oprogramowanie"
@@ -691,13 +691,13 @@
         "message": "Informacja o Open Source \/ Darowiznach"
     },
     "defaultDonateText": {
-        "message": "<p><strong>Betaflight<\/strong> to oprogramowanie kontrolera lotu , udostępniane za darmo na zasadach licencji <strong>open source<\/strong> i jest dostępne <strong>za darmo<\/strong> dla wszystkich użytkowników.<\/p><p>Jeśli używasz oprogramowania Betaflight oraz uważasz je za przydatne, rozważ <strong>wsparcie<\/strong> jego rozwoju poprzez darowiznę.<\/p>"
+        "message": "<p><strong>Ovobot<\/strong> to oprogramowanie kontrolera lotu , udostępniane za darmo na zasadach licencji <strong>open source<\/strong> i jest dostępne <strong>za darmo<\/strong> dla wszystkich użytkowników.<\/p><p>Jeśli używasz oprogramowania Ovobot oraz uważasz je za przydatne, rozważ <strong>wsparcie<\/strong> jego rozwoju poprzez darowiznę.<\/p>"
     },
     "defaultDonateBottom": {
         "message": "<p>Jeśli chcesz wspierać nas finansowo na bieżąco, powinieneś rozważyć możliwość zostania naszym subskrybentem $t(patreonLink.message).<\/p>"
     },
     "patreonLink": {
-        "message": "<a href=\"https:\/\/www.patreon.com\/betaflight\" target=\"_blank\" rel=\"noopener noreferrer\">Patreon<\/a>",
+        "message": "<a href=\"https:\/\/www.patreon.com\/Ovobot\" target=\"_blank\" rel=\"noopener noreferrer\">Patreon<\/a>",
         "description": "Patreon is name, and should not require translation"
     },
     "defaultDonate": {
@@ -710,13 +710,13 @@
         "message": "Dokumentacja i Instrukcje"
     },
     "defaultDocumentation": {
-        "message": "Dokumentacja Betaflight dostępna jest w formie do wydania oraz w formie elektronicznej.<br \/><br \/>"
+        "message": "Dokumentacja Ovobot dostępna jest w formie do wydania oraz w formie elektronicznej.<br \/><br \/>"
     },
     "defaultDocumentation1": {
-        "message": "Świetnym źródłem informacji jest Wiki Betaflight, znajdziesz ją <a href=\"https:\/\/betaflight.com\/docs\/wiki\" target=\"_blank\" rel=\"noopener noreferrer\">tutaj<\/a>."
+        "message": "Świetnym źródłem informacji jest Wiki Ovobot, znajdziesz ją <a href=\"https:\/\/Ovobot.com\/docs\/wiki\" target=\"_blank\" rel=\"noopener noreferrer\">tutaj<\/a>."
     },
     "defaultDocumentation2": {
-        "message": "Z wykazem zmian w obecnym oprogramowaniu możesz się zapoznać na stronie GitHub, <a href=\"https:\/\/github.com\/Betaflight\/Betaflight\/releases\" target=\"_blank\" rel=\"noopener noreferrer\">tutaj<\/a>."
+        "message": "Z wykazem zmian w obecnym oprogramowaniu możesz się zapoznać na stronie GitHub, <a href=\"https:\/\/github.com\/Ovobot\/Ovobot\/releases\" target=\"_blank\" rel=\"noopener noreferrer\">tutaj<\/a>."
     },
     "defaultSupportHead": {
         "message": "Pomoc"
@@ -734,16 +734,16 @@
         "message": "<a href=\"http:\/\/www.rcgroups.com\/forums\/showthread.php?t=2464844&page=1\" target=\"_blank\" rel=\"noopener noreferrer\">Wątki na forum RC Groups<\/a>"
     },
     "defaultSupport2": {
-        "message": "<a href=\"https:\/\/betaflight.com\/docs\/wiki\" target=\"_blank\" rel=\"noopener noreferrer\">Betaflight Wiki<\/a>"
+        "message": "<a href=\"https:\/\/Ovobot.com\/docs\/wiki\" target=\"_blank\" rel=\"noopener noreferrer\">Ovobot Wiki<\/a>"
     },
     "defaultSupport3": {
-        "message": "<a href=\"https:\/\/www.youtube.com\/playlist?list=PLwoDb7WF6c8nT4jjsE4VENEmwu9x8zDiE\" target=\"_blank\" rel=\"noopener noreferrer\">Filmy o Betaflight autorstwa Joshuy Bardwella <\/a>"
+        "message": "<a href=\"https:\/\/www.youtube.com\/playlist?list=PLwoDb7WF6c8nT4jjsE4VENEmwu9x8zDiE\" target=\"_blank\" rel=\"noopener noreferrer\">Filmy o Ovobot autorstwa Joshuy Bardwella <\/a>"
     },
     "defaultSupport4": {
-        "message": "<a href=\"https:\/\/github.com\/Betaflight\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub<\/a>"
+        "message": "<a href=\"https:\/\/github.com\/Ovobot\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub<\/a>"
     },
     "defaultSupport5": {
-        "message": "<a href=\"https:\/\/discord.betaflight.com\/invite\" target=\"_blank\" rel=\"noopener noreferrer\">Twórcy Betaflight na Discordzie<\/a><\/a>"
+        "message": "<a href=\"https:\/\/discord.Ovobot.com\/invite\" target=\"_blank\" rel=\"noopener noreferrer\">Twórcy Ovobot na Discordzie<\/a><\/a>"
     },
     "initialSetupButtonCalibrateAccel": {
         "message": "Kalibracja akcelerometru"
@@ -1547,7 +1547,7 @@
         "message": "Sygnał dzwiękowy"
     },
     "configurationDshotBeaconHelp": {
-        "message": "Sygnał radiowy Dshot wykorzstuje układy ESC i silniki do generowania dźwięku. Oznacza to, że protokół Dshot nie może być użyty podczas gdy silniki są uruchomione. W Betaflight 3.4 i nowszych, gdy próbuje się uzbroić silniki występuje opóźnienie o 2 sekundy, zanim model zostanie uzbrojony. Ma to zapobiec przed zakłóceniem funkcji sygnału radiowego Dshot podczas wysyłania sygnału<\/strong> wysyłanego podczas uzbrajania. <br\/> <strong> Ostrzeżenie: <\/strong> Ponieważ sygnał Dshot przepływa przez silniki, gdy są aktywne, może to spowodować nadmierne nagrzewanie i uszkodzenie silników lub układów ESC, jeśli siła sygnału ostrzegawczego jest ustawiona zbyt wysoko. Użyj BLHeli Configurator lub BLHeli Suite, aby wyregulować i przetestować siłę sygnału."
+        "message": "Sygnał radiowy Dshot wykorzstuje układy ESC i silniki do generowania dźwięku. Oznacza to, że protokół Dshot nie może być użyty podczas gdy silniki są uruchomione. W Ovobot 3.4 i nowszych, gdy próbuje się uzbroić silniki występuje opóźnienie o 2 sekundy, zanim model zostanie uzbrojony. Ma to zapobiec przed zakłóceniem funkcji sygnału radiowego Dshot podczas wysyłania sygnału<\/strong> wysyłanego podczas uzbrajania. <br\/> <strong> Ostrzeżenie: <\/strong> Ponieważ sygnał Dshot przepływa przez silniki, gdy są aktywne, może to spowodować nadmierne nagrzewanie i uszkodzenie silników lub układów ESC, jeśli siła sygnału ostrzegawczego jest ustawiona zbyt wysoko. Użyj BLHeli Configurator lub BLHeli Suite, aby wyregulować i przetestować siłę sygnału."
     },
     "configurationBeeper": {
         "message": "Ustawienia buzzer'a"
@@ -1684,7 +1684,7 @@
         "description": "Option to use Galileo in the GPS configuration"
     },
     "configurationGPSGalileoHelp": {
-        "message": "Po włączeniu moduł GPS będzie również śledzić system satelitarny Galileo, co zazwyczaj skutkuje większą liczbą zablokowanych satelitów. W przypadku Betaflight 4.2.x lub nowszej wersji wyłącza on również system satelitarny QZSS.",
+        "message": "Po włączeniu moduł GPS będzie również śledzić system satelitarny Galileo, co zazwyczaj skutkuje większą liczbą zablokowanych satelitów. W przypadku Ovobot 4.2.x lub nowszej wersji wyłącza on również system satelitarny QZSS.",
         "description": "Help text for the option to use Galileo in the GPS configuration"
     },
     "configurationGPSHomeOnce": {
@@ -1888,7 +1888,7 @@
         "description": "Anti Gravity Threshold Parameter"
     },
     "pidTuningAntiGravityHelp": {
-        "message": "Anti Gravity zwiększa na chwilę parametr I (oraz parametr P od wersji betaflight 4.3) podczas szybkich ruchów przepustnicą, zwiększając stabilność lotu podczas gwałtownego wznoszenia.<br><br>Wyższe wartości mogą poprawić stabilność w modelach o niskim autorytecie lub tych z przesuniętym środkiem ciężkości."
+        "message": "Anti Gravity zwiększa na chwilę parametr I (oraz parametr P od wersji Ovobot 4.3) podczas szybkich ruchów przepustnicą, zwiększając stabilność lotu podczas gwałtownego wznoszenia.<br><br>Wyższe wartości mogą poprawić stabilność w modelach o niskim autorytecie lub tych z przesuniętym środkiem ciężkości."
     },
     "pidTuningDerivative": {
         "message": "<b>D<\/b> - Różniczkujący",
@@ -2064,7 +2064,7 @@
         "message": "Przejście"
     },
     "pidTuningFeedforwardTransitionHelp": {
-        "message": "Liniowo zmniejsza Feedforward, gdy drążki są blisko środka. <br><br>W wersji betaflight 4.2 i wcześniejszych przejścia mogą być używane do zapewnienia płynniejszych reakcji drążka blisko środkowej pozycji drążka.<br><br>W wersji betaflight 4.3 przejście nie jest zalecane, ponieważ zostało „zastąpione” redukcją jittera funkcja.<br><br>Wartość 0 wyłącza przejście. Wartość 0,3 zmniejsza sprzężenie do przodu do zera, gdy drążki znajdują się w martwym punkcie, ale zwiększa się do pełnej wartości normalnej, gdy drążki są >30% poza środkiem."
+        "message": "Liniowo zmniejsza Feedforward, gdy drążki są blisko środka. <br><br>W wersji Ovobot 4.2 i wcześniejszych przejścia mogą być używane do zapewnienia płynniejszych reakcji drążka blisko środkowej pozycji drążka.<br><br>W wersji Ovobot 4.3 przejście nie jest zalecane, ponieważ zostało „zastąpione” redukcją jittera funkcja.<br><br>Wartość 0 wyłącza przejście. Wartość 0,3 zmniejsza sprzężenie do przodu do zera, gdy drążki znajdują się w martwym punkcie, ale zwiększa się do pełnej wartości normalnej, gdy drążki są >30% poza środkiem."
     },
     "pidTuningProportional": {
         "message": "<b>P<\/b> - Proporcjonalny"
@@ -2260,7 +2260,7 @@
         "message": "ID zgodności modelu"
     },
     "receiverHelp": {
-        "message": "&#8226;  <b><strong><a href=\"https:\/\/betaflight.com\/docs\/wiki\/guides\/current\/Failsafe#testing-failsafe\" target=\"_blank\" rel=\"noopener noreferrer\">Zawsze sprawdź, czy Failsafe działa prawidłowo!<\/a><\/strong><\/b> Ustawienia znajdują się w zakładce Procedura Fail-safe, która wymaga trybu eksperta.<br> &#8226; <b>Użyj najnowszego firmware dla twojego nadajnika Tx!<\/b><br> &#8226; <strong><a href=\"https:\/\/betaflight.com\/docs\/development\/Rx#disabling-the-opentxedgetx-adc-filter\" target=\"_blank\" rel=\"noopener noreferrer\">Wyłącz filtr ADC<\/a><\/strong> w Nadajniku, jeśli używasz OpenTx lub EdgeTx.<br>Podstawowa konfiguracja: poprawnie skonfiguruj ustawienia odbiornika. Wybierz poprawną „Mapę kanałów” dla swojego radia. Sprawdź, czy Roll, Pitch i inne wykresy słupkowe poruszają się poprawnie. Dostosuj wartości punktu końcowego lub zakresu kanału w nadajniku od ~1000 do ~2000 i ustaw punkt środkowy na 1500. Aby uzyskać więcej informacji przeczytaj dokumentację <strong><a href=\"https:\/\/betaflight.com\/docs\/development\/Rx\" target=\"_blank\" rel=\"noopener noreferrer\"><\/a><\/strong>."
+        "message": "&#8226;  <b><strong><a href=\"https:\/\/Ovobot.com\/docs\/wiki\/guides\/current\/Failsafe#testing-failsafe\" target=\"_blank\" rel=\"noopener noreferrer\">Zawsze sprawdź, czy Failsafe działa prawidłowo!<\/a><\/strong><\/b> Ustawienia znajdują się w zakładce Procedura Fail-safe, która wymaga trybu eksperta.<br> &#8226; <b>Użyj najnowszego firmware dla twojego nadajnika Tx!<\/b><br> &#8226; <strong><a href=\"https:\/\/Ovobot.com\/docs\/development\/Rx#disabling-the-opentxedgetx-adc-filter\" target=\"_blank\" rel=\"noopener noreferrer\">Wyłącz filtr ADC<\/a><\/strong> w Nadajniku, jeśli używasz OpenTx lub EdgeTx.<br>Podstawowa konfiguracja: poprawnie skonfiguruj ustawienia odbiornika. Wybierz poprawną „Mapę kanałów” dla swojego radia. Sprawdź, czy Roll, Pitch i inne wykresy słupkowe poruszają się poprawnie. Dostosuj wartości punktu końcowego lub zakresu kanału w nadajniku od ~1000 do ~2000 i ustaw punkt środkowy na 1500. Aby uzyskać więcej informacji przeczytaj dokumentację <strong><a href=\"https:\/\/Ovobot.com\/docs\/development\/Rx\" target=\"_blank\" rel=\"noopener noreferrer\"><\/a><\/strong>."
     },
     "receiverThrottleMid": {
         "message": "Przepustnica MID"
@@ -2376,7 +2376,7 @@
         "message": "Podgląd"
     },
     "receiverMspWarningText": {
-        "message": "Te drążki umożliwiają uzbrojenie i testowanie Betaflight bez obecności nadajnika lub odbiornika. Jednak <strong> ta funkcja nie jest przeznaczona do lotów i śmigła powinny być zdemontowane. <\/strong> <br \/> <br \/> Ta funkcja nie gwarantuje niezawodnej kontroli nad modelem. <strong> Jeśli nie zdemontujesz śmigieł mogą one spowodować tobie lub osobą w pobliżu poważne obrażenia<\/strong>"
+        "message": "Te drążki umożliwiają uzbrojenie i testowanie Ovobot bez obecności nadajnika lub odbiornika. Jednak <strong> ta funkcja nie jest przeznaczona do lotów i śmigła powinny być zdemontowane. <\/strong> <br \/> <br \/> Ta funkcja nie gwarantuje niezawodnej kontroli nad modelem. <strong> Jeśli nie zdemontujesz śmigieł mogą one spowodować tobie lub osobą w pobliżu poważne obrażenia<\/strong>"
     },
     "receiverMspEnableButton": {
         "message": "Włacz kontrolę"
@@ -2436,11 +2436,11 @@
         "description": "Help text to ANTIGRAVITY mode"
     },
     "auxiliaryHelpMode_AIRMODE": {
-        "message": "AirMode pozwala na utrzymanie stabilności drona przy niskiej przepustnicy. Więcej informacji znajdziesz w <a href=\"https:\/\/betaflight.com\/docs\/development\/modes#airmode\" target=\"_blank\" rel=\"noopener noreferrer\">AirMode<\/a> na Betaflight.com.",
+        "message": "AirMode pozwala na utrzymanie stabilności drona przy niskiej przepustnicy. Więcej informacji znajdziesz w <a href=\"https:\/\/Ovobot.com\/docs\/development\/modes#airmode\" target=\"_blank\" rel=\"noopener noreferrer\">AirMode<\/a> na Ovobot.com.",
         "description": "Help text to AIRMODE mode"
     },
     "auxiliaryHelpMode_ALTHOLD": {
-        "message": "<a href=\"https:\/\/betaflight.com\/docs\/wiki\/guides\/current\/position-hold-v4-6#altitude-hold\" target=\"_blank\" rel=\"noopener noreferrer\">Altitude Hold<\/a> Aktywnie utrzymuje wysokość modelu za pomocą zewnętrznych czujników połączonych z trybem stabilizowanym Angle.",
+        "message": "<a href=\"https:\/\/Ovobot.com\/docs\/wiki\/guides\/current\/position-hold-v4-6#altitude-hold\" target=\"_blank\" rel=\"noopener noreferrer\">Altitude Hold<\/a> Aktywnie utrzymuje wysokość modelu za pomocą zewnętrznych czujników połączonych z trybem stabilizowanym Angle.",
         "description": "Help text for ALTITUDE HOLD mode"
     },
     "auxiliaryHelpMode_BEEPER": {
@@ -3123,7 +3123,7 @@
         "message": "<strong>Informacja bezpieczeństwa!<\/strong><br \/><strong class=\"message-negative\">Zdejmij wszystkie śmigła, aby zapobiec urazom!<\/strong><br \/><strong>Silniki będą włączane!<\/strong>"
     },
     "motorsRemapDialogExplanations": {
-        "message": "<strong>Nota informacyjna:<\/strong><br \/>Silniki będą włączane pojedyńczo i będziesz mógł wybrać, który silnik ma się kręcić. Akumulator powinien być wpięty i należy wybrać poprawny protokół ESC. Tym narzędziem można przypisywać wyłącznie aktualnie aktywne silniki. Kompleksowe przemapowanie można prezeprowadzać wpisując komendę \"resource\" w Wierszu Poleceń CLI. Po wiecej informacji przejdź do tej strony: <a href=\"https:\/\/betaflight.com\/docs\/wiki\/guides\/current\/Remapping-Motors-with-Resource-Command\" target=\"_blank\" rel=\"noopener noreferrer\">Wiki<\/a>."
+        "message": "<strong>Nota informacyjna:<\/strong><br \/>Silniki będą włączane pojedyńczo i będziesz mógł wybrać, który silnik ma się kręcić. Akumulator powinien być wpięty i należy wybrać poprawny protokół ESC. Tym narzędziem można przypisywać wyłącznie aktualnie aktywne silniki. Kompleksowe przemapowanie można prezeprowadzać wpisując komendę \"resource\" w Wierszu Poleceń CLI. Po wiecej informacji przejdź do tej strony: <a href=\"https:\/\/Ovobot.com\/docs\/wiki\/guides\/current\/Remapping-Motors-with-Resource-Command\" target=\"_blank\" rel=\"noopener noreferrer\">Wiki<\/a>."
     },
     "motorsRemapDialogSave": {
         "message": "Zapisz"
@@ -3198,10 +3198,10 @@
         "message": "Funkcja działa tylko z ESC z protokołem DSHOT.<br \/> Sprawdź, czy ESC (elektroniczny kontroler prędkości) którego używasz obsługuje protokół DSHOT i zmień go w ustawieniach $t(tabMotorTesting.message)."
     },
     "escDshotDirectionDialog-WrongMixerText": {
-        "message": "Liczba silników wynosi 0.<br \/>Zweryfikuj aktualny Mixer w $t(tabMotorTesting.message) lub zmień ustawienia w Wierszu Poleceń CLI. Po więcej informacji przejdź do tej strony: <a href=\"https:\/\/betaflight.com\/docs\/development\/Mixer\" target=\"_blank\" rel=\"noopener noreferrer\">Wiki<\/a>."
+        "message": "Liczba silników wynosi 0.<br \/>Zweryfikuj aktualny Mixer w $t(tabMotorTesting.message) lub zmień ustawienia w Wierszu Poleceń CLI. Po więcej informacji przejdź do tej strony: <a href=\"https:\/\/Ovobot.com\/docs\/development\/Mixer\" target=\"_blank\" rel=\"noopener noreferrer\">Wiki<\/a>."
     },
     "escDshotDirectionDialog-WrongFirmwareText": {
-        "message": "Zaktualizuj oprogramowanie.<br \/> Upewnij się, że używasz najnowszego oprogramowania: Betaflight 4.3 lub nowszego."
+        "message": "Zaktualizuj oprogramowanie.<br \/> Upewnij się, że używasz najnowszego oprogramowania: Ovobot 4.3 lub nowszego."
     },
     "escDshotDirectionDialog-WizardActionHint": {
         "message": "Kliknij na numer silnika, aby zmienić kierunek obrotów"
@@ -3489,8 +3489,8 @@
         "message": "Target:"
     },
     "firmwareFlasherTargetWikiUrlInfo": {
-        "message": "Więcej szczegółowych informacji znajdziesz na Wiki Betaflight",
-        "description": "Link to Betaflight support for target"
+        "message": "Więcej szczegółowych informacji znajdziesz na Wiki Ovobot",
+        "description": "Link to Ovobot support for target"
     },
     "firmwareFlasherReleaseMCU": {
         "message": "MCU:"
@@ -3562,7 +3562,7 @@
         "message": "Wybierz swój kontroler lotu, aby zobaczyć dostępne wersje oprogramowania online. Wybierz odpowiednie oprogramowanie dla twojego kontrolera lotu."
     },
     "firmwareFlasherOnlineSelectBoardHint": {
-        "message": "Konfigurator Betaflight obsługuje flashowanie wielu kontrolerów lotu jednocześnie.<br><br>Koncepcja ta oznacza, że ​​ten sam plik .hex oprogramowania układowego może być używany dla wszystkich płyt korzystających z tego samego MCU.<br> <br>Betaflight 4.4 wprowadza <strong>Kompilację w chmurze<\/strong><br><br>W przypadku <strong>kompilacji w chmurze<\/strong> musimy zdefiniować opcje sprzętowe obecne w Twojej kompilacji.<br><br>Aby różne kontrolery współpracowały z tym samym oprogramowaniem układowym, a określony plik konfiguracyjny jest wdrażany wraz z oprogramowaniem układowym podczas flashowania.<br><br>Dzięki kompilacji lokalnej można załadować docelowy plik konfiguracyjny lub wybrać płytkę kontrolera lotu przed załadowaniem oprogramowania układowego .hex.<br><br>Jeśli napotkasz problemy z używaniem oprogramowania układowego, rozważ dołączenie do Discorda lub otwórz plik <a href=\"https:\/\/github.com\/betaflight\/betaflight\/issues\" target=\"_blank\" rel =\"noopener noreferrer\">problem<\/a>."
+        "message": "Konfigurator Ovobot obsługuje flashowanie wielu kontrolerów lotu jednocześnie.<br><br>Koncepcja ta oznacza, że ​​ten sam plik .hex oprogramowania układowego może być używany dla wszystkich płyt korzystających z tego samego MCU.<br> <br>Ovobot 4.4 wprowadza <strong>Kompilację w chmurze<\/strong><br><br>W przypadku <strong>kompilacji w chmurze<\/strong> musimy zdefiniować opcje sprzętowe obecne w Twojej kompilacji.<br><br>Aby różne kontrolery współpracowały z tym samym oprogramowaniem układowym, a określony plik konfiguracyjny jest wdrażany wraz z oprogramowaniem układowym podczas flashowania.<br><br>Dzięki kompilacji lokalnej można załadować docelowy plik konfiguracyjny lub wybrać płytkę kontrolera lotu przed załadowaniem oprogramowania układowego .hex.<br><br>Jeśli napotkasz problemy z używaniem oprogramowania układowego, rozważ dołączenie do Discorda lub otwórz plik <a href=\"https:\/\/github.com\/Ovobot\/Ovobot\/issues\" target=\"_blank\" rel =\"noopener noreferrer\">problem<\/a>."
     },
     "firmwareFlasherOnlineSelectFirmwareVersionDescription": {
         "message": "Wybierz wersję oprogramowania dla swojej płytki."
@@ -3670,13 +3670,13 @@
         "message": "Wiadomość:"
     },
     "firmwareFlasherWarningText": {
-        "message": "Postępuj według wytycznych oraz <span class = \"message-negative\"> nie <\/span> próbuj wgrywać oprogramowania<strong> innego niż Betaflight <\/strong> za pomocą tego oprogramowania. <br \/> Pamiętaj<span class = \"message-negative\" > nie <\/span> <strong> odłączaj <\/strong> kontrolera lotu oraz <strong> nie wyłączaj <\/strong> komputera podczas wgrywania oprogramowania. <br \/> <br \/> <strong> Uwaga: <\/strong> Bootloader STM32 jest przechowywany w ROM-ie dlatego nie może być blokowany. <br \/> <strong> Uwaga: <\/strong> <span class = \"message-negative\"> Automatyczne połączenie <\/span> jest zawsze wyłączone, gdy jesteś w trybie wgrywania oprogramowania. <br \/> <strong> Uwaga: <\/strong> Upewnij się, że masz kopię zapasową, niektóre aktualizacje mogą usunąć twoją konfigurację. <br \/> <strong> Uwaga: <\/strong> Jeśli masz problem z wgrywaniem oprogramowania<strong> spróbuj odłączyć wszystkie przewody od kontrolera lotu <\/strong> następnie spróbuj ponownie uruchomić komputer oraz zaktualizować sterowniki. <br \/> <strong> Uwaga: <\/strong> Podczas wgrywania oprogramowania do płytek bezpośrednio podłączonych do gniazd USB (większość nowszych płytek) upewnij się, że przeczytałeś sekcję Wgrywanie oprogramowania w instrukcji Betaflight i zainstalowałeś odpowiednie oprogramowanie i sterowniki"
+        "message": "Postępuj według wytycznych oraz <span class = \"message-negative\"> nie <\/span> próbuj wgrywać oprogramowania<strong> innego niż Ovobot <\/strong> za pomocą tego oprogramowania. <br \/> Pamiętaj<span class = \"message-negative\" > nie <\/span> <strong> odłączaj <\/strong> kontrolera lotu oraz <strong> nie wyłączaj <\/strong> komputera podczas wgrywania oprogramowania. <br \/> <br \/> <strong> Uwaga: <\/strong> Bootloader STM32 jest przechowywany w ROM-ie dlatego nie może być blokowany. <br \/> <strong> Uwaga: <\/strong> <span class = \"message-negative\"> Automatyczne połączenie <\/span> jest zawsze wyłączone, gdy jesteś w trybie wgrywania oprogramowania. <br \/> <strong> Uwaga: <\/strong> Upewnij się, że masz kopię zapasową, niektóre aktualizacje mogą usunąć twoją konfigurację. <br \/> <strong> Uwaga: <\/strong> Jeśli masz problem z wgrywaniem oprogramowania<strong> spróbuj odłączyć wszystkie przewody od kontrolera lotu <\/strong> następnie spróbuj ponownie uruchomić komputer oraz zaktualizować sterowniki. <br \/> <strong> Uwaga: <\/strong> Podczas wgrywania oprogramowania do płytek bezpośrednio podłączonych do gniazd USB (większość nowszych płytek) upewnij się, że przeczytałeś sekcję Wgrywanie oprogramowania w instrukcji Ovobot i zainstalowałeś odpowiednie oprogramowanie i sterowniki"
     },
     "firmwareFlasherRecoveryHead": {
         "message": "<strong>Problemy z połączeniem FC<\/strong>"
     },
     "firmwareFlasherRecoveryText": {
-        "message": "Jeżeli utracono komunikację z kontrolerem lotu, należy wykonać następujące kroki, aby ją przywrócić: <ul><li>Odłączyć zasilanie kontrolera lotu.<\/li><li>Zaznaczyć opcje „Bez ponownego uruchamiania” oraz „Pełne czyszczenie pamięci”.<\/li><li>Złączyć zworką styki BOOT lub przytrzymać przycisk BOOT na kontrolerze lotu.<\/li><li>Podłączyć zasilanie kontrolera lotu (proprawne wykonanie zasygnalizuje dioda aktywności, która PRZESTANIE mrugać).<\/li><li>Jeżeli to konieczne, zainstalować wszystkie sterowniki STM32 i Zadig. Więcej przydatnych informacji na stronie:\n<a href=\"https:\/\/betaflight.com\/docs\/wiki\/guides\/current\/Installing-Betaflight\" target=\"_blank\" rel=\"noopener noreferrer\"> instalowanie oprogramowania<\/a> w instrukcji Betaflight.<\/li><li>Zamknąć konfigurator, a następnie uruchomić go ponownie.<\/li><li>Zwolnić przycisk BOOT, jeśli kontroler lotu go posiada.<\/li><li>Zainstalować poprawne oprogramowanie układowe (używać ręcznej szybkości transmisji, jeśli jest to określone w instrukcji kontrolera lotu).<\/li><li>Odłączyć zasilanie kontrolera lotu.<\/li><li>Usunąć zworkę ze styków BOOT.<\/li><li>Podłączyć zasilanie kontrolera lotu (dioda aktywności powinna teraz mrugać).<\/li><li>Połączyć normalnie.<\/li><\/ul>"
+        "message": "Jeżeli utracono komunikację z kontrolerem lotu, należy wykonać następujące kroki, aby ją przywrócić: <ul><li>Odłączyć zasilanie kontrolera lotu.<\/li><li>Zaznaczyć opcje „Bez ponownego uruchamiania” oraz „Pełne czyszczenie pamięci”.<\/li><li>Złączyć zworką styki BOOT lub przytrzymać przycisk BOOT na kontrolerze lotu.<\/li><li>Podłączyć zasilanie kontrolera lotu (proprawne wykonanie zasygnalizuje dioda aktywności, która PRZESTANIE mrugać).<\/li><li>Jeżeli to konieczne, zainstalować wszystkie sterowniki STM32 i Zadig. Więcej przydatnych informacji na stronie:\n<a href=\"https:\/\/Ovobot.com\/docs\/wiki\/guides\/current\/Installing-Ovobot\" target=\"_blank\" rel=\"noopener noreferrer\"> instalowanie oprogramowania<\/a> w instrukcji Ovobot.<\/li><li>Zamknąć konfigurator, a następnie uruchomić go ponownie.<\/li><li>Zwolnić przycisk BOOT, jeśli kontroler lotu go posiada.<\/li><li>Zainstalować poprawne oprogramowanie układowe (używać ręcznej szybkości transmisji, jeśli jest to określone w instrukcji kontrolera lotu).<\/li><li>Odłączyć zasilanie kontrolera lotu.<\/li><li>Usunąć zworkę ze styków BOOT.<\/li><li>Podłączyć zasilanie kontrolera lotu (dioda aktywności powinna teraz mrugać).<\/li><li>Połączyć normalnie.<\/li><\/ul>"
     },
     "firmwareFlasherButtonLeave": {
         "message": "Urzyj opcji wgrywania oprogramowania"
@@ -3741,8 +3741,8 @@
         "description": "Board verification has succeeded."
     },
     "firmwareFlasherBoardVerficationTargetNotAvailable": {
-        "message": "Konfigurator wykrył kontroler lotu: <strong>{{boardName}}<\/strong>, lecz nie znaleziono oficjalnego oprogramowania układowego Betaflight",
-        "description": "Board verification has succeeded, but the target is not available as offical Betaflight target."
+        "message": "Konfigurator wykrył kontroler lotu: <strong>{{boardName}}<\/strong>, lecz nie znaleziono oficjalnego oprogramowania układowego Ovobot",
+        "description": "Board verification has succeeded, but the target is not available as offical Ovobot target."
     },
     "firmwareFlasherBoardVerificationFail": {
         "message": "Konfiguracja <span class=\"message-negative\">nie powiodła się<\/span> ponieważ nie zdołano zidentyfikować kontrolera lotu. Spróbuj ponownie lub utwórz nowe połączenie USB, jeśli to nie pomogło podłącz kontroler lotu w trybie DFU",
@@ -4160,7 +4160,7 @@
         "message": "Włącz RC Expo"
     },
     "pidTuningRcExpoPowerHelp": {
-        "message": "Wykładnik używany podczas obliczania RC Expo. W wersjach Betaflight wcześniejszych niż 3.0 wartość jest ustalona na 3."
+        "message": "Wykładnik używany podczas obliczania RC Expo. W wersjach Ovobot wcześniejszych niż 3.0 wartość jest ustalona na 3."
     },
     "pidTuningLevel": {
         "message": "Angle\/Horizon"
@@ -4440,7 +4440,7 @@
         "message": "Dolna granica żyroskopu 2"
     },
     "pidTuningGyroLowpass2Help": {
-        "message": "Drugi z dwóch żyroskopowych filtrów dolnoprzepustowych.<br \/><br \/>Filtr ten działa w pętli żyroskopowej, filtrując sygnał przed wejściem do pętli PID. Jest zawsze w trybie statycznym (stałe odcięcie).<br \/><br \/>Jeśli częstotliwość pętli PID jest mniejsza niż częstotliwość pętli żyroskopowej, np. pętla PID 4k z pętlą żyroskopową 8k, filtr ten powinien być zachowany, aby zapobiec problemom z aliasingiem spowodowanym przez downsampling 8k->4k.<br \/><br \/>Pojedyncza konfiguracja 2 żyroskopowych filtrów dolnoprzepustowych, ustawiona gdzieś na 500 i 1000Hz, działa dobrze dla Betaflight 4.3 lub wyższej, dla czystych konstrukcji z aktywnym filtrowaniem RPM i przynajmniej domyślnym filtrowaniem D.",
+        "message": "Drugi z dwóch żyroskopowych filtrów dolnoprzepustowych.<br \/><br \/>Filtr ten działa w pętli żyroskopowej, filtrując sygnał przed wejściem do pętli PID. Jest zawsze w trybie statycznym (stałe odcięcie).<br \/><br \/>Jeśli częstotliwość pętli PID jest mniejsza niż częstotliwość pętli żyroskopowej, np. pętla PID 4k z pętlą żyroskopową 8k, filtr ten powinien być zachowany, aby zapobiec problemom z aliasingiem spowodowanym przez downsampling 8k->4k.<br \/><br \/>Pojedyncza konfiguracja 2 żyroskopowych filtrów dolnoprzepustowych, ustawiona gdzieś na 500 i 1000Hz, działa dobrze dla Ovobot 4.3 lub wyższej, dla czystych konstrukcji z aktywnym filtrowaniem RPM i przynajmniej domyślnym filtrowaniem D.",
         "description": "Gyro lowpass filter helpicon message"
     },
     "pidTuningGyroLowpassFilterHelp": {
@@ -4602,7 +4602,7 @@
         "message": "Kompensacja spadku napięcia baterii"
     },
     "pidTuningVbatSagCompensationHelp": {
-        "message": "Zapewnia stałą wydajność przepustnicy, zwiększając moc silnika w miarę spadku napięcia akumulatora.<br \/><br \/>Wielkość kompensacji można zmieniać w zakresie od 0 do 100%. Zalecana jest pełna rekompensacja (100%).<br \/><br \/>Odwiedź <a href=\"https:\/\/betaflight.com\/docs\/wiki\/tuning\/4-2-tuning-notes#dynamic-battery-sag-compensation\" target=\"_blank\" rel=\"noopener noreferrer\">ten wpis wiki<\/a>, aby uzyskać więcej informacji."
+        "message": "Zapewnia stałą wydajność przepustnicy, zwiększając moc silnika w miarę spadku napięcia akumulatora.<br \/><br \/>Wielkość kompensacji można zmieniać w zakresie od 0 do 100%. Zalecana jest pełna rekompensacja (100%).<br \/><br \/>Odwiedź <a href=\"https:\/\/Ovobot.com\/docs\/wiki\/tuning\/4-2-tuning-notes#dynamic-battery-sag-compensation\" target=\"_blank\" rel=\"noopener noreferrer\">ten wpis wiki<\/a>, aby uzyskać więcej informacji."
     },
     "pidTuningVbatSagValue": {
         "message": "%"
@@ -4683,7 +4683,7 @@
         "message": "Dynamiczna wartość biegu jałowego [* 100 rpm]"
     },
     "pidTuningIdleMinRpmHelp": {
-        "message": "Dynamiczny bieg jałowy poprawia kontrolę przy niskich obrotach i zmniejsza ryzyko desynchronizacji silnika. <br \/><br \/> Poprawia autorytet PID, stabilność przepustnicy przy zerowej przepustnicy, odwrócony czas zawieszenia i hamowanie silnika.<br \/><br \/>Minimalne obroty na dynamicznym biegu jałowym powinny być ustawione na około 3000 - 3500 obr.\/min. <br \/><br \/>Odwiedź <a href=\"https:\/\/betaflight.com\/docs\/wiki\/guides\/current\/Dynamic-Idle\" target=\"_blank\" rel=\"noopener noreferrer\">ten wpis wiki<\/a>, aby uzyskać więcej informacji."
+        "message": "Dynamiczny bieg jałowy poprawia kontrolę przy niskich obrotach i zmniejsza ryzyko desynchronizacji silnika. <br \/><br \/> Poprawia autorytet PID, stabilność przepustnicy przy zerowej przepustnicy, odwrócony czas zawieszenia i hamowanie silnika.<br \/><br \/>Minimalne obroty na dynamicznym biegu jałowym powinny być ustawione na około 3000 - 3500 obr.\/min. <br \/><br \/>Odwiedź <a href=\"https:\/\/Ovobot.com\/docs\/wiki\/guides\/current\/Dynamic-Idle\" target=\"_blank\" rel=\"noopener noreferrer\">ten wpis wiki<\/a>, aby uzyskać więcej informacji."
     },
     "pidTuningIdleMinRpmDisabled": {
         "message": "Dynamiczny bieg jałowy jest WYŁĄCZONY, ponieważ telemetria Dshot jest wyłączona"
@@ -4698,13 +4698,13 @@
         "message": "Zintegrowane odchylenie Yaw"
     },
     "pidTuningIntegratedYawCaution": {
-        "message": "<span class=\"message-negative\">UWAGA<\/span>: jeśli włączysz tę funkcję, musisz odpowiednio dostosować YAW PID. Więcej informacji <a href=\"https:\/\/betaflight.com\/docs\/wiki\/guides\/current\/Integrated-Yaw\" target=\"_blank\" rel=\"noopener noreferrer\">tutaj<\/a>"
+        "message": "<span class=\"message-negative\">UWAGA<\/span>: jeśli włączysz tę funkcję, musisz odpowiednio dostosować YAW PID. Więcej informacji <a href=\"https:\/\/Ovobot.com\/docs\/wiki\/guides\/current\/Integrated-Yaw\" target=\"_blank\" rel=\"noopener noreferrer\">tutaj<\/a>"
     },
     "pidTuningIntegratedYawHelp": {
         "message": "Zintegrowany odchylacz integruje wartości P, I i D odchyłu, umożliwiając dostrojenie wartości P, I i D odchyłu w sposób podobny do tego, w jaki dostrajasz nachylenie i przechył.<br><br>Wymagana jest bardzo mała ilość I, ponieważ zintegrowane P działa jak I, a zintegrowane D działa jak P.<br><br>UWAGA: Zintegrowany odchylacz wymaga użycia sterowania absolutnego, ponieważ w przypadku Zintegrowanego odchyłu nie jest potrzebne I."
     },
     "failsafeFeaturesHelpOld": {
-        "message": "Konfiguracja failsafe nie powiodła się. Użyj Betaflight <strong>v1.12.0+<\/strong>, aby włączyć ulepszony panel konfiguracyjny."
+        "message": "Konfiguracja failsafe nie powiodła się. Użyj Ovobot <strong>v1.12.0+<\/strong>, aby włączyć ulepszony panel konfiguracyjny."
     },
     "failsafePaneTitleOld": {
         "message": "Odbiornik Failsafe"
@@ -4900,7 +4900,7 @@
         "message": "Zapisz"
     },
     "powerFirmwareUpgradeRequired": {
-        "message": "<span class=\"message-negative\">Wymagana<\/span>aktualizacja oprogramowania układowego. Konfiguracja baterii\/Amperomierza\/Napięcia przy użyciu API &lt; 1.33.0 (wydanie dla Betaflight &lt;= 3.17) nie jest obsługiwane."
+        "message": "<span class=\"message-negative\">Wymagana<\/span>aktualizacja oprogramowania układowego. Konfiguracja baterii\/Amperomierza\/Napięcia przy użyciu API &lt; 1.33.0 (wydanie dla Ovobot &lt;= 3.17) nie jest obsługiwane."
     },
     "powerBatteryVoltageMeterSource": {
         "message": "Źródło pomiaru napięcia"
@@ -5185,7 +5185,7 @@
         "message": "<strong>Uwaga:<\/strong> Podgląd OSD nie może pokazywać rzeczywistej czcionki zainstalowanej na kontrolerze lotu. Układ poszczególnych elementów może wyglądać inaczej, gdy używane są starsze wersje oprogramowania układowego - sprawdź wygląd czcionki poprzez okulary lub wyświetlacz przed rozpoczęciem jakiegokolwiek lotu."
     },
     "osdSetupUnsupportedNote1": {
-        "message": "Twój kontroler lotu nie odpowiada na komendy OSD. Prawdopodobnie oznacza to że nie ma zintegrowanego OSD BetaFlight."
+        "message": "Twój kontroler lotu nie odpowiada na komendy OSD. Prawdopodobnie oznacza to że nie ma zintegrowanego OSD Ovobot."
     },
     "osdSetupUnsupportedNote2": {
         "message": "Zauważ, że niektóre kontrolery lotu mają na pokładzie układ <a href=\"https:\/\/www.youtube.com\/watch?v=ikKH_6SQ-Tk\" target=\"_blank\" rel=\"noopener noreferrer\">MinimOSD<\/a>, który można programować i konfigurować w <a href=\"https:\/\/github.com\/ShikOfTheRa\/scarab-osd\/releases\/latest\" target='_blank'>scarab-osd<\/a>, jednakże przez ten interfejs nie można skonfigurować MinimOSD."
@@ -5241,9 +5241,9 @@
         "message": "Large Extra",
         "description": "Font Large Extra"
     },
-    "osdSetupFontTypeBetaflight": {
-        "message": "Betaflight",
-        "description": "Font Betaflight"
+    "osdSetupFontTypeOvobot": {
+        "message": "Ovobot",
+        "description": "Font Ovobot"
     },
     "osdSetupFontTypeDigital": {
         "message": "Digital",
@@ -6359,10 +6359,10 @@
         "message": "Nieznana statystyka (szczegóły do dodania w przyszłej wersji)"
     },
     "osdDescribeFontVersion1": {
-        "message": "Wersja czcionki: 1 (Betaflight 4.0 lub starszy)"
+        "message": "Wersja czcionki: 1 (Ovobot 4.0 lub starszy)"
     },
     "osdDescribeFontVersion2": {
-        "message": "Wersja czcionki: 2 (Betaflight 4.1 lub nowszy)"
+        "message": "Wersja czcionki: 2 (Ovobot 4.1 lub nowszy)"
     },
     "osdDescribeFontVersionCUSTOM": {
         "message": "Wersja czcionki: podana przez użytkownika"
@@ -6604,7 +6604,7 @@
         "message": "Zapisano"
     },
     "vtxHelp": {
-        "message": "Tutaj możesz skonfigurować wartości dla swojego Nadajnika wideo (VTX). Możesz przeglądać i zmieniać wartości transmisji, w tym tabele VTX, jeśli kontroler lotu i VTX to obsługują.<br>Aby skonfigurować VTX, wykonaj następujące czynności:<br>1. Przejdź do <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https:\/\/betaflight.com\/docs\/wiki\/guides\/current\/VTX-Tables\">tej<\/a> strony.<br>2. Znajdź odpowiedni plik konfiguracyjny VTX dla swojego kraju i modelu VTX i pobierz go.<br>3. Kliknij „$t(vtxButtonLoadFile.message)” następnie, wybierz plik konfiguracyjny VTX i załaduj go.<br>4. Sprawdź, czy ustawienia są prawidłowe.<br>5. Kliknij „$t(vtxButtonSave.message)”, aby zapisać ustawienia VTX w kontrolerze lotu.<br>6. Opcjonalnie kliknij „$t(vtxButtonSaveLua.message)”, aby zapisać plik konfiguracyjny lua, którego możesz używać ze skryptami lua betaflight (Zobacz więcej <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https:\/\/github.com\/betaflight\/betaflight-tx-lua-scripts\/\">tutaj<\/a>.)",
+        "message": "Tutaj możesz skonfigurować wartości dla swojego Nadajnika wideo (VTX). Możesz przeglądać i zmieniać wartości transmisji, w tym tabele VTX, jeśli kontroler lotu i VTX to obsługują.<br>Aby skonfigurować VTX, wykonaj następujące czynności:<br>1. Przejdź do <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https:\/\/Ovobot.com\/docs\/wiki\/guides\/current\/VTX-Tables\">tej<\/a> strony.<br>2. Znajdź odpowiedni plik konfiguracyjny VTX dla swojego kraju i modelu VTX i pobierz go.<br>3. Kliknij „$t(vtxButtonLoadFile.message)” następnie, wybierz plik konfiguracyjny VTX i załaduj go.<br>4. Sprawdź, czy ustawienia są prawidłowe.<br>5. Kliknij „$t(vtxButtonSave.message)”, aby zapisać ustawienia VTX w kontrolerze lotu.<br>6. Opcjonalnie kliknij „$t(vtxButtonSaveLua.message)”, aby zapisać plik konfiguracyjny lua, którego możesz używać ze skryptami lua Ovobot (Zobacz więcej <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https:\/\/github.com\/Ovobot\/Ovobot-tx-lua-scripts\/\">tutaj<\/a>.)",
         "description": "Introduction message in the VTX tab"
     },
     "vtxMessageNotSupported": {
@@ -6784,7 +6784,7 @@
         "description": "Help for the number of power levels field of the VTX Table element in the VTX tab"
     },
     "vtxTablePowerLevelsTableHelp": {
-        "message": "Tabela ta przedstawia różne wartości mocy, które mogą być wykorzystane dla VTX. Zostały podzielone na dwie części: <br><b>- $t(vtxTablePowerLevelsValue.message):<\/b> każdy poziom mocy wymaga wartości zdefiniowanej przez producenta sprzętu. Poproś producenta o poprawną wartość lub sprawdź tabelę VTX na Betaflight wiki. <br><b>- $t(vtxTablePowerLevelsLabel.message):<\/b> możesz tutaj umieścić etykietę dla każdej wartości poziomu energii. Mogą to być liczby (25, 200, 600, 1.2), litery (OFF, MIN, MAX) lub je mieszać. <br \/><br \/>Musisz skonfigurować <b>tylko<\/b> poziomy mocy zgodne z prawem w Twoim kraju.",
+        "message": "Tabela ta przedstawia różne wartości mocy, które mogą być wykorzystane dla VTX. Zostały podzielone na dwie części: <br><b>- $t(vtxTablePowerLevelsValue.message):<\/b> każdy poziom mocy wymaga wartości zdefiniowanej przez producenta sprzętu. Poproś producenta o poprawną wartość lub sprawdź tabelę VTX na Ovobot wiki. <br><b>- $t(vtxTablePowerLevelsLabel.message):<\/b> możesz tutaj umieścić etykietę dla każdej wartości poziomu energii. Mogą to być liczby (25, 200, 600, 1.2), litery (OFF, MIN, MAX) lub je mieszać. <br \/><br \/>Musisz skonfigurować <b>tylko<\/b> poziomy mocy zgodne z prawem w Twoim kraju.",
         "description": "Help for the table of power levels (value-label) that appears in the VTX tab"
     },
     "vtxTablePowerLevelsValue": {
@@ -6824,7 +6824,7 @@
         "description": "Text of one of the titles of the VTX Table element in the VTX tab"
     },
     "vtxTableBandsChannelsTableHelp": {
-        "message": "Ta tabela przedstawia wszystkie częstotliwości, które mogą być użyte w Twoim VTX. Możesz mieć kilka pasm i dla każdego z nich należy skonfigurować takie zmienne, jak:<br><b>- $t(vtxTableBandTitleName.message):<\/b> Przypisana do pasma nazwa, np: BOSCAM_A, FATSHARK lub RACEBAND.<br><b>- $t(vtxTableBandTitleLetter.message):<\/b> Skrót jednoliterowy odnoszący się do nazwy tego pasma.<br><b>- $t(vtxTableBandTitleFactory.message):<\/b> Przełącznik oznakowuje pasmo jako wbudowane fabrycznie. Gdy jest włączony, Betaflight wysyła do VTX jedynie pasmo i numer kanału. Twój VTX posłuży się swoją wbudowaną tabelą częstotliwości. Wartości częstotliwości wpisane tutaj służą wtedy jedynie do pokazania na OSD i w innych miejscach. Jeśli ten przełącznik jest wyłączony, Betaflight wyśle do VTX wartość częstotliwości wpisaną tutaj (VTX IRC Tramp oraz rtc6705).<br><b>- Częstotliwości:<\/b> Wartości częstotliwości dla danego pasma.<br \/><br \/>Pamiętaj, że nie wszystkie częstotliwości są legalne w Polsce. Istnieje możliwość zablokowania każdego indeksu częstotliwości, którego nie możesz używać, poprzez wpisanie cyfry <b>zero<\/b> w komórkę tabeli VTX.",
+        "message": "Ta tabela przedstawia wszystkie częstotliwości, które mogą być użyte w Twoim VTX. Możesz mieć kilka pasm i dla każdego z nich należy skonfigurować takie zmienne, jak:<br><b>- $t(vtxTableBandTitleName.message):<\/b> Przypisana do pasma nazwa, np: BOSCAM_A, FATSHARK lub RACEBAND.<br><b>- $t(vtxTableBandTitleLetter.message):<\/b> Skrót jednoliterowy odnoszący się do nazwy tego pasma.<br><b>- $t(vtxTableBandTitleFactory.message):<\/b> Przełącznik oznakowuje pasmo jako wbudowane fabrycznie. Gdy jest włączony, Ovobot wysyła do VTX jedynie pasmo i numer kanału. Twój VTX posłuży się swoją wbudowaną tabelą częstotliwości. Wartości częstotliwości wpisane tutaj służą wtedy jedynie do pokazania na OSD i w innych miejscach. Jeśli ten przełącznik jest wyłączony, Ovobot wyśle do VTX wartość częstotliwości wpisaną tutaj (VTX IRC Tramp oraz rtc6705).<br><b>- Częstotliwości:<\/b> Wartości częstotliwości dla danego pasma.<br \/><br \/>Pamiętaj, że nie wszystkie częstotliwości są legalne w Polsce. Istnieje możliwość zablokowania każdego indeksu częstotliwości, którego nie możesz używać, poprzez wpisanie cyfry <b>zero<\/b> w komórkę tabeli VTX.",
         "description": "Help for the table of bands-channels that appears in the VTX tab"
     },
     "vtxSavedFileOk": {
@@ -6868,7 +6868,7 @@
         "description": "Save Lua script button in the VTX tab"
     },
     "vtxLuaFileHelp": {
-        "message": "Przycisk '$t(vtxButtonSaveLua.message)' pozwoli Ci zapisać plik <i>mcuid<\/i>.lua zawierający konfigurację tabeli VTX, której można używać ze <a href=\"https:\/\/github.com\/betaflight\/betaflight-tx-lua-scripts\/\" target=\"_blank\" rel=\"noopener noreferrer\">Skryptami Betaflight TX Lua<\/a>.<br><br>Wersja 1.6.0 i nowsze mogą korzystać z pliku taki jak jest, ale w przypadku starszych wersji skryptów należy zmienić jego nazwę, aby odpowiadała nazwie modelu w TX.",
+        "message": "Przycisk '$t(vtxButtonSaveLua.message)' pozwoli Ci zapisać plik <i>mcuid<\/i>.lua zawierający konfigurację tabeli VTX, której można używać ze <a href=\"https:\/\/github.com\/Ovobot\/Ovobot-tx-lua-scripts\/\" target=\"_blank\" rel=\"noopener noreferrer\">Skryptami Ovobot TX Lua<\/a>.<br><br>Wersja 1.6.0 i nowsze mogą korzystać z pliku taki jak jest, ale w przypadku starszych wersji skryptów należy zmienić jego nazwę, aby odpowiadała nazwie modelu w TX.",
         "description": "Tooltip message for the Save Lua script button in the VTX tab"
     },
     "vtxButtonLoadFile": {
@@ -7022,7 +7022,7 @@
         "message": "<b>Pochodna liczona na podstawie Błędu<\/b> zapewnia bardziej bezpośrednią odpowiedź na drążki i jest przeważnie preferowana w bardziej agresywnym stylu lotu.<br \/><br \/><b>Pochodna na podstawie Pomiaru<\/b> zapewnia bardziej płynną odpowiedź na drążki, co jest przydatne dla osób ceniących styl mniej agresywny"
     },
     "pidTuningPidControllerTip": {
-        "message": "<b>Stara \"Legacy(integer)\" kontra nowa wersja Betaflight (float):<\/b> Ustawienia i silnik PID są dokładnie takie same. Nie jest konieczne ponowne strojenie kontrolera PID. \"Legacy\" to stary silnik PID który jest podstawowym kontrolerem PID, został zmodernizowany i jest oparty na arytmetyce całkowitoliczbowej(integer). Natomiast kontroler PID Betaflight wykorzystuje matematykę zmiennoprzecinkową i posiada wiele nowych funkcji zaprojektowanych specjalnie dla aplikacji wielofunkcyjnych <br> <b>zmiennoprzecinkowy \"Float\" vs całkowitoliczbowy\"Integer\":<\/b> skalowanie PID i logika PID są dokładnie takie same. mikrokontrolery serii F1 (czyli też płytki mające w nazwie F1) nie mają sprzętowego FPU. Arytmetyka zmiennoprzecinkowa zwiększa obciążenie procesora dlatego zastosowano całkowitoliczbowe obliczenia aby odciążyć CPU i przyspieszyć proces liczenia PID.\nJednakże obliczenia przeprowadzane w arytmetyce zmiennoprzecinkowej (w czym pomaga koprocesor FPU(floating point unit)) oferują dużo lepszą dokładność uzyskanego wyniku."
+        "message": "<b>Stara \"Legacy(integer)\" kontra nowa wersja Ovobot (float):<\/b> Ustawienia i silnik PID są dokładnie takie same. Nie jest konieczne ponowne strojenie kontrolera PID. \"Legacy\" to stary silnik PID który jest podstawowym kontrolerem PID, został zmodernizowany i jest oparty na arytmetyce całkowitoliczbowej(integer). Natomiast kontroler PID Ovobot wykorzystuje matematykę zmiennoprzecinkową i posiada wiele nowych funkcji zaprojektowanych specjalnie dla aplikacji wielofunkcyjnych <br> <b>zmiennoprzecinkowy \"Float\" vs całkowitoliczbowy\"Integer\":<\/b> skalowanie PID i logika PID są dokładnie takie same. mikrokontrolery serii F1 (czyli też płytki mające w nazwie F1) nie mają sprzętowego FPU. Arytmetyka zmiennoprzecinkowa zwiększa obciążenie procesora dlatego zastosowano całkowitoliczbowe obliczenia aby odciążyć CPU i przyspieszyć proces liczenia PID.\nJednakże obliczenia przeprowadzane w arytmetyce zmiennoprzecinkowej (w czym pomaga koprocesor FPU(floating point unit)) oferują dużo lepszą dokładność uzyskanego wyniku."
     },
     "pidTuningFilterTip": {
         "message": "<b>Filtr żyroskopowy:<\/b> Filtr dolnoprzepustowy dla żyroskopu. Użyj niższej wartości dla lepszego filtrowania.<br><b>Filtr terminu:<\/b> Filtr dolnoprzepustowy Dterm Może wpływać na dostrajanie D. Użyj niższej wartości, aby bardziej filtrować. <br><b>Filtr kątowy Yaw:<\/b> Filtry odchylenia kątowego. Może to pomóc w konfiguracji z odchylona osią kątową."
@@ -7187,7 +7187,7 @@
         "message": "Nazwa pliku"
     },
     "dialogFileNameDescription": {
-        "message": "Plik zostanie zapisany w folderze 'Android\/data\/betaflight-configurator\/{{folder}}' w pamięci wewnętrznej."
+        "message": "Plik zostanie zapisany w folderze 'Android\/data\/Ovobot-configurator\/{{folder}}' w pamięci wewnętrznej."
     },
     "dialogFileAlreadyExistsTitle": {
         "message": "Taki plik już istnieje!"
@@ -7550,7 +7550,7 @@
         "message": "Automatycznie otwórz DevTools w trybie deweloperskim",
         "description": "Text for the option to enable automatic opening of DevTools in debug mode"
     },
-    "betaflightSupportButton": {
+    "OvobotSupportButton": {
         "message": "Wiki",
         "description": "Text for the button to open the support URL"
     },

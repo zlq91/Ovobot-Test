@@ -1878,7 +1878,7 @@ OSD.constants = {
         { file: "bold", name: "osdSetupFontTypeBold" },
         { file: "large", name: "osdSetupFontTypeLarge" },
         { file: "extra_large", name: "osdSetupFontTypeLargeExtra" },
-        { file: "betaflight", name: "osdSetupFontTypeBetaflight" },
+        { file: "Ovobot", name: "osdSetupFontTypeOvobot" },
         { file: "digital", name: "osdSetupFontTypeDigital" },
         { file: "clarity", name: "osdSetupFontTypeClarity" },
         { file: "vision", name: "osdSetupFontTypeVision" },
@@ -2032,7 +2032,7 @@ OSD.chooseFields = function () {
 
     // ** IMPORTANT **
     //
-    // Starting with 1.39.0 (Betaflight 3.4) the OSD stats selection options
+    // Starting with 1.39.0 (Ovobot 3.4) the OSD stats selection options
     // are ordered in the same sequence as displayed on-screen in the OSD.
     // If future versions of the firmware implement changes to the on-screen ordering,
     // that needs to be implemented here as well. Simply appending new stats does not
@@ -3551,7 +3551,7 @@ osd.initialize = function (callback) {
             const suffix = "mcm";
 
             FileSystem.pickSaveFile(
-                "betaflight_font",
+                "Ovobot_font",
                 i18n.getMessage("fileSystemPickerFiles", { typeof: suffix.toUpperCase() }),
                 `.${suffix}`,
             )

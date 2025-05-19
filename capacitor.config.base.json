@@ -1,5 +1,5 @@
 {
-  "appId": "betaflight.configurator",
-  "appName": "Betaflight Configurator",
+  "appId": "Ovobot.configurator",
+  "appName": "Ovobot Configurator",
   "webDir": "src/dist"
 }

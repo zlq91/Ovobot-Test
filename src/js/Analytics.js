@@ -70,7 +70,7 @@ class Analytics {
         this.setOptOut(settings.optOut);
 
         this._settings = settings;
-        this._url = "https://analytics.betaflight.com";
+        this._url = "https://analytics.Ovobot.com";
 
         this.EVENT_CATEGORIES = {
             APPLICATION: "Application",

@@ -428,7 +428,7 @@ pid_tuning.initialize = function (callback) {
 
         const ratesTypeListElement = $('select[id="ratesType"]'); // generates list
         const ratesList = [
-            { name: "Betaflight" },
+            { name: "Ovobot" },
             { name: "Raceflight" },
             { name: "KISS" },
             { name: "Actual" },
@@ -891,7 +891,7 @@ pid_tuning.initialize = function (callback) {
                 break;
 
             // add future rates types here
-            default: // BetaFlight
+            default: // Ovobot
                 break;
         }
 
@@ -1425,7 +1425,7 @@ pid_tuning.initialize = function (callback) {
         self.maxAngularVelPitchElement = $(".pid_tuning .maxAngularVelPitch");
         self.maxAngularVelYawElement = $(".pid_tuning .maxAngularVelYaw");
 
-        // Only used with Betaflight Rates
+        // Only used with Ovobot Rates
         self.acroCenterSensitivityRollElement = $(".pid_tuning .acroCenterSensitivityRoll");
         self.acroCenterSensitivityPitchElement = $(".pid_tuning .acroCenterSensitivityPitch");
         self.acroCenterSensitivityYawElement = $(".pid_tuning .acroCenterSensitivityYaw");
@@ -2636,21 +2636,21 @@ pid_tuning.updateRatesLabels = function () {
                 );
             }
 
-            // Only show Acro Center - Max Sensitivity for betaflight rates
+            // Only show Acro Center - Max Sensitivity for Ovobot rates
             const centerSensitivyLabel = $("#pid-tuning .pid_titlebar .centerSensitivity");
 
-            const isBetaflightRates = self.currentRatesType === FC.RATES_TYPE.BETAFLIGHT;
+            const isOvobotRates = self.currentRatesType === FC.RATES_TYPE.Ovobot;
 
-            centerSensitivyLabel.toggle(isBetaflightRates);
+            centerSensitivyLabel.toggle(isOvobotRates);
 
-            self.acroCenterSensitivityRollElement.toggle(isBetaflightRates);
-            self.acroCenterSensitivityPitchElement.toggle(isBetaflightRates);
-            self.acroCenterSensitivityYawElement.toggle(isBetaflightRates);
+            self.acroCenterSensitivityRollElement.toggle(isOvobotRates);
+            self.acroCenterSensitivityPitchElement.toggle(isOvobotRates);
+            self.acroCenterSensitivityYawElement.toggle(isOvobotRates);
 
-            $("#pid-tuning .pid_titlebar .maxVel").toggle(!isBetaflightRates);
-            self.maxAngularVelRollElement.toggle(!isBetaflightRates);
-            self.maxAngularVelPitchElement.toggle(!isBetaflightRates);
-            self.maxAngularVelYawElement.toggle(!isBetaflightRates);
+            $("#pid-tuning .pid_titlebar .maxVel").toggle(!isOvobotRates);
+            self.maxAngularVelRollElement.toggle(!isOvobotRates);
+            self.maxAngularVelPitchElement.toggle(!isOvobotRates);
+            self.maxAngularVelYawElement.toggle(!isOvobotRates);
 
             // Add labels for Angle Center Sensitivity
             const angleLimit = FC.ADVANCED_TUNING.levelAngleLimit;
@@ -2717,7 +2717,7 @@ pid_tuning.updateRatesLabels = function () {
                 );
             }
 
-            if (self.currentRatesType === FC.RATES_TYPE.BETAFLIGHT) {
+            if (self.currentRatesType === FC.RATES_TYPE.Ovobot) {
                 drawAxisLabel(stickContext, angleModeText, (curveWidth - 10) / textScale, curveHeight - 250, "right");
 
                 const RC_RATE_INCREMENTAL = 14.54;
@@ -2955,7 +2955,7 @@ pid_tuning.changeRatesSystem = function (sameType) {
     const rcExpoLabel = $("#pid-tuning .pid_titlebar .rc_expo");
     const centerSensitivyLabel = $("#pid-tuning .pid_titlebar .centerSensitivity");
 
-    // default values for betaflight curve. all the default values produce the same betaflight default curve (or at least near enough)
+    // default values for Ovobot curve. all the default values produce the same Ovobot default curve (or at least near enough)
     let rcRateDefault = (1).toFixed(2),
         rateDefault = (0.7).toFixed(2),
         expoDefault = (0).toFixed(2);
@@ -3061,7 +3061,7 @@ pid_tuning.changeRatesSystem = function (sameType) {
             break;
 
         // add future rates types here
-        default: // BetaFlight
+        default: // Ovobot
             rcRateLabel.text(i18n.getMessage("pidTuningRcRate"));
             rateLabel.text(i18n.getMessage("pidTuningRate"));
             rcExpoLabel.text(i18n.getMessage("pidTuningRcExpo"));
@@ -3115,8 +3115,8 @@ pid_tuning.changeRatesTypeLogo = function () {
             break;
 
         // add future rates types here
-        default: // BetaFlight
-            ratesLogoElement.attr("src", "./images/rate_logos/betaflight.svg");
+        default: // Ovobot
+            ratesLogoElement.attr("src", "./images/rate_logos/Ovobot.svg");
 
             break;
     }

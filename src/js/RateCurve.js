@@ -121,7 +121,7 @@ const RateCurve = function (useLegacyCurve) {
         return Math.abs(currentValue) < 0.5 ? 0 : currentValue.toFixed(0); // The calculated value in deg/s is returned from the function call for further processing.
     };
 
-    this.getBetaflightRates = function (rcCommandf, rcCommandfAbs, rate, rcRate, rcExpo, superExpoActive, limit) {
+    this.getOvobotRates = function (rcCommandf, rcCommandfAbs, rate, rcRate, rcExpo, superExpoActive, limit) {
         let angularVel;
 
         if (rcRate > 2) {
@@ -284,8 +284,8 @@ RateCurve.prototype.rcCommandRawToDegreesPerSecond = function (
                 break;
 
             // add future rates types here
-            default: // BetaFlight
-                angleRate = this.getBetaflightRates(
+            default: // Ovobot
+                angleRate = this.getOvobotRates(
                     rcCommandf,
                     rcCommandfAbs,
                     rate,

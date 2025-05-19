@@ -919,7 +919,7 @@ firmware_flasher.initialize = function (callback) {
                 if (showLog === true) {
                     $("div.release_info #cloudTargetLog")
                         .text(i18n.getMessage(`firmwareFlasherCloudBuildLogUrl`))
-                        .prop("href", `https://build.betaflight.com/api/builds/${key}/log`);
+                        .prop("href", `https://build.Ovobot.com/api/builds/${key}/log`);
                 }
                 $("div.release_info #cloudTargetStatus").text(i18n.getMessage(`firmwareFlasherCloudBuild${status}`));
                 $(".buildProgress").val(val);
@@ -1112,8 +1112,8 @@ firmware_flasher.initialize = function (callback) {
         const targetSupportInfo = $("#targetSupportInfoUrl");
 
         targetSupportInfo.on("click", function () {
-            let urlSupport = "https://betaflight.com/docs/wiki/boards/archive/Missing"; // general board missing
-            const urlBoard = `https://betaflight.com/docs/wiki/boards/current/${self.selectedBoard}`; // board description
+            let urlSupport = "https://Ovobot.com/docs/wiki/boards/archive/Missing"; // general board missing
+            const urlBoard = `https://Ovobot.com/docs/wiki/boards/current/${self.selectedBoard}`; // board description
             if (urlExists(urlBoard)) {
                 urlSupport = urlBoard;
             }

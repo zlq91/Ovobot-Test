@@ -82,7 +82,7 @@ export function checkBrowserCompatibility() {
 
     let errorMessage = "";
     if (!isChromium) {
-        errorMessage = "Betaflight app requires a Chromium based browser (Chrome, Chromium, Edge).";
+        errorMessage = "Ovobot app requires a Chromium based browser (Chrome, Chromium, Edge).";
     }
 
     if (!webSerial) {

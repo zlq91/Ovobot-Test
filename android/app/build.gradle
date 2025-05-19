@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "betaflight.configurator"
+    namespace "Ovobot.configurator"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "betaflight.configurator"
+        applicationId "Ovobot.configurator"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
