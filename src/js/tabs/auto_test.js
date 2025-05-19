@@ -622,16 +622,9 @@ auto_test.initialize = function (callback) {
             GUI.interval_add('setup_getRec_fast', getRec, 500, true);
         }
         function getRec(){
-            // console.log("===========enter getRec");
-            // for (const instance of MSP.callbacks) {
-            //     console.log("==============instance.code:"+instance.code);
-                    
-            // }
             MSP.callbacks=[];
-            // console.log("==================GUI.connected_to:"+GUI.connected_to);
             MSP.send_message(MSPCodes.CMD_BUILD_INFO, false, false, function (obj) {
-                // console.log("===========enter getRec CMD_BUILD_INFO");
-                // console.log("===================obj:"+JSON.stringify(obj));
+
                 if(pingValue==0){//未赋值前为上一次的值,上一次值为0，说明换过板子，不为0说明没有换过板子，不需要自动再次测试（否则会陷入死循环）
                     if(!GUI.connected_to){
                         connectDisconnect();
@@ -649,9 +642,10 @@ auto_test.initialize = function (callback) {
         function clickAutoTestBtn(){
             GUI.interval_add('setup_getRec_fast', getRec, 500, true);
         }
-        clickAutoTestBtn();
-        // GUI.interval_add('setup_data_pull_fast', get_fast_data, 50, true); // 30 fps
-        // GUI.interval_add('setup_data_pull_slow', get_slow_data, 250, true); // 4 fps
+        setTimeout(function () {
+            clickAutoTestBtn();
+        }, 100);
+
 
         GUI.content_ready(callback);
 

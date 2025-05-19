@@ -8,7 +8,6 @@ async function* streamAsyncIterable(reader, keepReadingFlag) {
     try {
         while (keepReadingFlag()) {
             try {
-                console.log(`==================reader:${  reader}`);
                 const { done, value } = await reader.read();
                 if (done) {
                     return;
@@ -161,7 +160,6 @@ class WebSerial extends EventTarget {
 
     async connect(path, options = { baudRate: 115200 }) {
         // Prevent double connections
-        console.log("=========webserial connect");
         if (this.connected) {
             console.log(`${logHead} Already connected, not connecting again`);
             return true;
@@ -236,7 +234,6 @@ class WebSerial extends EventTarget {
 
     async readLoop() {
         try {
-            console.log(`===============enter readLoop || =======this.reader:${  this.reader}`);
             for await (let value of streamAsyncIterable(this.reader, () => this.reading)) {
                 this.dispatchEvent(new CustomEvent("receive", { detail: value }));
             }
