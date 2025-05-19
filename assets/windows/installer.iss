@@ -1,5 +1,5 @@
 ; ------------------------------------------
-; Installer for Ovobot Configurator
+; Installer for Betaflight Configurator
 ; ------------------------------------------
 ; It receives from the command line with /D the parameters: 
 ; version
@@ -9,18 +9,18 @@
 ; sourceFolder
 ; targetFolder
 
-#define ApplicationName "Ovobot Configurator"
-#define CompanyName "The Ovobot open source project"
-#define CompanyUrl "https://Ovobot.com/"
-#define ExecutableFileName "Ovobot-configurator.exe"
-#define GroupName "Ovobot"
-#define InstallerFileName "Ovobot-configurator_" + version + "_" + archName + "-installer"
-#define SourcePath "..\..\" + sourceFolder + "\Ovobot-configurator\" + archName
-#define TargetFolderName "Ovobot-Configurator"
-#define UpdatesUrl "https://github.com/Ovobot/Ovobot-configurator/releases"
+#define ApplicationName "Betaflight Configurator"
+#define CompanyName "The Betaflight open source project"
+#define CompanyUrl "https://betaflight.com/"
+#define ExecutableFileName "betaflight-configurator.exe"
+#define GroupName "Betaflight"
+#define InstallerFileName "betaflight-configurator_" + version + "_" + archName + "-installer"
+#define SourcePath "..\..\" + sourceFolder + "\betaflight-configurator\" + archName
+#define TargetFolderName "Betaflight-Configurator"
+#define UpdatesUrl "https://github.com/betaflight/betaflight-configurator/releases"
 
 [CustomMessages]
-AppName=Ovobot-configurator
+AppName=betaflight-configurator
 LaunchProgram=Start {#ApplicationName}
 
 [Files]
@@ -63,13 +63,13 @@ MinVersion=6.2
 OutputBaseFilename={#InstallerFileName}
 OutputDir=..\..\{#targetFolder}\
 PrivilegesRequiredOverridesAllowed=commandline dialog
-SetupIconFile=bf_installer_icon.ico
+SetupIconFile=cleanrobot_icon48.ico
 ShowLanguageDialog=yes
 SolidCompression=yes
 UninstallDisplayIcon={app}\{#ExecutableFileName}
 UninstallDisplayName={#ApplicationName}
-WizardImageFile=bf_installer.bmp
-WizardSmallImageFile=bf_installer_small.bmp
+WizardImageFile=ovobotinstall.bmp
+WizardSmallImageFile=cleanrobot_icon128.bmp
 WizardStyle=modern
 
 [Code]
@@ -79,11 +79,11 @@ var
 begin
     Result := '';
     // Look into the different registry entries: win32, win64 and without user rights
-    if not RegQueryStringValue(HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Ovobot Configurator', 'UninstallString', Result) then
+    if not RegQueryStringValue(HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Betaflight Configurator', 'UninstallString', Result) then
     begin
-        if not RegQueryStringValue(HKLM, 'SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Ovobot Configurator', 'UninstallString', Result) then
+        if not RegQueryStringValue(HKLM, 'SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Betaflight Configurator', 'UninstallString', Result) then
         begin
-            RegQueryStringValue(HKCU, 'SOFTWARE\Ovobot\Ovobot Configurator', 'UninstallString', Result)
+            RegQueryStringValue(HKCU, 'SOFTWARE\Betaflight\Betaflight Configurator', 'UninstallString', Result)
         end;
     end;
 end;
