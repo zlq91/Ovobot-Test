@@ -594,17 +594,11 @@
     "defaultDocumentation2": {
         "message": "最新发布版本的信息可以在 <a href=\"https:\/\/github.com\/Betaflight\/Betaflight\/releases\" target=\"_blank\" rel=\"noopener noreferrer\">这里<\/a> 找到。"
     },
-    "defaultSupportHead": {
-        "message": "支持"
-    },
     "defaultSupportSubline1": {
         "message": "支持资源"
     },
     "defaultSupportSubline2": {
         "message": "开发者"
-    },
-    "defaultSupport": {
-        "message": "需要帮助时请先搜索论坛或者咨询飞控的生产商。<br \/><br \/>"
     },
     "defaultSupport1": {
         "message": "<a href=\"http:\/\/www.rcgroups.com\/forums\/showthread.php?t=2464844&page=1\" target=\"_blank\" rel=\"noopener noreferrer\">RC Groups thread<\/a>"
@@ -5793,6 +5787,351 @@
     },
     "dialogConfirmUnderingTest-motor": {
         "message": "<strong>马达</strong>"
+    },
+    "battery": {
+        "message": "电池电量"
+    },
+    "adapter": {
+        "message": "适配器"
+    },
+    "baroTitle": {
+        "message": "气压值"  
+    },
+    "cornerUL": {
+        "message": "悬空开关 左上角"  
+    },
+    "cornerUR": {
+        "message": "悬空开关 右上角"  
+    },
+    "cornerBL": {
+        "message": "悬空开关 左下角"  
+    },
+    "cornerBR": {
+        "message": "悬空开关 右下角"  
+    },
+    "initialCollisionInfoHead": {
+        "message": "碰撞检测"
+    },
+    "collisionUL": {
+        "message": "碰撞开关 左上角"
+    },
+    "collisionUR": {
+        "message": "碰撞开关 右上角"
+    },
+    "collisionBL": {
+        "message": "碰撞开关 左下角"
+    },
+    "collisionBR": {
+        "message": "碰撞开关 右下角"
+    },
+    "battAdcValue": {
+        "message": "$1 V" 
+    },
+    "baroValue": {
+        "message": "$1 Pa"
+    },
+    "initialAutoTestButton": {
+        "message": "开启自动化测试"
+    },
+    "initialAutoTestText": {
+        "message": "自动化测试需注意<strong>风机 马达</strong>是否具备自动化测试条件"
+    },
+    "dialogAutoTestGyroAccTitle": {
+        "message": "<span class=\"message-positive-more\">陀螺仪</span>自动检测中......"
+    },
+    "dialogAutoTestAdapterTitle": {
+        "message": "<span class=\"message-positive-more\">电源适配器</span>自动检测中......"
+    },
+    "dialogAutoTestWheelTitle": {
+        "message": "<span class=\"message-positive-more\">边轮</span>自动检测中......"
+    },
+    "dialogAutoTestFanTitle": {
+        "message": "<span class=\"message-positive-more\">风机</span>自动检测中......"
+    },
+    "dialogAutoTestSuccessTitle": {
+        "message": "<span class=\"message-positive-more\">自检结束，板子正常</span>"
+    },
+    "dialogTestFourCornerOpenTitle": {
+        "message": "请解除遮挡悬空开关"
+    },
+    "dialogTestFourCornerCloseTitle": {
+        "message": "请遮挡悬空开关"
+    },
+    "gyroError":{
+        "message":"<span class=\"message-negative\">陀螺仪检测异常</span>"
+    },
+    "leftWheelError":{
+        "message":"<span class=\"message-negative\">左轮检测异常</span>"
+    },
+    "rightWheelError":{
+        "message":"<span class=\"message-negative\">右轮检测异常</span>"
+    },
+    "fanError":{
+        "message":"<span class=\"message-negative\">风机检测异常</span>"
+    },
+    "battError":{
+        "message":"<span class=\"message-negative\">电池检测异常</span>"
+    },
+    "adapterError":{
+        "message":"<span class=\"message-negative\">电源适配器检测异常</span>"
+    },
+    "baroError":{
+        "message":"<span class=\"message-negative\">气压传感器检测异常</span>"
+    },
+    "fourCornerError":{
+        "message":"<span class=\"message-negative\">悬空开关检测异常</span>"
+    },
+    "startSprayButton": {
+        "message": "开始喷水"
+    },
+    "withoutspray": {
+        "message": "无喷水"
+    },
+    "dialogTestSprayTitle": {
+        "message": "开始喷水测试"
+    },
+    "dialogTestSprayNotice": {
+        "message": "点击按键，观察是否有水喷出。"
+    },
+    "dialogSprayConfirmTitle": {
+        "message": "喷水验证"
+    },
+    "dialogSprayConfirmNote": {
+        "message": "是否两侧均有水喷出"
+    },
+    "dialogSprayConfirmSpray": {
+        "message" : "正常喷出"
+    },
+    "dialogSprayConfirmNotWork": {
+        "message" : "未喷出"
+    },
+    "initialSetupAttiHead": {
+        "message": "姿态"
+    },
+    "initialSetupInfoHead": {
+        "message": "AD检测"
+    },
+    "initialRssiInfoHead": {
+        "message": "WIFI检测"
+    },
+    "initialBaroInfoHead": {
+        "message": "气压检测"
+    },
+    "leftMotorCurrent": {
+        "message": "左轮电流"
+    },
+    "wifiRssiResultText": {
+        "message": "RSSI"
+    },
+    "baroOriginalName": {
+        "message": "实时气压"
+    },
+    "baroStandardName":{
+        "message": "标准气压"
+    },
+    "initialBatteryInfoHead": {
+        "message": "电池"
+    },
+    "battStatus": {
+        "message": "电池状态"
+    },
+    "battVoltage": {
+        "message": "电池电压"
+    },
+    "battChgCurrent": {
+        "message": "充电电流"
+    },
+
+    "rightMotorCurrent": {
+        "message": "右轮电流"
+    },    
+    "initialSetupBattery": {
+        "message": "电池电压："
+    },
+    "battStatusNone": {
+        "message": "未连接"
+    },
+    "battStatusSlow": {
+        "message": "慢充"
+    },
+    "battStatusFast": {
+        "message": "快充"
+    },
+    "battStatusConstVolt": {
+        "message": "恒压"
+    },
+    "battStatusFull": {
+        "message": "充满"
+    },
+    "battStatusUnknown": {
+        "message": "未知"
+    },
+    "initialGyroInfoHead": {
+        "message":"陀螺仪"
+    },
+    "fanCurrent": {
+        "message": "风机电流"
+    },
+
+    "gyroX": {
+       "message":"gyroX" 
+    },
+    "gyroY": {
+        "message":"gyroY" 
+    },
+    "gyroZ": {
+        "message":"gyroZ" 
+    },
+    "initialAccInfoHead": {
+        "message":"加速度"
+    },
+    "accX": {
+        "message":"accX" 
+    },
+    "accY": {
+        "message":"accY" 
+    },
+    "accZ": {
+        "message":"accZ" 
+    },        
+    "initialSetupBatteryValue": {
+        "message": "$1 V"
+    },   
+    
+    "attitudeYaw": {
+      "message": "角度"  
+    },
+    "rightMotorErrorCurrentValue": {
+        "message": "<span class=\"message-negative\">$1</span>"
+    },  
+    "leftMotorErrorCurrentValue": {
+        "message": "<span class=\"message-negative\">$1</span>"
+    },   
+    "pwmvalue":{
+       "message": "$1" 
+    },
+    "pwmvaluemax": {
+        "message": "$1"
+    },
+    "pwmvaluemin": {
+        "message": "$1"
+    },
+    "fanpwmvalueatidel": {
+        "message": "$1"
+    },
+    "fanpwmmax": {
+        "message": "$1"
+    },
+    "fanpwmmin": {
+        "message": "$1"
+    },
+    "defaulttargetfanpwmvalue": {
+        "message": "$1"
+    },
+    "maxtargetfanpwmvalue": {
+        "message": "$1"
+    },
+    "mintargetfanpwmvalue": {
+        "message": "$1"
+    },
+    "minpwmvalue":{
+        "message": "$1"
+    },
+    "upminpwmvalue": {
+        "message": "$1"
+    },
+    "waterpumpduration": {
+        "message": "$1"
+    },
+    "waterpumpstartangle": {
+        "message": "$1"
+    },
+    "waterpumpmovecnt": {
+        "message": "$1"
+    },
+    "fanthrdadd": {
+        "message": "$1"
+    },
+    "fanupthrdadd": {
+        "message": "$1"
+    },
+    "hangcnt": {
+        "message": "$1"
+    },
+    "gyrodiffthreshold": {
+        "message": "$1"
+    },
+    "gyrothreshold": {
+        "message": "$1"
+    },
+    "gyroupdiffthreshold": {
+        "message": "$1"
+    },
+    "gyroupthreshold": {
+        "message": "$1"
+    },
+    "pidkpval": {
+        "message": "$1"
+    },
+    "pidkival": {
+        "message": "$1"
+    },
+    "pidkdval": {
+        "message": "$1"
+    },
+    "initialMotorButtonClockWiseRun": {
+        "message": "正转"
+    },
+    "initialMotorButtonAntiClockWiseRun": {
+        "message": "反转"
+    },
+    "initialMotorButtonStop": {
+        "message": "停止"
+    }, 
+    "initialMotorSetup": {
+        "message": "马达控制:"
+    },
+    "initialSpraySetup": {
+        "message": "喷水控制:"
+    },
+    "initialSprayButton": {
+        "message": "喷水"
+    },
+    "fanSlider":{
+        "message": "风机控制:"
+    },
+    "brushSlider": {
+        "message": "滚刷控制:"
+    },      
+    "initialVoiceSetup": {
+        "message": "语音控制:"
+    },
+    "initialWifiTestTitle": {
+        "message": "WIFI测试"
+    },
+    "initialWifiTestBtn": {
+        "message": "扫描路由"
+    },
+    "initialVoiceNext": {
+        "message": "下一条语音"
+    },
+    "initialVoicePrevious": {
+        "message": "上一条语音"
+    },
+    "initialPlayVoiceButton": {
+        "message": "播放此条语音"
+    },
+    "waterbox": {
+        "message": "水箱水量"
+    },
+    "initialAccCaliButton": {
+        "message": "加速度校准"
+    },
+    "defaultSupportHead": {
+        "message": "加速度校准支持"
+    },
+    "defaultSupport": {
+        "message": "<span class=\"message-negative\">需要将治具放置水平才可使用加速度校准。</span><br /><br />"
     }
 
 }

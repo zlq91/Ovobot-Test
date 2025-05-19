@@ -57,7 +57,7 @@ body {
     --warning-500: #ff6600;
     --warning-600: #e65c00;
 
-    --switcherysecond: var(--surface-400);
+    --switcherysecond: var(--surface-800);
 
     --primary-action: var(--success-500);
     --primary-action-border: var(--success-600);
@@ -76,6 +76,6 @@ body.dark-theme {
     --surface-800: hsl(0, 0%, 60%);
     --surface-900: hsl(0, 0%, 70%);
     --surface-950: hsl(0, 0%, 80%);
-
+    --surface-900: hsl(0, 0%, 90%);
     --text: hsl(0, 0%, 95%);
 }

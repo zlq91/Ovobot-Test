@@ -7678,5 +7678,246 @@
     "programmingFailedNotification": {
         "message": "FC programming failed",
         "description": "Notification message when programming is unsuccessful"
+    },
+    "initialAutoTestButton": {
+        "message": "Enable automated testing"
+    },
+    "initialAutoTestText": {
+        "message":"Automated testing should pay attention to whether the <strong>fan</strong> and <strong>motor</strong> have the conditions for automated testing"
+    },
+    "dialogAutoTestGyroAccTitle": {
+        "message": "<span class=\"message-positive-more\">Gyroscope</span> Automatic detection in progress......"
+    },
+    "dialogAutoTestAdapterTitle": {
+        "message": "<span class=\"message-positive-more\">The power adapter</span> Automatic detection in progress......"
+    },
+    "dialogAutoTestWheelTitle": {
+        "message": "<span class=\"message-positive-more\">Side wheel</span> Automatic detection in progress......"
+    },
+    "dialogAutoTestFanTitle": {
+        "message": "<span class=\"message-positive-more\">Fan</span> Automatic detection in progress......"
+    },
+    "dialogAutoTestSuccessTitle": {
+        "message": "<span class=\"message-positive-more\">Self check completed, board is normal</span>"
+    },
+    "dialogTestFourCornerOpenTitle": {
+        "message": "Please remove the obstruction of the suspended switch"
+    },
+    "dialogTestFourCornerCloseTitle": {
+        "message": "Please cover the suspended switch"
+    },
+    "gyroError": {
+        "message": "<span class=\"message-negative\">Gyroscope detection abnormality</span>"
+    },
+    "leftWheelError": {
+        "message": "<span class=\"message-negative\">Left wheel detection abnormality</span>"
+    },
+    "rightWheelError": {
+        "message": "<span class=\"message-negative\">Right wheel detection abnormality</span>"
+    },
+    "fanError": {
+        "message": "<span class=\"message-negative\">Abnormal fan detection</span>"
+    },
+    "battError": {
+        "message": "<span class=\"message-negative\">Abnormal battery detection</span>"
+    },
+    "adapterError": {
+        "message": "<span class=\"message-negative\">Abnormal detection of power adapter</span>"
+    },
+    "baroError": {
+        "message": "<span class=\"message-negative\">Abnormal detection of pressure sensor</span>"
+    },
+    "fourCornerError": {
+        "message": "<span class=\"message-negative\">Suspended switch detection abnormality</span>"
+    },
+    "startSprayButton": {
+        "message": "Start spraying water"
+    },
+    "withoutspray": {
+        "message": "No water spray"
+    },
+    "dialogTestSprayTitle": {
+        "message": "Start water spray test"
+    },
+    "dialogTestSprayNotice": {
+        "message": "Click the button and observe if water sprays out"
+    },
+    "dialogSprayConfirmTitle": {
+        "message": "Spray verification"
+    },
+    "dialogSprayConfirmNote": {
+        "message": "Are there water jets on both sides"
+    },
+    "dialogSprayConfirmSpray": {
+        "message": "Normal spraying"
+    },
+    "dialogSprayConfirmNotWork": {
+        "message": "Not sprayed out"
+    },
+    "initialSetupMagHead": {
+        "message": "Magnetometer"
+    },
+    "initialSetupInfoHead": {
+        "message": "AD detection"
+    },
+    "initialSetupAttiHead": {
+        "message": "Attitude"
+    },
+    "leftMotorCurrent": {
+        "message": "Left wheel current"
+    },
+    "rightMotorCurrent": {
+        "message": "Right wheel current"
+    },
+    "fanCurrent": {
+        "message": "Fan current"
+    },
+    "adapter": {
+        "message": "Adapter"
+    },
+    "waterbox": {
+        "message": "Water tank capacity"
+    },
+    "initialGyroInfoHead": {
+        "message": "Gyroscope"
+    },
+    "gyroX": {
+        "message": "gyroX"
+    },
+    "gyroY": {
+        "message": "gyroY"
+    },
+    "gyroZ": {
+        "message": "gyroZ"
+    },
+    "initialAccInfoHead": {
+        "message": "Acceleration"
+    },
+    "accX": {
+        "message": "accX"
+    },
+    "accY": {
+        "message": "accY"
+    },
+    "accZ": {
+        "message": "accZ"
+    },
+    "initialRssiInfoHead": {
+        "message": "WIFI detection"
+    },
+    "wifiRssiResultText": {
+        "message": "RSSI"
+    },
+    "initialBaroInfoHead": {
+        "message": "Air pressure detection"
+    },
+    "baroOriginalName": {
+        "message": "Real time air pressure"
+    },
+    "baroStandardName": {
+        "message": "Standard pressure"
+    },
+    "initialBatteryInfoHead": {
+        "message": "Battery"
+    },
+    "battStatusNone": {
+        "message": "Not connected"
+    },
+    "battStatusSlow": {
+        "message": "Slow charging"
+    },
+    "battStatusFast": {
+        "message": "Fast charging"
+    },
+    "battStatusConstVolt": {
+        "message": "Constant voltage"
+    },
+    "battStatusFull": {
+        "message": "Full"
+    },
+    "battStatusUnknown": {
+        "message": "Unknown"
+    },        
+    "battStatus": {
+        "message": "Battery status"
+    },
+    "battVoltage": {
+        "message": "Battery voltage"
+    },
+    "battChgCurrent": {
+        "message": "Charging current"
+    },
+    "attitudeYaw": {
+        "message": "Angle"
+    },
+    "cornerUL": {
+        "message": "Hanging switch in the upper left corner"
+    },
+    "cornerUR": {
+        "message": "Hanging switch in the upper right corner"
+    },
+    "cornerBL": {
+        "message": "Hanging switch in the bottom left corner"
+    },
+    "cornerBR": {
+        "message": "Hanging switch in the bottom right corner"
+    },
+    "initialCollisionInfoHead": {
+        "message": "Collision detection"
+    },
+    "collisionUL": {
+        "message": "Collision switch in the upper left corner"
+    },
+    "collisionUR": {
+        "message": "Collision switch in the upper right corner"
+    },
+    "collisionBL": {
+        "message": "Collision switch in the lower left corner"
+    },
+    "collisionBR": {
+        "message": "Collision switch in the bottom right corner"
+    },
+    "initialMotorButtonClockWiseRun": {
+        "message": "Corotation"
+    },
+    "initialMotorButtonAntiClockWiseRun": {
+        "message": "Reversal"
+    },
+    "initialMotorButtonStop": {
+        "message": "Stop"
+    },
+    "initialMotorSetup": {
+        "message": "Motor control:"
+    },
+    "initialSpraySetup": {
+        "message": "Spray control:"
+    },
+    "initialSprayButton": {
+        "message": "Spray"
+    },
+    "fanSlider": {
+        "message": "Fan control:"
+    },
+    "brushSlider": {
+        "message": "Roll brush control:"
+    },
+    "initialVoiceSetup": {
+        "message": "Voice control:"
+    },
+    "initialWifiTestTitle": {
+        "message": "WIFI test"
+    },
+    "initialWifiTestBtn": {
+        "message": "Scan Route"
+    },
+    "initialVoiceNext": {
+        "message": "Next voice message"
+    },
+    "initialVoicePrevious": {
+        "message": "Previous voice message"
+    },
+    "initialPlayVoiceButton": {
+        "message": "Play this voice message"
     }
+
 }

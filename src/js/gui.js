@@ -22,7 +22,7 @@ class GuiControl {
         this.defaultAllowedTabsWhenDisconnected = ["landing", "firmware_flasher", "privacy_policy", "options", "help"];
 
         this.defaultAllowedTabs = [
-            // "setup",
+            "setup",
             "auto_test"
         ];
 

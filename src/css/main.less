@@ -114,12 +114,12 @@ select,
 .select2-selection--single {
     font-family: "Open Sans", "Segoe UI", Tahoma, sans-serif !important;
     font-size: unset !important;
-    background-color: var(--surface-300) !important;
+    background-color: var(--surface-900) !important;
     border: 1px solid var(--surface-500) !important;
-    color: var(--text);
+    color: var(--surface-100);
     padding: 0.25rem 0.5rem 0.25rem 0.25rem !important;
     border-radius: 0.5rem !important;
-    min-width: 4rem;
+    min-width: 100%;
     display: inline-block;
     box-sizing: border-box;
     &.small {
@@ -1149,7 +1149,7 @@ dialog {
 .gui_box {
     border: 2px solid var(--surface-400);
     border-radius: 0.75rem;
-    background-color: var(--surface-100);
+    background-color: var(--surface-500);
     height: fit-content;
     margin-top: 0.75rem;
     padding: 0.75rem;
@@ -1160,12 +1160,12 @@ dialog {
     gap: 0.5rem;
 }
 .gui_box_titlebar {
-    color: #000;
-    background-color: var(--primary-500);
+    color: var(--surface-100);
+    background-color: var(--surface-900);
     position: absolute;
     font-size: 13px;
-    height: 1.75rem;
-    top: calc(1.75rem / -2);
+    height: 1.25rem;
+    top: calc(1.25rem / -2);
     left: 1rem;
     padding: 0 0.75rem;
     font-weight: 600;
@@ -1257,7 +1257,7 @@ dialog {
     }
 }
 .grey {
-    background-color: var(--surface-200);
+    background-color: var(--surface-500);
 }
 .spacer_box {
     height: fit-content;
