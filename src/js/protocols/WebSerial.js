@@ -1,5 +1,6 @@
 import { webSerialDevices, vendorIdNames } from "./devices";
 import { checkBrowserCompatibility } from "../utils/checkBrowserCompatibilty";
+import { connectDisconnect } from "../serial_backend.js";
 
 const logHead = "[SERIAL]";
 
@@ -7,7 +8,7 @@ async function* streamAsyncIterable(reader, keepReadingFlag) {
     try {
         while (keepReadingFlag()) {
             try {
-                console.log("==================reader:"+JSON.stringify(reader))
+                console.log(`==================reader:${  reader}`);
                 const { done, value } = await reader.read();
                 if (done) {
                     return;
@@ -160,7 +161,7 @@ class WebSerial extends EventTarget {
 
     async connect(path, options = { baudRate: 115200 }) {
         // Prevent double connections
-        console.log("=========webserial connect")
+        console.log("=========webserial connect");
         if (this.connected) {
             console.log(`${logHead} Already connected, not connecting again`);
             return true;
@@ -188,7 +189,6 @@ class WebSerial extends EventTarget {
 
             if (connectionInfo && !this.openCanceled) {
                 this.connected = true;
-                this.connectionId = path;
                 this.bitrate = options.baudRate;
                 this.bytesReceived = 0;
                 this.bytesSent = 0;
@@ -236,15 +236,23 @@ class WebSerial extends EventTarget {
 
     async readLoop() {
         try {
-            console.log("===============enter readLoop || =======this.reader:"+this.reader)
+            console.log(`===============enter readLoop || =======this.reader:${  this.reader}`);
             for await (let value of streamAsyncIterable(this.reader, () => this.reading)) {
                 this.dispatchEvent(new CustomEvent("receive", { detail: value }));
             }
+            console.log("serial exception....");
+            if (this.connected) {
+                // await this.disconnect();
+                console.log("serial exception....");
+
+                connectDisconnect();
+                //  $("a.connection_button__link").trigger("click");
+                setTimeout(function () {
+                    $("a.connection_button__link").trigger("click");
+                }, 100);
+            }
         } catch (error) {
             console.error(`${logHead} Error reading:`, error);
-            if (this.connected) {
-                this.disconnect();
-            }
         }
     }
 
