@@ -2,7 +2,7 @@
 Name=Betaflight Configurator
 Comment=Crossplatform configuration tool for the Betaflight flight control system
 Exec=/opt/betaflight/betaflight-configurator/betaflight-configurator
-Icon=/opt/betaflight/betaflight-configurator/icon/bf_icon_128.png
+Icon=/opt/betaflight/betaflight-configurator/icon/ovobot_images/cleanrobot_icon128.png
 Terminal=false
 Type=Application
 Categories=Utility

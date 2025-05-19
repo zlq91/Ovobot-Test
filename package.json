@@ -25,7 +25,7 @@
     "prepare": "husky install"
   },
   "window": {
-    "icon": "images/bf_icon_128.png",
+    "icon": "images/ovobot_images/cleanrobot_icon128.png",
     "id": "main-window",
     "min_width": 1024,
     "min_height": 550,
