@@ -90,7 +90,7 @@ const MSPCodes = {
     MSP_ADAPTER: 111,
     MSP_FOURCORNER: 112,
     //MSP_BOX:                        113, // DEPRECATED
-    MSP_MISC: 114, // DEPRECATED
+    MSP_WATER_BOX: 114, // DEPRECATED
     MSP_BOXNAMES: 116,
     MSP_PIDNAMES: 117,
     MSP_WP: 118, // Not used
@@ -146,7 +146,7 @@ const MSPCodes = {
     MSP_ACC_CALIBRATION: 205,
     MSP_MAG_CALIBRATION: 206,
     MSP_SET_MISC: 207, // DEPRECATED
-    MSP_RESET_CONF: 208,
+    MSP_PLAY_VOICE: 208,
     MSP_SET_SPRAY: 209, // Not used
     MSP_SELECT_SETTING: 210,
     MSP_SET_FAN: 211, // Not used
@@ -207,6 +207,7 @@ const MSPCodes = {
     RATE_PROFILE_NAME: 4,
     BUILD_KEY: 5,
 
+    MSP_WIFI_RSSI: 115,
     MSP_BARO_DIFF: 119,//气压值
 
     //GET

@@ -743,7 +743,12 @@ setup.initialize = function (callback) {
 
             MSP.send_message(MSPCodes.MSP_WATER_BOX, false, false, function () {
                 waterstate_e.text(FC.ANALOG.waterstate);
-                rows[5].style.background = background_tr.tr_green;
+                if(FC.ANALOG.waterstate==1){
+                    rows[5].style.background = background_tr.tr_green;
+                }else {
+                    rows[5].style.background = background_tr.tr_red;
+                }
+                
             });
 
             MSP.send_message(MSPCodes.MSP_FOURCORNER, false, false, function () {

@@ -839,6 +839,19 @@ MspHelper.prototype.process_data = function (dataHandler) {
                         case MSPCodes.BUILD_KEY:
                             FC.CONFIG.buildKey = self.getText(data);
                             break;
+                        case MSPCodes.MSP_BARO_DIFF:
+                            FC.OVOBOT_FUNCTION.barodiff = data.readU16();
+                            FC.OVOBOT_FUNCTION.baroOriginal = data.readU16();
+                            FC.OVOBOT_FUNCTION.baroStandard = data.readU16();
+                            break;
+                        case MSPCodes.MSP_WIFI_RSSI:
+                            FC.ANALOG.rssi = data.readU8();
+                            break;
+                        case MSPCodes.MSP_GET_BATTERY:
+                            FC.OVOBOT_FUNCTION.batteryStatusVal = data.read8();
+                            FC.OVOBOT_FUNCTION.batteryVoltageVal = data.readU8() / 10;
+                            FC.OVOBOT_FUNCTION.batteryCurrentVal = data.read16() / 1000;
+                            break;
                         default:
                             console.log("Unsupport text type");
                             break;
@@ -1659,6 +1672,9 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     break;  
                 case MSPCodes.MSP_SET_MOTOR:
                     console.log('Motor Speeds Updated');
+                    break;
+                case MSPCodes.MSP_WATER_BOX:
+                    FC.ANALOG.waterstate = data.readU8();
                     break;
                 default:
                     console.log(`Unknown code detected: ${code} (${getMSPCodeName(code)})`);
