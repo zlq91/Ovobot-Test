@@ -124,7 +124,6 @@ const MSP = {
                     this.message_buffer_uint8_view[this.message_length_received] = chunk;
                     this.message_length_received += 1;
 
-
                     if (this.message_length_received >= this.message_length_expected) {
                         this.state += 1;
                     }
@@ -379,7 +378,6 @@ const MSP = {
 
             bufView[0] = 0xff; // $
             bufView[1] = 0xff; // M
-            console.log("hw:" + FC.CONFIG.hw);
             bufView[2] = FC.CONFIG.hw; // device
             bufView[3] = code;
             bufView[4] = dataLength;
@@ -392,14 +390,14 @@ const MSP = {
             }
 
             bufView[5 + dataLength] = checksum;
-        }else {
+        } else {
             bufferOut = new ArrayBuffer(6);
             let bufView = new Uint8Array(bufferOut);
 
             bufView[0] = 0xff; // preamble
             bufView[1] = 0xff; // option
 
-            if(FC.CONFIG.hw && code != MSPCodes.CMD_VERSION) {
+            if (FC.CONFIG.hw && code != MSPCodes.CMD_VERSION) {
                 bufView[2] = FC.CONFIG.hw; // device
             } else {
                 bufView[2] = 0x00; // device
@@ -407,7 +405,6 @@ const MSP = {
             bufView[3] = code; // command
             bufView[4] = 0; // size
             bufView[5] = bufView[2] ^ bufView[3]; // checksum
-
         }
         return bufferOut;
     },

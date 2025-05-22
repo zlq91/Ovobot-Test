@@ -114,7 +114,7 @@ function getMSPCodeName(code) {
     return Object.keys(MSPCodes).find((key) => MSPCodes[key] === code);
 }
 function bitIsOne(x, bitIndex) {
-    return (((x >> bitIndex) & 1) == 0) ? false : true;
+    return ((x >> bitIndex) & 1) == 0 ? false : true;
 }
 MspHelper.readPidSliderSettings = function (data) {
     FC.TUNING_SLIDERS.slider_pids_mode = data.readU8();
@@ -659,7 +659,7 @@ MspHelper.prototype.process_data = function (dataHandler) {
                 case MSPCodes.MSP_SET_MOTOR:
                     break;
                 case MSPCodes.MSP_UID:
-                    FC.CONFIG.deviceIdentifier=0;
+                    FC.CONFIG.deviceIdentifier = 0;
                     // FC.CONFIG.uid[0] = data.readU32();
                     // FC.CONFIG.uid[1] = data.readU32();
                     // FC.CONFIG.uid[2] = data.readU32();
@@ -740,7 +740,7 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     FC.CONFIG.build = data.readU8();
                     let val = data.readU8();
                     // 创建位掩码
-                    let bitValue = bitIsOne(val, 0);  // 对于第一位，应该是 1 << 0
+                    let bitValue = bitIsOne(val, 0); // 对于第一位，应该是 1 << 0
                     FC.CONFIG.isConfig = bitValue;
                     bitValue = bitIsOne(val, 1);
                     FC.CONFIG.pidType = bitValue;
@@ -762,7 +762,7 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     // FC.CONFIG.flightControllerVersion = `${data.readU8()}.${data.readU8()}.${data.readU8()}`;
                     break;
 
-                case MSPCodes.CMD_BUILD_INFO: 
+                case MSPCodes.CMD_BUILD_INFO:
                     const dateLength = 10;
                     buff = [];
 
@@ -1650,28 +1650,28 @@ MspHelper.prototype.process_data = function (dataHandler) {
                 case MSPCodes.MSP_GET_FUNCTION:
                     // 创建位掩码
                     let isFun = data.readU8();
-                    let bitValue_f = bitIsOne(isFun, 0);  // 对于第一位，应该是 1 << 0
+                    let bitValue_f = bitIsOne(isFun, 0); // 对于第一位，应该是 1 << 0
                     FC.OVOBOT_FUNCTION.isSprayFun = bitValue_f;
                     bitValue_f = bitIsOne(isFun, 1);
                     FC.OVOBOT_FUNCTION.isVoiceFun = bitValue_f;
                     FC.OVOBOT_FUNCTION.voiceIndex = data.readU16();
                     break;
                 case MSPCodes.MSP_ADAPTER:
-                    FC.ANALOG.adapter = data.readU8();//parseFloat((data.read32() / 100.0).toFixed(2)); // correct scale factor
+                    FC.ANALOG.adapter = data.readU8(); //parseFloat((data.read32() / 100.0).toFixed(2)); // correct scale factor
                     break;
                 case MSPCodes.MSP_FOURCORNER:
-                    FC.ANALOG.corner = data.readU8();//parseFloat((data.read32() / 100.0).toFixed(2)); // correct scale factor
+                    FC.ANALOG.corner = data.readU8(); //parseFloat((data.read32() / 100.0).toFixed(2)); // correct scale factor
                     FC.ANALOG.hitCorner = data.readU8();
                     break;
                 case MSPCodes.MSP_SET_SPRAY:
                     break;
                 case MSPCodes.MSP_SET_AUTO_PLAY_VOICE:
-                    break; 
+                    break;
                 case MSPCodes.MSP_SET_FAN:
-                    console.log('FAN Speeds Updated');
-                    break;  
+                    console.log("FAN Speeds Updated");
+                    break;
                 case MSPCodes.MSP_SET_MOTOR:
-                    console.log('Motor Speeds Updated');
+                    console.log("Motor Speeds Updated");
                     break;
                 case MSPCodes.MSP_WATER_BOX:
                     FC.ANALOG.waterstate = data.readU8();
@@ -1832,31 +1832,6 @@ MspHelper.prototype.crunch = function (code, modifierCode = undefined) {
                 .push8(Math.round(FC.MISC.vbatmaxcellvoltage * 10))
                 .push8(Math.round(FC.MISC.vbatwarningcellvoltage * 10));
             break;
-        // case MSPCodes.MSP_SET_GPS_RESCUE:
-        //     buffer
-        //         .push16(FC.GPS_RESCUE.angle)
-        //         .push16(FC.GPS_RESCUE.returnAltitudeM)
-        //         .push16(FC.GPS_RESCUE.descentDistanceM)
-        //         .push16(FC.GPS_RESCUE.groundSpeed)
-        //         .push16(FC.GPS_RESCUE.throttleMin)
-        //         .push16(FC.GPS_RESCUE.throttleMax)
-        //         .push16(FC.GPS_RESCUE.throttleHover)
-        //         .push8(FC.GPS_RESCUE.sanityChecks)
-        //         .push8(FC.GPS_RESCUE.minSats);
-
-        //     // Introduced in 1.43
-        //     buffer
-        //         .push16(FC.GPS_RESCUE.ascendRate)
-        //         .push16(FC.GPS_RESCUE.descendRate)
-        //         .push8(FC.GPS_RESCUE.allowArmingWithoutFix)
-        //         .push8(FC.GPS_RESCUE.altitudeMode);
-
-        //     // Introduced in 1.44
-        //     buffer.push16(FC.GPS_RESCUE.minStartDistM);
-
-        //     // Introduced in 1.46
-        //     buffer.push16(FC.GPS_RESCUE.initialClimbM);
-        //     break;
         case MSPCodes.MSP_SET_RSSI_CONFIG:
             buffer.push8(FC.RSSI_CONFIG.channel);
             break;

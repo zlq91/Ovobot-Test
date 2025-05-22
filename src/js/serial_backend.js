@@ -227,7 +227,6 @@ function setConnectionTimeout() {
     GUI.timeout_add(
         "connecting",
         function () {
-            console.log("==============!CONFIGURATOR.connectionValid:"+!CONFIGURATOR.connectionValid)
             if (!CONFIGURATOR.connectionValid) {
                 gui_log(i18n.getMessage("noConfigurationReceived"));
 
@@ -310,12 +309,10 @@ function onOpen(openInfo) {
 
             if (semver.gte(FC.CONFIG.apiVersion, CONFIGURATOR.API_VERSION_ACCEPTED)) {
                 MSP.send_message(MSPCodes.MSP_FC_VARIANT, false, false, function () {
-                    FC.CONFIG.flightControllerIdentifier = 'BTFL';
+                    FC.CONFIG.flightControllerIdentifier = "BTFL";
                     if (FC.CONFIG.flightControllerIdentifier === "BTFL") {
                         MSP.send_message(MSPCodes.MSP_FC_VERSION, false, false, function () {
-                            gui_log(
-                                i18n.getMessage("fcInfoReceived", [FC.CONFIG.firmwareVersion]),
-                            );
+                            gui_log(i18n.getMessage("fcInfoReceived", [FC.CONFIG.firmwareVersion]));
 
                             MSP.send_message(MSPCodes.CMD_BUILD_INFO, false, false, function () {
                                 // gui_log(i18n.getMessage("buildInfoReceived", [FC.CONFIG.buildInfo]));
@@ -387,58 +384,42 @@ function onOpenVirtual() {
 }
 
 function processCustomDefaults() {
-    // if (
-    //     bit_check(FC.CONFIG.targetCapabilities, FC.TARGET_CAPABILITIES_FLAGS.SUPPORTS_CUSTOM_DEFAULTS) &&
-    //     bit_check(FC.CONFIG.targetCapabilities, FC.TARGET_CAPABILITIES_FLAGS.HAS_CUSTOM_DEFAULTS) &&
-    //     FC.CONFIG.configurationState === FC.CONFIGURATION_STATES.DEFAULTS_BARE
-    // ) {
-        const dialog = $("#dialogResetToCustomDefaults")[0];
+    const dialog = $("#dialogResetToCustomDefaults")[0];
 
-        $("#dialogResetToCustomDefaults-acceptbtn").click(function () {
-            tracking.sendEvent(tracking.EVENT_CATEGORIES.FLIGHT_CONTROLLER, "AcceptResetToCustomDefaults");
+    $("#dialogResetToCustomDefaults-acceptbtn").click(function () {
+        tracking.sendEvent(tracking.EVENT_CATEGORIES.FLIGHT_CONTROLLER, "AcceptResetToCustomDefaults");
 
-            const buffer = [];
-            buffer.push(mspHelper.RESET_TYPES.CUSTOM_DEFAULTS);
-            // MSP.send_message(MSPCodes.MSP_RESET_CONF, buffer, false);
+        const buffer = [];
+        buffer.push(mspHelper.RESET_TYPES.CUSTOM_DEFAULTS);
+        // MSP.send_message(MSPCodes.MSP_RESET_CONF, buffer, false);
 
-            dialog.close();
+        dialog.close();
 
-            GUI.timeout_add(
-                "disconnect",
-                function () {
-                    connectDisconnect(); // disconnect
-                },
-                0,
-            );
-        });
+        GUI.timeout_add(
+            "disconnect",
+            function () {
+                connectDisconnect(); // disconnect
+            },
+            0,
+        );
+    });
 
-        $("#dialogResetToCustomDefaults-cancelbtn").click(function () {
-            tracking.sendEvent(tracking.EVENT_CATEGORIES.FLIGHT_CONTROLLER, "CancelResetToCustomDefaults");
+    $("#dialogResetToCustomDefaults-cancelbtn").click(function () {
+        tracking.sendEvent(tracking.EVENT_CATEGORIES.FLIGHT_CONTROLLER, "CancelResetToCustomDefaults");
 
-            dialog.close();
+        dialog.close();
 
-            setConnectionTimeout();
+        setConnectionTimeout();
 
-            checkReportProblems();
-        });
+        checkReportProblems();
+    });
 
-        dialog.showModal();
+    dialog.showModal();
 
-        GUI.timeout_remove("connecting"); // kill connecting timer
-    // } else {
-    //     checkReportProblems();
-    // }
+    GUI.timeout_remove("connecting"); // kill connecting timer
 }
 
 function processBoardInfo() {
-
-    // gui_log(i18n.getMessage("boardInfoReceived", [FC.CONFIG.hardwareName, FC.CONFIG.boardVersion]));
-
-    // if (semver.gte(FC.CONFIG.apiVersion, API_VERSION_1_46)) {
-    //     checkReportProblems();
-    // } else {
-        // processCustomDefaults();
-    // }
     tracking.sendEvent(tracking.EVENT_CATEGORIES.FLIGHT_CONTROLLER, "Loaded", {
         boardIdentifier: FC.CONFIG.boardIdentifier,
         targetName: FC.CONFIG.targetName,
@@ -451,7 +432,7 @@ function processBoardInfo() {
         mcu: FC.CONFIG.targetName,
     });
     finishOpen();
-    GUI.timeout_remove('connecting'); // kill connecting timer
+    GUI.timeout_remove("connecting"); // kill connecting timer
 }
 
 function checkReportProblems() {
@@ -605,7 +586,7 @@ function finishOpen() {
     CONFIGURATOR.connectionValid = true;
 
     // if (semver.gte(FC.CONFIG.apiVersion, API_VERSION_1_45) && FC.CONFIG.buildOptions.length) {
-        GUI.allowedTabs = Array.from(GUI.defaultAllowedTabs);
+    GUI.allowedTabs = Array.from(GUI.defaultAllowedTabs);
 
     //     for (const tab of GUI.defaultCloudBuildTabOptions) {
     //         if (FC.CONFIG.buildOptions.some((opt) => opt.toLowerCase().includes(tab))) {

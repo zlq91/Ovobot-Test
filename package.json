@@ -1,14 +1,13 @@
 {
-  "name": "Ovobot-configurator",
-  "productName": "Ovobot",
+  "name": "Ovobot-test",
+  "productName": "Ovobot-test",
   "displayName": "Ovobot - Configuration and management tool",
   "description": "Crossplatform configuration and management tool for the Ovobot flight control firmware.",
   "version": "11.0.0",
-  "type": "module",
-  "main": "index.html",
+  "main": "src/index.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && electron-builder",
     "preview": "vite preview",
     "review": "vite build && vite preview",
     "pretest": "yarn run lint",
@@ -25,7 +24,7 @@
     "prepare": "husky install"
   },
   "window": {
-    "icon": "images/ovobot_images/cleanrobot_icon128.png",
+    "icon": "src/images/ovobot_images/cleanrobot_icon128.png",
     "id": "main-window",
     "min_width": 1024,
     "min_height": 550,
@@ -88,6 +87,8 @@
     "babel-loader": "^10.0.0",
     "command-exists": "^1.2.9",
     "del": "^8.0.0",
+    "electron": "^36.2.1",
+    "electron-builder": "^26.0.12",
     "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.0.2",
     "eslint-define-config": "^2.1.0",
@@ -122,9 +123,12 @@
     "rpm-builder": "^1.2.1",
     "run-script-os": "^1.1.6",
     "vite": "^6.2.1",
+    "vite-plugin-electron": "^0.29.0",
+    "vite-plugin-electron-renderer": "^0.14.6",
     "vitest": "^3.0.7",
     "vue-loader": "^17.4.2",
     "vue-template-compiler": "^2.7.16",
+    "vue-tsc": "^2.2.10",
     "yarn": "^1.22.22"
   },
   "resolutions": {

@@ -8,6 +8,8 @@ import pkg from "./package.json";
 import * as child from "child_process";
 import { VitePWA } from "vite-plugin-pwa";
 import { resolve } from "path";
+import electron from "vite-plugin-electron";
+import renderer from "vite-plugin-electron-renderer";
 
 const commitHash = child.execSync("git rev-parse --short HEAD").toString().trim();
 
@@ -56,7 +58,9 @@ export default defineConfig({
         __APP_REVISION__: JSON.stringify(commitHash),
     },
     build: {
+        outDir: "release",
         rollupOptions: {
+            external: ["electron"], // 防止将 Electron 打包进你的应用中
             input: {
                 main: resolve(__dirname, "src/index.html"),
                 receiver_msp: resolve(__dirname, "src/receiver_msp/receiver_msp.html"),
@@ -79,6 +83,8 @@ export default defineConfig({
                 { src: "src/tabs/**/*", dest: "src/dist/tabs" },
                 { src: "src/images/**/*", dest: "src/dist/images" },
                 { src: "src/components/**/*", dest: "src/dist/components" },
+                // { src: "src/js/**/*", dest: "src/dist/js" },
+                // { src: "src/css/**/*", dest: "src/dist/css" },
             ],
             hook: "writeBundle",
         }),
@@ -109,8 +115,20 @@ export default defineConfig({
                 ],
             },
         }),
+        electron({
+            entry: "index.js",
+            vite: {
+                build: {
+                    //   outDir: 'node_modules/.cache/vite-electron',
+                    // 禁止写入磁盘
+                    write: false,
+                },
+            },
+        }),
+        renderer(),
     ],
     root: "./src",
+    base: "./", // 确保资源能够正确加载
     resolve: {
         alias: {
             "/src": path.resolve(process.cwd(), "src"),

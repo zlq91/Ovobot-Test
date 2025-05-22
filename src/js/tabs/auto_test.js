@@ -6,14 +6,11 @@ import FC from "../fc.js";
 import MSP from "../msp.js";
 import { connectDisconnect } from "../serial_backend.js";
 
-const auto_test = {
-};
+const auto_test = {};
 
 auto_test.initialize = function (callback) {
-
-    if (GUI.active_tab != 'auto_test') {
-        GUI.active_tab = 'auto_test';
-
+    if (GUI.active_tab != "auto_test") {
+        GUI.active_tab = "auto_test";
     }
 
     function load_status() {
@@ -21,13 +18,12 @@ auto_test.initialize = function (callback) {
     }
 
     function load_html() {
-        $('#content').load("./tabs/auto_test.html", process_html);
+        $("#content").load("./tabs/auto_test.html", process_html);
     }
 
     load_status();
 
     function process_html() {
-
         // translate to user-selected language
         i18n.localizePage();
 
@@ -48,7 +44,7 @@ auto_test.initialize = function (callback) {
             model_voice_status = $("#model-voice-status");
 
         let timers = [];
-        let testResult = [0, 0, 0, 0, 0, 0, 0];//index: 0适配器，1风机，2马达，3陀螺，4喷水，5光电，6语音；值代表的状态：0未测试，2测试通过，3测试失败
+        let testResult = [0, 0, 0, 0, 0, 0, 0]; //index: 0适配器，1风机，2马达，3陀螺，4喷水，5光电，6语音；值代表的状态：0未测试，2测试通过，3测试失败
         let cilffValue = new Array(2);
         let cilffHitValue = new Array(2);
         let gyroXData = [];
@@ -58,12 +54,12 @@ auto_test.initialize = function (callback) {
         let accYData = [];
         let accZData = [];
 
-        let isSprayFun = false;//是否有喷水功能
-        let isVoiceFun = false;//是否有语音功能
+        let isSprayFun = false; //是否有喷水功能
+        let isVoiceFun = false; //是否有语音功能
 
         let model_id;
         let isAutoTest = true;
-        let isTestedGyro = false;//是否已经测试完陀螺仪
+        let isTestedGyro = false; //是否已经测试完陀螺仪
 
         let pingValue = 0;
 
@@ -80,24 +76,26 @@ auto_test.initialize = function (callback) {
             let showModel;
             let buttonsObj;
             let focusedIndex = 0;
-            let atLeastOneDialogOpen = $('dialog').filter(function () {
-                if ($(this).prop('open')) {
-                    showModel = $(this);
-                    return $(this).prop('open');
-                }
-            }).length > 0;
-            if (!atLeastOneDialogOpen) {//没有弹框弹出
+            let atLeastOneDialogOpen =
+                $("dialog").filter(function () {
+                    if ($(this).prop("open")) {
+                        showModel = $(this);
+                        return $(this).prop("open");
+                    }
+                }).length > 0;
+            if (!atLeastOneDialogOpen) {
+                //没有弹框弹出
                 buttonsObj = $("#auto-test-button a");
             } else {
-                buttonsObj = $("#" + showModel.find("div.buttons").attr("id") + " a");
+                buttonsObj = $(`#${showModel.find("div.buttons").attr("id")} a`);
             }
             focusedIndex = setFocus(focusedIndex, buttonsObj);
             focusedIndex = bindKey(focusedIndex, buttonsObj);
         }
         function setFocus(index, obj) {
-            obj.removeClass('focused'); // 先移除所有按钮的聚焦样式
+            obj.removeClass("focused"); // 先移除所有按钮的聚焦样式
             if (!obj.eq(index).hasClass("no-click")) {
-                obj.eq(index).addClass('focused'); // 为当前聚焦的按钮添加样式
+                obj.eq(index).addClass("focused"); // 为当前聚焦的按钮添加样式
                 obj.eq(index).focus(); // 将焦点设置到当前按钮
             } else {
                 index += 1;
@@ -107,8 +105,9 @@ auto_test.initialize = function (callback) {
         }
 
         function bindKey(index, obj) {
-            obj.on('keydown', function (e) {
-                if (e.key === "Tab") { // 检查是否是 Tab 键被按下
+            obj.on("keydown", function (e) {
+                if (e.key === "Tab") {
+                    // 检查是否是 Tab 键被按下
                     e.preventDefault(); // 阻止默认行为，防止浏览器切换焦点
                     e.stopPropagation();
                     index = (index + 1) % obj.length; // 计算下一个按钮的索引，实现循环
@@ -118,25 +117,26 @@ auto_test.initialize = function (callback) {
             return index;
         }
         $(document).keydown(function (event) {
-            if (event.which === 13 || event.key === "Enter") { // Enter 键的键码是 13
+            if (event.which === 13 || event.key === "Enter") {
+                // Enter 键的键码是 13
                 event.preventDefault(); // 阻止默认行为，防止浏览器切换焦点
                 event.stopPropagation();
-                let focusedElement = $(':focus'); // 获取当前聚焦的元素
+                let focusedElement = $(":focus"); // 获取当前聚焦的元素
                 // console.log("================focusedElement:" + JSON.stringify(focusedElement, null, 2));
                 focusedElement.click(); // 触发点击事件
                 focusedButtons();
             }
         });
 
-        auto_test_button.on('click', function () {
+        auto_test_button.on("click", function () {
             clear_info();
             //查询软件是否有喷水和语音功能
             software_function();
-            GUI.interval_add('setup_auto_test_gyro_fast', test_gyro, 50, true);
-            GUI.interval_add('setup_auto_test_cliff_fast', test_cliff, 50, true);
-            GUI.interval_add('setup_auto_test_fast', auto_test, 50, true);
+            GUI.interval_add("setup_auto_test_gyro_fast", test_gyro, 50, true);
+            GUI.interval_add("setup_auto_test_cliff_fast", test_cliff, 50, true);
+            GUI.interval_add("setup_auto_test_fast", auto_test, 50, true);
             let timerIdCallGyro = setTimeout(() => {
-                GUI.interval_remove('setup_auto_test_gyro_fast');
+                GUI.interval_remove("setup_auto_test_gyro_fast");
                 isTestedGyro = true;
                 once_test();
             }, 1000);
@@ -144,7 +144,7 @@ auto_test.initialize = function (callback) {
             result_back();
         });
 
-        $(".retest-btn a").on('click', function () {
+        $(".retest-btn a").on("click", function () {
             if (!$(this).hasClass("no-click")) {
                 //先清空信息
                 model_id = $(this).closest(".grid-row-content").attr("id");
@@ -159,9 +159,9 @@ auto_test.initialize = function (callback) {
                         accXData = [];
                         accYData = [];
                         accZData = [];
-                        GUI.interval_add('setup_auto_test_gyro_fast', test_gyro, 50, true);
+                        GUI.interval_add("setup_auto_test_gyro_fast", test_gyro, 50, true);
                         setTimeout(function () {
-                            GUI.interval_remove('setup_auto_test_gyro_fast');
+                            GUI.interval_remove("setup_auto_test_gyro_fast");
                             isTestedGyro = true;
                         }, 1000);
                     } else if (model_id.indexOf("adpter") !== -1) {
@@ -179,11 +179,11 @@ auto_test.initialize = function (callback) {
                     } else if (model_id.indexOf("cliff") !== -1) {
                         testResult[5] = 0;
                         cilffValue = [];
-                        cilffHitValue =[];
+                        cilffHitValue = [];
                         updateDialogMessages(model_cliff_status, 0);
-                        GUI.interval_add('setup_auto_test_cliff_fast', test_cliff, 50, true);
+                        GUI.interval_add("setup_auto_test_cliff_fast", test_cliff, 50, true);
                         setTimeout(function () {
-                            GUI.interval_remove('setup_auto_test_cliff_fast');
+                            GUI.interval_remove("setup_auto_test_cliff_fast");
                             isTestedGyro = true;
                         }, 1000);
                     } else if (model_id.indexOf("waterpump") !== -1) {
@@ -202,10 +202,9 @@ auto_test.initialize = function (callback) {
                     result_back(model_id);
                 }
             }
-
         });
 
-        yes_spray_btn.on('click', function () {
+        yes_spray_btn.on("click", function () {
             testResult[4] = 2;
             updateDialogMessages(model_waterpump_status, 2);
             dialogConfirmUnderingTestSpary.close();
@@ -215,7 +214,7 @@ auto_test.initialize = function (callback) {
             result_back(model_id);
         });
 
-        no_spary_btn.on('click', function () {
+        no_spary_btn.on("click", function () {
             testResult[4] = 3;
             updateDialogMessages(model_waterpump_status, 3);
             dialogConfirmUnderingTestSpary.close();
@@ -225,14 +224,13 @@ auto_test.initialize = function (callback) {
             result_back(model_id);
         });
 
-        yes_voice_btn.on('click', function () {
+        yes_voice_btn.on("click", function () {
             testResult[6] = 2;
             updateDialogMessages(model_voice_status, 2);
             dialogConfirmUnderingTestVoice.close();
             result_back(model_id);
-
         });
-        no_voice_btn.on('click', function () {
+        no_voice_btn.on("click", function () {
             testResult[6] = 3;
             updateDialogMessages(model_voice_status, 3);
             dialogConfirmUnderingTestVoice.close();
@@ -251,7 +249,7 @@ auto_test.initialize = function (callback) {
 
         function clear_info() {
             clearAllTimers();
-            testResult = [0, 0, 0, 0, 0, 0, 0];//index: 0适配器，1风机，2马达，3陀螺，4喷水，5光电，6语音；值代表的状态：0未测试，2测试通过，3测试失败
+            testResult = [0, 0, 0, 0, 0, 0, 0]; //index: 0适配器，1风机，2马达，3陀螺，4喷水，5光电，6语音；值代表的状态：0未测试，2测试通过，3测试失败
             gyroXData = [];
             gyroYData = [];
             gyroZData = [];
@@ -263,8 +261,8 @@ auto_test.initialize = function (callback) {
             cilffValue = [];
             cilffHitValue = [];
 
-            isSprayFun = false;//是否有喷水功能
-            isVoiceFun = false;//是否有语音功能
+            isSprayFun = false; //是否有喷水功能
+            isVoiceFun = false; //是否有语音功能
 
             isAutoTest = true;
 
@@ -326,8 +324,7 @@ auto_test.initialize = function (callback) {
                     // console.log("======================cilffValue[0]:" + cilffValue[0] + " || ===================cilffValue[1]:" + cilffValue[1]);
                     let exists_1 = cilffValue[0] == undefined ? true : cilffValue[0].includes(0);
                     let exists_0 = cilffValue[1] == undefined ? true : cilffValue[1].includes(1);
-                    
-                    
+
                     if (exists_1 || exists_0) {
                         testResult[5] = 3;
                         updateDialogMessages(model_cliff_status, 3);
@@ -360,22 +357,22 @@ auto_test.initialize = function (callback) {
                 if (FC.OVOBOT_FUNCTION.isSprayFun == 1) {
                     isSprayFun = true;
                     //显示喷水模块
-                    model_waterpump_status.closest('.grid-row').removeClass("model-display");
+                    model_waterpump_status.closest(".grid-row").removeClass("model-display");
                 } else {
                     isSprayFun = false;
-                    testResult[4] = 2;//没有此功能时，默认测试通过
+                    testResult[4] = 2; //没有此功能时，默认测试通过
                     //关闭喷水模块
-                    model_waterpump_status.closest('.grid-row').addClass("model-display");
+                    model_waterpump_status.closest(".grid-row").addClass("model-display");
                 }
                 if (FC.OVOBOT_FUNCTION.isVoiceFun == 1) {
                     isVoiceFun = true;
                     //显示语音模块
-                    model_voice_status.closest('.grid-row').removeClass("model-display");
+                    model_voice_status.closest(".grid-row").removeClass("model-display");
                 } else {
                     isVoiceFun = false;
                     testResult[6] = 2;
                     //关闭语音模块
-                    model_voice_status.closest('.grid-row').addClass("model-display");
+                    model_voice_status.closest(".grid-row").addClass("model-display");
                 }
             });
         }
@@ -461,12 +458,17 @@ auto_test.initialize = function (callback) {
                     testResult[1] = 2;
                 }
                 //马达电流
-                if (type == 2 && (FC.ANALOG.leftMotorAdc < 2500 || FC.ANALOG.leftMotorAdc > 3100 || FC.ANALOG.rightMotorAdc < 2500 || FC.ANALOG.rightMotorAdc > 3100)) {
+                if (
+                    type == 2 &&
+                    (FC.ANALOG.leftMotorAdc < 2500 ||
+                        FC.ANALOG.leftMotorAdc > 3100 ||
+                        FC.ANALOG.rightMotorAdc < 2500 ||
+                        FC.ANALOG.rightMotorAdc > 3100)
+                ) {
                     testResult[2] = 3;
                 } else {
                     testResult[2] = 2;
                 }
-
             });
         }
         //陀螺仪检测
@@ -483,8 +485,14 @@ auto_test.initialize = function (callback) {
                 accYData.push(FC.SENSOR_DATA.accelerometer[1]);
                 accZData.push(FC.SENSOR_DATA.accelerometer[2]);
 
-                if (isErrorDtata(gyroXData, 20, -20) || isErrorDtata(gyroYData, 20, -20) || isErrorDtata(gyroZData, 20, -20)
-                    || isErrorDtata(accXData, 300, -300) || isErrorDtata(accYData, 300, -300) || isErrorDtata(accZData, 4396, 3797)) {
+                if (
+                    isErrorDtata(gyroXData, 20, -20) ||
+                    isErrorDtata(gyroYData, 20, -20) ||
+                    isErrorDtata(gyroZData, 20, -20) ||
+                    isErrorDtata(accXData, 300, -300) ||
+                    isErrorDtata(accYData, 300, -300) ||
+                    isErrorDtata(accZData, 4396, 3797)
+                ) {
                     //说明陀螺仪数据不对，测试失败
                     testResult[3] = 3;
                 } else {
@@ -496,7 +504,7 @@ auto_test.initialize = function (callback) {
             // console.log("==========================arr[arr.length - 1]:" + arr[arr.length - 1]);
             if (areAllValuesSame(arr) || isDataRange(arr[arr.length - 1], maxValue, minValue) == false) {
                 // console.log("==========================数据超出范围或相同");
-                return true;//数据不对
+                return true; //数据不对
             } else {
                 return false;
             }
@@ -505,7 +513,7 @@ auto_test.initialize = function (callback) {
         function areAllValuesSame(arr) {
             let resultArr = false;
             if (arr.length >= 2) {
-                resultArr = arr.every(value => value === arr[0]) && arr[arr.length - 2] == arr[arr.length - 1];
+                resultArr = arr.every((value) => value === arr[0]) && arr[arr.length - 2] == arr[arr.length - 1];
             } else {
                 resultArr = true;
             }
@@ -530,7 +538,6 @@ auto_test.initialize = function (callback) {
                         // focused(".button-spray");
                         focusedButtons();
                     });
-
                 } else {
                     updateDialogMessages(model_waterpump_status, 0);
                 }
@@ -542,11 +549,16 @@ auto_test.initialize = function (callback) {
             updateDialogMessages(model_voice_status, 1);
             let timerIdVoice = setTimeout(() => {
                 if (isVoiceFun) {
-                    MSP.send_message(MSPCodes.MSP_SET_AUTO_PLAY_VOICE,[FC.OVOBOT_FUNCTION.voiceIndex], false, function () {
-                        //显示弹框
-                        dialogConfirmUnderingTestVoice.showModal();
-                        focusedButtons();
-                    });
+                    MSP.send_message(
+                        MSPCodes.MSP_SET_AUTO_PLAY_VOICE,
+                        [FC.OVOBOT_FUNCTION.voiceIndex],
+                        false,
+                        function () {
+                            //显示弹框
+                            dialogConfirmUnderingTestVoice.showModal();
+                            focusedButtons();
+                        },
+                    );
                 } else {
                     updateDialogMessages(model_voice_status, 0);
                 }
@@ -588,29 +600,37 @@ auto_test.initialize = function (callback) {
         }
 
         function bitIsZero(x, bitIndex) {
-            return (((x >> bitIndex) & 1) == 1) ? false : true;
+            return ((x >> bitIndex) & 1) == 1 ? false : true;
         }
 
         //status 四个状态 0未测试,1测试中,2测试通过,3测试失败
         //testModelStatus 两个状态 0静态-messages不需要；1动态；
         function updateDialogMessages(model, status) {
             if (model != null) {
-                status == 0 ? model.find(".not-tested").removeClass("model-display") : model.find(".not-tested").addClass("model-display");
-                status == 1 ? model.find(".under-testing").removeClass("model-display") : model.find(".under-testing").addClass("model-display");
-                status == 2 ? model.find(".test-passed").removeClass("model-display") : model.find(".test-passed").addClass("model-display");
-                status == 3 ? model.find(".test-failed").removeClass("model-display") : model.find(".test-failed").addClass("model-display");
+                status == 0
+                    ? model.find(".not-tested").removeClass("model-display")
+                    : model.find(".not-tested").addClass("model-display");
+                status == 1
+                    ? model.find(".under-testing").removeClass("model-display")
+                    : model.find(".under-testing").addClass("model-display");
+                status == 2
+                    ? model.find(".test-passed").removeClass("model-display")
+                    : model.find(".test-passed").addClass("model-display");
+                status == 3
+                    ? model.find(".test-failed").removeClass("model-display")
+                    : model.find(".test-failed").addClass("model-display");
                 switch (status) {
                     case 0:
-                        model.find("a").removeClass('no-click');
+                        model.find("a").removeClass("no-click");
                         break;
                     case 1:
-                        model.find("a").addClass('no-click');
+                        model.find("a").addClass("no-click");
                         break;
                     case 2:
-                        model.find("a").addClass('no-click');
+                        model.find("a").addClass("no-click");
                         break;
                     case 3:
-                        model.find("a").removeClass('no-click');
+                        model.find("a").removeClass("no-click");
                         break;
                     default:
                         break;
@@ -619,7 +639,7 @@ auto_test.initialize = function (callback) {
         }
         // 清除所有定时器
         function clearAllTimers() {
-            timers.forEach(timerId => clearTimeout(timerId));
+            timers.forEach((timerId) => clearTimeout(timerId));
             timers = []; // 清空数组，防止重复清除
         }
 
@@ -639,37 +659,36 @@ auto_test.initialize = function (callback) {
                 test_result_passed.removeClass("model-display");
                 test_result_failed.addClass("model-display");
             }
-            GUI.interval_remove('setup_auto_test_fast');
-            GUI.interval_remove('setup_auto_test_cliff_fast');
-            GUI.interval_add('setup_getRec_fast', getRec, 500, true);
+            GUI.interval_remove("setup_auto_test_fast");
+            GUI.interval_remove("setup_auto_test_cliff_fast");
+            GUI.interval_add("setup_getRec_fast", getRec, 500, true);
         }
-        function getRec(){
-            MSP.callbacks=[];
+        function getRec() {
+            MSP.callbacks = [];
             MSP.send_message(MSPCodes.CMD_BUILD_INFO, false, false, function (obj) {
-
-                if(pingValue==0){//未赋值前为上一次的值,上一次值为0，说明换过板子，不为0说明没有换过板子，不需要自动再次测试（否则会陷入死循环）
-                    if(!GUI.connected_to){
+                if (pingValue == 0) {
+                    //未赋值前为上一次的值,上一次值为0，说明换过板子，不为0说明没有换过板子，不需要自动再次测试（否则会陷入死循环）
+                    if (!GUI.connected_to) {
                         connectDisconnect();
                     }
-                    
+
                     pingValue = FC.CONFIG.buildInfo;
-                    if(pingValue!=0){
-                        GUI.interval_remove('setup_getRec_fast');
+                    if (pingValue != 0) {
+                        GUI.interval_remove("setup_getRec_fast");
                         auto_test_button.trigger("click");
                     }
                 }
             });
         }
 
-        function clickAutoTestBtn(){
-            GUI.interval_add('setup_getRec_fast', getRec, 500, true);
+        function clickAutoTestBtn() {
+            GUI.interval_add("setup_getRec_fast", getRec, 500, true);
         }
         setTimeout(function () {
             clickAutoTestBtn();
         }, 100);
 
         GUI.content_ready(callback);
-
     }
 };
 
@@ -678,6 +697,4 @@ auto_test.cleanup = function (callback) {
 };
 
 TABS.auto_test = auto_test;
-export {
-    auto_test,
-};
+export { auto_test };
