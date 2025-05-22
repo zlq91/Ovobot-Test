@@ -58,7 +58,7 @@ export default defineConfig({
         __APP_REVISION__: JSON.stringify(commitHash),
     },
     build: {
-        outDir: "release",
+        outDir: "dist",
         rollupOptions: {
             external: ["electron"], // 防止将 Electron 打包进你的应用中
             input: {
@@ -83,8 +83,6 @@ export default defineConfig({
                 { src: "src/tabs/**/*", dest: "src/dist/tabs" },
                 { src: "src/images/**/*", dest: "src/dist/images" },
                 { src: "src/components/**/*", dest: "src/dist/components" },
-                // { src: "src/js/**/*", dest: "src/dist/js" },
-                // { src: "src/css/**/*", dest: "src/dist/css" },
             ],
             hook: "writeBundle",
         }),

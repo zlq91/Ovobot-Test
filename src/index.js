@@ -19,7 +19,7 @@ function createWindow() {
     win.setIcon(`${__dirname}/images/ovobot_images/icons/cleanrobot_16-256.ico`); // 设置任务栏图标
     // 开发环境加载 Vite 服务器
     if (process.env.NODE_ENV === "development") {
-        win.loadURL("http://localhost:5173");
+        win.loadURL("http://localhost:8000");
         win.webContents.openDevTools();
     } else {
         win.loadFile(path.join(__dirname, "/dist/index.html"));
