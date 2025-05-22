@@ -10,11 +10,12 @@ function createWindow() {
         icon: `${__dirname}/images/ovobot_images/cleanrobot_icon128.png`, // 窗口图标，指定图标路径
         // frame:false,// 设置为false以去除默认的窗口边框和工具栏
         webPreferences: {
-            nodeIntegration: false,
+            nodeIntegration: true,
             // preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true, // 注意：在 Electron 12+ 中，需要设置为 contextIsolation: false 和 nodeIntegration: true 或使用 preload script 来启用 Node.js 功能。
             contextIsolation: false, // false if you want to run Electron apps without context isolation
         },
+        autoHideMenuBar: true, //隐藏窗口工具栏
     });
     win.setIcon(`${__dirname}/images/ovobot_images/icons/cleanrobot_16-256.ico`); // 设置任务栏图标
     // 开发环境加载 Vite 服务器
