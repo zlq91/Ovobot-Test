@@ -23,6 +23,26 @@
     "storybook": "start-storybook -p 6006",
     "prepare": "husky install"
   },
+  "build": {
+    "appId": "com.example.vue-electron",
+    "productName": "VueElectronApp",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "src/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "src/images/ovobot_images/icons/cleanrobot_16-256.ico"
+    },
+    "nsis": {
+      "oneClick": false,          
+      "allowElevation": true,     
+      "allowToChangeInstallationDirectory": true    
+    }
+  },
   "window": {
     "icon": "src/images/ovobot_images/cleanrobot_icon128.png",
     "id": "main-window",

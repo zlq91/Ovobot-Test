@@ -168,6 +168,7 @@ PortHandler.sortPorts = function (ports) {
 };
 
 PortHandler.selectActivePort = function (suggestedDevice = false) {
+    alert("进入selectActivePort");
     const deviceFilter = ["AT32", "CP210", "SPR", "STM"];
     let selectedPort;
 
@@ -256,7 +257,7 @@ PortHandler.selectActivePort = function (suggestedDevice = false) {
 
 // Create a unified handler for device addition
 PortHandler.handleDeviceAdded = function (device, deviceType) {
-    console.log("==========enter handleDeviceAdded")
+    console.log("==========enter handleDeviceAdded");
     if (!device) {
         console.warn(`${this.logHead} Invalid ${deviceType} device added event`);
         return;

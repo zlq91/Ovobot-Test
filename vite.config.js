@@ -57,16 +57,17 @@ export default defineConfig({
         __APP_PRODUCTNAME__: JSON.stringify(pkg.productName),
         __APP_REVISION__: JSON.stringify(commitHash),
     },
-    build: {
-        outDir: "dist",
-        rollupOptions: {
-            external: ["electron"], // 防止将 Electron 打包进你的应用中
-            input: {
-                main: resolve(__dirname, "src/index.html"),
-                receiver_msp: resolve(__dirname, "src/receiver_msp/receiver_msp.html"),
-            },
-        },
-    },
+    // build: {
+    //     outDir: "dist",
+    //     emptyOutDir:true,//构建前清空输出目录
+    //     rollupOptions: {
+    //         external: ["electron"], // 防止将 Electron 打包进你的应用中
+    //         input: {
+    //             main: resolve(__dirname, "src/index.html"),
+    //             receiver_msp: resolve(__dirname, "src/receiver_msp/receiver_msp.html"),
+    //         },
+    //     },
+    // },
     test: {
         include: ["test/**/*.test.{js,mjs,cjs}"],
         environment: "jsdom",
@@ -78,6 +79,7 @@ export default defineConfig({
         serveLocalesPlugin(),
         copy({
             targets: [
+                { src: "libraries/**/*", dest: "src/dist/libraries" },
                 { src: "locales/**/*", dest: "src/dist/locales" },
                 { src: "resources/**/*", dest: "src/dist/resources" },
                 { src: "src/tabs/**/*", dest: "src/dist/tabs" },
@@ -117,7 +119,7 @@ export default defineConfig({
             entry: "index.js",
             vite: {
                 build: {
-                    //   outDir: 'node_modules/.cache/vite-electron',
+                    outDir: "node_modules/.cache/vite-electron",
                     // 禁止写入磁盘
                     write: false,
                 },
