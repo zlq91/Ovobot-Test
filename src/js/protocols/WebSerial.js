@@ -159,6 +159,7 @@ class WebSerial extends EventTarget {
     }
 
     async connect(path, options = { baudRate: 115200 }) {
+        alert("============enter connet");
         // Prevent double connections
         if (this.connected) {
             console.log(`${logHead} Already connected, not connecting again`);

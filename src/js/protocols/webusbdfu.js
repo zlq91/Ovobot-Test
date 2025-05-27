@@ -81,7 +81,7 @@ class WEBUSBDFU_protocol extends EventTarget {
         navigator.usb.addEventListener("disconnect", (e) => this.handleNewDevice(e.device));
     }
     handleNewDevice(device) {
-        console.log("============webusbdfu")
+        console.log("============webusbdfu");
         const added = this.createPort(device);
         this.dispatchEvent(new CustomEvent("addedDevice", { detail: added }));
 
@@ -109,6 +109,7 @@ class WEBUSBDFU_protocol extends EventTarget {
         return customPorts;
     }
     async requestPermission() {
+        alert("222222222222");
         let newPermissionPort = null;
         try {
             const userSelectedPort = await navigator.usb.requestDevice(usbDevices);

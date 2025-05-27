@@ -62,6 +62,7 @@ export function isCapacitorWeb() {
 }
 
 export function checkBrowserCompatibility() {
+    alert("111111111111111");
     const webSerial = "serial" in navigator;
     const isNative = Capacitor.isNativePlatform();
     const isChromium = isChromiumBrowser();
