@@ -8,7 +8,7 @@ import {
     checkWebBluetoothSupport,
     checkWebSerialSupport,
     checkWebUSBSupport,
-} from "./utils/checkBrowserCompatibility.js";
+} from "./utils/checkBrowserCompatibilty";
 
 const DEFAULT_PORT = "noselection";
 const DEFAULT_BAUDS = 115200;
