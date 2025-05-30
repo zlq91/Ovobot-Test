@@ -77,11 +77,16 @@ class WEBUSBDFU_protocol extends EventTarget {
         this.flash_layout = { start_address: 0, total_size: 0, sectors: [] };
         this.transferSize = 2048; // Default USB DFU transfer size for F3,F4 and F7
 
+        if (!navigator?.usb) {
+            console.error(`${this.logHead} WebUSB API not supported`);
+            return;
+        }
+
         navigator.usb.addEventListener("connect", (e) => this.handleNewDevice(e.device));
         navigator.usb.addEventListener("disconnect", (e) => this.handleNewDevice(e.device));
     }
     handleNewDevice(device) {
-        console.log("============webusbdfu")
+        console.log("============webusbdfu");
         const added = this.createPort(device);
         this.dispatchEvent(new CustomEvent("addedDevice", { detail: added }));
 
