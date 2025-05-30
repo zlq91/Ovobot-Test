@@ -3,7 +3,7 @@ import MSP from "./msp";
 import Switchery from "switchery-latest";
 import jBox from "jbox";
 import $ from "jquery";
-import { getOS } from "./utils/checkBrowserCompatibilty";
+import { getOS } from "./utils/checkBrowserCompatibility";
 
 const TABS = {};
 
@@ -21,10 +21,7 @@ class GuiControl {
 
         this.defaultAllowedTabsWhenDisconnected = ["landing", "firmware_flasher", "privacy_policy", "options", "help"];
 
-        this.defaultAllowedTabs = [
-            "setup",
-            "auto_test"
-        ];
+        this.defaultAllowedTabs = ["setup", "auto_test"];
 
         this.defaultCloudBuildTabOptions = ["gps", "led_strip", "osd", "servos", "transponder"];
 
