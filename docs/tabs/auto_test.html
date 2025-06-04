@@ -1,0 +1,400 @@
+<div class="tab-auto-test ">
+    <div class="content_wrapper initialstyle">
+        <!-- should be the first DIV on each tab -->
+        <div class="tab_title" i18n="tabAutoTest"></div>
+
+        <div class="grid-row overall-results">
+            <div class="grid-col col12">
+                <div class="grid-row">
+                    <div class="grid-col col2 ">
+                        <!-- <div class="default_btn">
+                            <a class="clockwise " i18n=""></a>
+                        </div> -->
+                    </div>
+                    <div class="grid-col col2 ">
+                        <!-- <div class="default_btn">
+                            <a class="clockwise " i18n=""></a>
+                        </div> -->
+                    </div>
+                    <div class="grid-col col2 test-result-empty">
+                        <!-- <div class="default_btn">
+                            <a class="clockwise " i18n=""></a>
+                        </div> -->
+                    </div>
+                    <div class="grid-col col2 test-result-passed model-display">
+                        <div class="test-passed">
+                            <span i18n="testPassed"></span>
+                        </div>
+                    </div>
+                    <div class="grid-col col2 test-result-failed model-display">
+                        <div class="test-failed">
+                            <span i18n="testFailed"></span>
+                        </div>
+                    </div>
+                    <div class="grid-col col2 ">
+                        <!-- <div class="default_btn">
+                            <a class="clockwise " i18n=""></a>
+                        </div> -->
+                    </div>
+                    <div class="grid-col col2">
+                        <div class="default_btn" id="auto-test-button">
+                            <a class="clockwise auto-test-button" tabindex="0" i18n="autoTestButton"></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="grid-row model_adpter">
+            <div class="grid-col col12">
+                <div class="grid-row-title">
+                    <img src="images/ovobot_images/model_open_close.png" class="model_open_close rotate-90"
+                        alt="公司Logo" />
+                    <span class="grid-col col12" i18n="adpterTitle"></span>
+                </div>
+            </div>
+            <div class="grid-col col12 grid-row-content " id="model-adpter-status">
+                <div class="grid-row">
+                    <div class="grid-col col5 test-status">
+                        <span i18n="testStatus"></span>
+                    </div>
+                    <div class="grid-col col6 not-tested ">
+                        <div class="svg-dot-position">
+                            <svg width="16" height="16">
+                                <circle cx="8" cy="8" r="8" fill="white" />
+                            </svg>
+                        </div>
+                        <span i18n="notTested"></span>
+                    </div>
+                    <div class="grid-col col6 under-testing model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="yellow" />
+                        </svg>
+                        <span i18n="underTesting"></span>
+                    </div>
+                    <div class="grid-col col6 test-passed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="green" />
+                        </svg>
+                        <span i18n="testPassed"></span>
+                    </div>
+                    <div class="grid-col col6 test-failed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="red" />
+                        </svg>
+                        <span i18n="testFailed"></span>
+                    </div>
+                    <div class="grid-col col1">
+                        <div class="default_btn model-adpter-btn retest-btn" id="btn_adpter">
+                            <a class="clockwise" i18n="retest" tabindex="0"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-row model_fan">
+            <div class="grid-col col12">
+                <div class="grid-row-title">
+                    <img src="images/ovobot_images/model_open_close.png" class="model_open_close rotate-90"
+                        alt="公司Logo" />
+                    <span class="grid-col col12" i18n="fanTitle"></span>
+                </div>
+            </div>
+            <div class="grid-col col12 grid-row-content " id="model-fan-status">
+                <div class="grid-row">
+                    <div class="grid-col col5 test-status">
+                        <span i18n="testStatus"></span>
+                    </div>
+                    <div class="grid-col col6 not-tested ">
+                        <div class="svg-dot-position">
+                            <svg width="16" height="16">
+                                <circle cx="8" cy="8" r="8" fill="white" />
+                            </svg>
+                        </div>
+                        <span i18n="notTested"></span>
+                    </div>
+                    <div class="grid-col col6 under-testing model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="yellow" />
+                        </svg>
+                        <span i18n="underTesting"></span>
+                    </div>
+                    <div class="grid-col col6 test-passed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="green" />
+                        </svg>
+                        <span i18n="testPassed"></span>
+                    </div>
+                    <div class="grid-col col6 test-failed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="red" />
+                        </svg>
+                        <span i18n="testFailed"></span>
+                    </div>
+                    <div class="grid-col col1">
+                        <div class="default_btn model-gyro-btn retest-btn" id="btn_fan">
+                            <a class="clockwise" i18n="retest" tabindex="0"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-row model_motor">
+            <div class="grid-col col12">
+                <div class="grid-row-title">
+                    <img src="images/ovobot_images/model_open_close.png" class="model_open_close rotate-90"
+                        alt="公司Logo" />
+                    <span class="grid-col col12" i18n="motorTitle"></span>
+                </div>
+            </div>
+            <div class="grid-col col12 grid-row-content " id="model-motor-status">
+                <div class="grid-row">
+                    <div class="grid-col col5 test-status">
+                        <span i18n="testStatus"></span>
+                    </div>
+                    <div class="grid-col col6 not-tested ">
+                        <div class="svg-dot-position">
+                            <svg width="16" height="16">
+                                <circle cx="8" cy="8" r="8" fill="white" />
+                            </svg>
+                        </div>
+                        <span i18n="notTested"></span>
+                    </div>
+                    <div class="grid-col col6 under-testing model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="yellow" />
+                        </svg>
+                        <span i18n="underTesting"></span>
+                    </div>
+                    <div class="grid-col col6 test-passed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="green" />
+                        </svg>
+                        <span i18n="testPassed"></span>
+                    </div>
+                    <div class="grid-col col6 test-failed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="red" />
+                        </svg>
+                        <span i18n="testFailed"></span>
+                    </div>
+                    <div class="grid-col col1">
+                        <div class="default_btn model-gyro-btn retest-btn" id="btn_motor">
+                            <a class="clockwise" i18n="retest" tabindex="0"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-row model_gyro">
+            <div class="grid-col col12">
+                <div class="grid-row-title">
+                    <img src="images/ovobot_images/model_open_close.png" class="model_open_close rotate-90"
+                        alt="公司Logo" />
+                    <span class="grid-col col12" i18n="gyroTitle"></span>
+                </div>
+            </div>
+            <div class="grid-col col12 grid-row-content " id="model-gyro-status">
+                <div class="grid-row">
+                    <div class="grid-col col5 test-status">
+                        <span i18n="testStatus"></span>
+                    </div>
+                    <div class="grid-col col6 not-tested ">
+                        <div class="svg-dot-position">
+                            <svg width="16" height="16">
+                                <circle cx="8" cy="8" r="8" fill="white" />
+                            </svg>
+                        </div>
+                        <span i18n="notTested"></span>
+                    </div>
+                    <div class="grid-col col6 under-testing model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="yellow" />
+                        </svg>
+                        <span i18n="underTesting"></span>
+                    </div>
+                    <div class="grid-col col6 test-passed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="green" />
+                        </svg>
+                        <span i18n="testPassed"></span>
+                    </div>
+                    <div class="grid-col col6 test-failed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="red" />
+                        </svg>
+                        <span i18n="testFailed"></span>
+                    </div>
+                    <div class="grid-col col1">
+                        <div class="default_btn model-gyro-btn retest-btn" id="btn_gyro">
+                            <a class="clockwise" i18n="retest" tabindex="0"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-row model_waterpump model-display">
+            <div class="grid-col col12">
+                <div class="grid-row-title">
+                    <img src="images/ovobot_images/model_open_close.png" class="model_open_close rotate-90"
+                        alt="公司Logo" />
+                    <span class="grid-col col12" i18n="waterpumpTitle"></span>
+                </div>
+            </div>
+            <div class="grid-col col12 grid-row-content " id="model-waterpump-status">
+                <div class="grid-row">
+                    <div class="grid-col col5 test-status">
+                        <span i18n="testStatus"></span>
+                    </div>
+                    <div class="grid-col col6 not-tested ">
+                        <div class="svg-dot-position">
+                            <svg width="16" height="16">
+                                <circle cx="8" cy="8" r="8" fill="white" />
+                            </svg>
+                        </div>
+                        <span i18n="notTested"></span>
+                    </div>
+                    <div class="grid-col col6 under-testing model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="yellow" />
+                        </svg>
+                        <span i18n="underTesting"></span>
+                    </div>
+                    <div class="grid-col col6 test-passed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="green" />
+                        </svg>
+                        <span i18n="testPassed"></span>
+                    </div>
+                    <div class="grid-col col6 test-failed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="red" />
+                        </svg>
+                        <span i18n="testFailed"></span>
+                    </div>
+                    <div class="grid-col col1">
+                        <div class="default_btn model-gyro-btn retest-btn" id="btn_waterpump">
+                            <a class="clockwise" i18n="retest" tabindex="0"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-row model_cliff">
+            <div class="grid-col col12">
+                <div class="grid-row-title">
+                    <img src="images/ovobot_images/model_open_close.png" class="model_open_close rotate-90"
+                        alt="公司Logo" />
+                    <span class="grid-col col12" i18n="cliffTitle"></span>
+                </div>
+            </div>
+            <div class="grid-col col12 grid-row-content " id="model-cliff-status">
+                <div class="grid-row">
+                    <div class="grid-col col5 test-status">
+                        <span i18n="testStatus"></span>
+                    </div>
+                    <div class="grid-col col6 not-tested ">
+                        <div class="svg-dot-position">
+                            <svg width="16" height="16">
+                                <circle cx="8" cy="8" r="8" fill="white" />
+                            </svg>
+                        </div>
+                        <span i18n="notTested"></span>
+                    </div>
+                    <div class="grid-col col6 under-testing model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="yellow" />
+                        </svg>
+                        <span i18n="underTesting"></span>
+                    </div>
+                    <div class="grid-col col6 test-passed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="green" />
+                        </svg>
+                        <span i18n="testPassed"></span>
+                    </div>
+                    <div class="grid-col col6 test-failed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="red" />
+                        </svg>
+                        <span i18n="testFailed"></span>
+                    </div>
+                    <div class="grid-col col1">
+                        <div class="default_btn model-gyro-btn retest-btn" id="btn_cliff">
+                            <a class="clockwise" i18n="retest" tabindex="0"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-row model_voice model-display">
+            <div class="grid-col col12">
+                <div class="grid-row-title">
+                    <img src="images/ovobot_images/model_open_close.png" class="model_open_close rotate-90"
+                        alt="公司Logo" />
+                    <span class="grid-col col12" i18n="voiceTitle"></span>
+                </div>
+            </div>
+            <div class="grid-col col12 grid-row-content " id="model-voice-status">
+                <div class="grid-row">
+                    <div class="grid-col col5 test-status">
+                        <span i18n="testStatus"></span>
+                    </div>
+                    <div class="grid-col col6 not-tested ">
+                        <div class="svg-dot-position">
+                            <svg width="16" height="16">
+                                <circle cx="8" cy="8" r="8" fill="white" />
+                            </svg>
+                        </div>
+                        <span i18n="notTested"></span>
+                    </div>
+                    <div class="grid-col col6 under-testing model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="yellow" />
+                        </svg>
+                        <span i18n="underTesting"></span>
+                    </div>
+                    <div class="grid-col col6 test-passed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="green" />
+                        </svg>
+                        <span i18n="testPassed"></span>
+                    </div>
+                    <div class="grid-col col6 test-failed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="red" />
+                        </svg>
+                        <span i18n="testFailed"></span>
+                    </div>
+                    <div class="grid-col col1">
+                        <div class="default_btn model-gyro-btn retest-btn" id="btn_voice">
+                            <a class="clockwise" i18n="retest" tabindex="0"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 确认喷水弹框 -->
+    <dialog class="dialogConfirmUnderingTest-Spary">
+        <h3 i18n="dialogConfirmUnderingTestTitle"></h3>
+        <div class="content">
+            <div class="dialogConfirmUnderingTest-content" i18n="confirmSpary"></div>
+            <div class="buttons" id="button-spray">
+                <a href="#" class="yes-spray-btn regular-button " tabindex="0" i18n="yes"></a>
+                <a href="#" class="no-spary-btn regular-button" tabindex="0" i18n="no"></a>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog class="dialogConfirmUnderingTest-Voice">
+        <h3 i18n="dialogConfirmUnderingTestTitle"></h3>
+        <div class="content">
+            <div class="dialogConfirmUnderingTest-content" i18n="confirmVoice"></div>
+            <div class="buttons" id="button-voice">
+                <a href="#" class="yes-voice-btn regular-button " tabindex="0" i18n="yes"></a>
+                <a href="#" class="no-voice-btn regular-button" tabindex="0" i18n="no"></a>
+            </div>
+        </div>
+    </dialog>
+</div>
