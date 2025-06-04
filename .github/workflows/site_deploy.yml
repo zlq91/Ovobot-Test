@@ -1,0 +1,43 @@
+#静态页面网站部署 
+name: site deploy
+
+on: 
+  push:
+    branches:    
+      - 'main'
+      - 'develop'
+  pull_request:
+    branches:    
+      - 'main'
+      - 'develop'
+ 
+jobs:
+  
+  check_comments_and_build:
+    runs-on: ubuntu-latest 
+    steps:
+    - uses: actions/checkout@v2
+ 
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'  # 使用你需要的 Node.js 版本
+ 
+    - name: Install dependencies
+      run: yarn install
+ 
+    - name: Build dist
+      if: ${{ github.ref == 'refs/heads/main' }}
+      # run: npm run docs  # 确保你的构建命令是正确的，例如 'npm run docs' 或 'yarn docs' 等
+      run: yarn build
+    
+    - name: Copy folder content to docs
+      run: |
+        cp -r src/dist/* docs/
+ 
+    - name: Deploy to GitHub Pages
+      if: ${{ github.ref == 'refs/heads/main' }}
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs  # 确保这里的路径正确，通常是 'docs' 或 'build' 等目录
