@@ -37,5 +37,5 @@ jobs:
       with:
         github_token: ${{ secrets.ZLQ_TOKEN }}
         publish_dir: ./src/dist  # 确保这里的路径正确，通常是 'docs' 或 'build' 等目录
-        publish_branch: gh-pages  # 确保这是你的GitHub Pages分支名
+        # publish_branch: gh-pages  # 确保这是你的GitHub Pages分支名
         # cname: yourcustomdomain.com  # 如果需要自定义域名，取消注释并填写你的域名
