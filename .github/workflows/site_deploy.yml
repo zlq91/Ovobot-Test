@@ -30,12 +30,17 @@ jobs:
       if: ${{ github.ref == 'refs/heads/main' }}
       # run: npm run docs  # 确保你的构建命令是正确的，例如 'npm run docs' 或 'yarn docs' 等
       run: yarn build
+    
+    - name: Copy directory
+      run: |
+        cp -r src/dist/* docs/
+
  
     - name: Deploy to GitHub Pages
       if: ${{ github.ref == 'refs/heads/main' }}
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.ZLQ_TOKEN }}
-        publish_dir: ./src/dist  # 确保这里的路径正确，通常是 'docs' 或 'build' 等目录
+        publish_dir: ./docs  # 确保这里的路径正确，通常是 'docs' 或 'build' 等目录
         # publish_branch: gh-pages  # 确保这是你的GitHub Pages分支名
         # cname: yourcustomdomain.com  # 如果需要自定义域名，取消注释并填写你的域名
