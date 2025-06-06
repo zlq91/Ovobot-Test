@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+    <title>Betaflight</title>
+    <meta name="description" content="Configuration and management tool for the Betaflight flight control firmware">
+    <link rel="icon" href="/assets/favicon-ZovBz1DT.ico">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon-PPN-phB6.png" sizes="128x128">
+    <meta name="theme-color" content="#eea600">
+  <script type="module" crossorigin src="/assets/main-CJ3Yp_yB.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/DarkTheme-x8aAi6Mp.js">
+  <link rel="stylesheet" crossorigin href="/assets/DarkTheme-bq4jhPgZ.css">
+  <link rel="stylesheet" crossorigin href="/assets/main-9rtjWNi5.css">
+<link rel="manifest" href="/manifest.webmanifest"></head>
+<body>
+<div id="main-wrapper">
+    <div id="background"></div>
+    <div id="side_menu_swipe"></div>
+    <div class="headerbar">
+        <div id="menu_btn">
+            <em class="fas fa-bars"></em>
+        </div>
+        <betaflight-logo
+            :configurator-version="CONFIGURATOR.getDisplayVersion()"
+            :firmware-version="FC.CONFIG.flightControllerVersion"
+            :firmware-id="FC.CONFIG.flightControllerIdentifier"
+            :hardware-id="FC.CONFIG.hardwareName"
+        ></betaflight-logo>
+        <port-picker
+            v-model="PortHandler.portPicker"
+            :connected-bluetooth-devices="PortHandler.currentBluetoothPorts"
+            :connected-serial-devices="PortHandler.currentSerialPorts"
+            :connected-usb-devices="PortHandler.currentUsbPorts"
+            :show-virtual-option="PortHandler.showVirtualMode"
+            :show-manual-option="PortHandler.showManualMode"
+            :show-bluetooth-option="PortHandler.showBluetoothOption"
+            :show-serial-option="PortHandler.showSerialOption"
+            :show-usb-option="PortHandler.showUsbOption"
+            :disabled="PortHandler.portPickerDisabled"
+        ></port-picker>
+
+        <div id="header_buttons">
+
+            <div class="connection_button">
+                <a class="connection_button__link disabled" href="#"></a>
+                <div class="connection_button__label" i18n="connect"></div>
+            </div>
+        </div>
+        <div id="reveal_btn">
+            <em class="fas fa-ellipsis-v"></em>
+        </div>
+    </div>
+    <div id="log">
+        <div class="logswitch">
+            <a href="#" id="showlog" i18n="logActionShow"></a>
+        </div>
+        <div id="scrollicon"></div>
+        <div class="wrapper"></div>
+    </div>
+    <div id="tab-content-container">
+        <div class="tab_container">
+            <betaflight-logo
+                :configurator-version="CONFIGURATOR.getDisplayVersion()"
+                :firmware-version="FC.CONFIG.flightControllerVersion"
+                :firmware-id="FC.CONFIG.flightControllerIdentifier"
+                :hardware-id="FC.CONFIG.hardwareName"
+            ></betaflight-logo>
+            <div id="tabs">
+                <ul class="mode-disconnected">
+                    <li class="tab_landing" id="tab_landing"><a href="#" i18n="tabLanding" class="tabicon ic_welcome" i18n_title="tabLanding"></a></li>
+
+                </ul>
+                <ul class="mode-connected">
+                    <li class="tab_setup"><a href="#" i18n="tabSetup" class="tabicon ic_setup" i18n_title="tabSetup"></a></li>
+                    <li class="tab_auto_test"><a href="#" i18n="tabAutoTest" class="tabicon ic_auto_test"
+                        i18n_title="tabAutoTest"></a></li>
+                </ul>
+                <ul class="mode-connected mode-connected-cli">
+                    <li class="tab_cli"><a href="#" i18n="tabCLI" class="tabicon ic_cli" i18n_title="tabCLI"></a></li>
+                </ul>
+            </div>
+            <div class="clear-both"></div>
+        </div>
+        <div id="content"></div>
+    </div>
+    <status-bar
+            :port-usage-down="PortUsage.port_usage_down"
+            :port-usage-up="PortUsage.port_usage_up"
+            :packet-error="MSP.packet_error"
+            :i2c-error="FC.CONFIG.i2cError"
+            :cycle-time="FC.CONFIG.cycleTime"
+            :cpu-load="FC.CONFIG.cpuload"
+
+            :configurator-version="CONFIGURATOR.getDisplayVersion()"
+            :firmware-version="FC.CONFIG.flightControllerVersion"
+            :firmware-id="FC.CONFIG.flightControllerIdentifier"
+            :hardware-id="FC.CONFIG.hardwareName"
+    ></status-bar>
+    <div id="cache">
+        <div class="data-loading">
+            <p>Waiting for data ...</p>
+        </div>
+    </div>
+</div>
+
+    <dialog class="dialogConfiguratorUpdate">
+        <h3 i18n="noticeTitle"></h3>
+        <div class="content">
+            <div class="dialogConfiguratorUpdate-content" style="margin-top: 10px"></div>
+        </div>
+        <div class="buttons">
+            <a href="#" class="dialogConfiguratorUpdate-websitebtn regular-button" i18n="configuratorUpdateWebsite"></a>
+            <a href="#" class="dialogConfiguratorUpdate-closebtn regular-button" i18n="close"></a>
+        </div>
+    </dialog>
+
+    <dialog class="dialogConnectWarning">
+        <h3 i18n="warningTitle"></h3>
+        <div class="content">
+            <div class="dialogConnectWarning-content" style="margin-top: 10px"></div>
+        </div>
+        <div class="buttons">
+            <a href="#" class="dialogConnectWarning-closebtn regular-button" i18n="close"></a>
+        </div>
+    </dialog>
+
+    <dialog id="dialogResetToCustomDefaults">
+        <h3 i18n="noticeTitle"></h3>
+        <div class="content">
+            <div id="dialogResetToCustomDefaults-content" i18n="resetToCustomDefaultsDialog"></div>
+        </div>
+        <div>
+            <span class="buttons">
+                <a href="#" id="dialogResetToCustomDefaults-acceptbtn" class="regular-button" i18n="resetToCustomDefaultsAccept"></a>
+            </span>
+            <span class="buttons">
+                <a href="#" id="dialogResetToCustomDefaults-cancelbtn" class="regular-button" i18n="cancel"></a>
+            </span>
+        </div>
+    </dialog>
+
+    <dialog id="dialogReportProblems">
+        <h3 i18n="warningTitle"></h3>
+        <div class="content">
+            <div id="dialogReportProblems-header" i18n="reportProblemsDialogHeader"></div>
+            <ul id="dialogReportProblems-list">
+                <!-- List elements added dynamically -->
+            </ul>
+            <div id="dialogReportProblems-footer" i18n="reportProblemsDialogFooter"></div>
+        </div>
+        <div>
+            <span class="buttons">
+                <a href="#" id="dialogReportProblems-closebtn" class="regular-button" i18n="close"></a>
+            </span>
+        </div>
+    </dialog>
+
+    <ul class="hidden"> <!-- Sonar says so -->
+        <li id="dialogReportProblems-listItemTemplate" class="dialogReportProblems-listItem"></li>
+    </ul>
+
+    <dialog class="dialogError">
+        <h3 i18n="errorTitle"></h3>
+        <div class="content">
+            <div class="dialogError-content" style="margin-top: 10px"></div>
+        </div>
+        <div class="buttons">
+            <a href="#" class="dialogError-closebtn regular-button" i18n="close"></a>
+        </div>
+    </dialog>
+
+    <dialog class="dialogYesNo">
+        <h3 class="dialogYesNoTitle"></h3>
+        <div class="dialogYesNoContent"></div>
+        <div class="buttons">
+            <a href="#" class="dialogYesNo-yesButton regular-button"></a>
+            <a href="#" class="dialogYesNo-noButton regular-button"></a>
+        </div>
+    </dialog>
+
+    <dialog class="dialogWait">
+        <div class="data-loading"></div>
+        <h3 class="dialogWaitTitle"></h3>
+        <div class="buttons">
+            <a href="#" class="dialogWait-cancelButton regular-button" i18n="cancel"></a>
+        </div>
+    </dialog>
+
+    <dialog class="dialogInformation">
+        <h3 class="dialogInformationTitle"></h3>
+        <div class="dialogInformationContent"></div>
+        <div class="buttons">
+            <a href="#" class="dialogInformation-confirmButton regular-button"></a>
+        </div>
+    </dialog>
+
+    <dialog class="dialogInteractive">
+        <h3 class="dialogInteractiveTitle"></h3>
+        <div class="dialogInteractiveContent"></div>
+
+        <div class="cli-response">
+            <textarea id="cli-response" readonly rows="32" cols="96"></textarea>
+            <div class="default_btn">
+                <a class="confirm" href="#" i18n="cliConfirmSnippetBtn"></a>
+            </div>
+        </div>
+
+        <div class="cli-command">
+            <input type="text" id="cli-command" i18n_placeholder="cliCommand">
+        </div>
+
+        <div class="buttons">
+            <a href="#" class="dialogInteractive-closeButton regular-button"></a>
+        </div>
+    </dialog>
+</body>
+</html>
