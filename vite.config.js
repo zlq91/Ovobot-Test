@@ -111,6 +111,7 @@ export default defineConfig({
         }),
     ],
     root: "./src",
+    base:"./",
     resolve: {
         alias: {
             "/src": path.resolve(process.cwd(), "src"),
