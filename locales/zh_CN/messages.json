@@ -6132,6 +6132,18 @@
     },
     "defaultSupport": {
         "message": "<span class=\"message-negative\">需要将治具放置水平才可使用加速度校准。</span><br /><br />"
+    },
+    "initialActualCurrentInfoHead":{
+        "message": "实际电流"
+    },
+    "leftMotorActualCurrText": {
+        "message": "左轮实际电流"
+    },
+    "rightMotorActualCurrText": {
+        "message": "右轮实际电流"
+    },
+    "battNum":{
+        "message": "电池数量"
     }
 
 }

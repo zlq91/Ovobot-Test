@@ -209,6 +209,7 @@ const MSPCodes = {
 
     MSP_WIFI_RSSI: 115,
     MSP_BARO_DIFF: 119,//气压值
+    MSP_MOTOR_CURRENT: 123,//马达实际电流
 
     //GET
     MSP_GET_PWMVALUE: 130,

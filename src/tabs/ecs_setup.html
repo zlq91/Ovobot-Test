@@ -32,27 +32,27 @@
                             
                             <tr>
                                 <td i18n="leftMotorCurrent"></td>
-                                <td class="leftAdc">0</td>
+                                <td class="leftAdc text-right">0</td>
                             </tr>
                             <tr>
                                 <td i18n="rightMotorCurrent"></td>
-                                <td class="rightAdc">0</td>
+                                <td class="rightAdc text-right">0</td>
                             </tr>
                             <tr>
                                 <td i18n="fanCurrent"></td>
-                                <td class="fanAdc">0</td>
+                                <td class="fanAdc text-right">0</td>
                             </tr>
                             <tr style="display:none">
                                 <td i18n="battery"></td>
-                                <td class="battAdc">0</td>
+                                <td class="battAdc text-right">0</td>
                             </tr>
                             <tr>
                                 <td i18n="adapter"></td>
-                                <td class="adapterAdc">0</td>
+                                <td class="adapterAdc text-right">0</td>
                             </tr>
                             <tr>
                                 <td i18n="waterbox"></td>
-                                <td class="waterboxAdc">0</td>
+                                <td class="waterboxAdc text-right">0</td>
                             </tr>
                             </tbody>
                         </table>
@@ -69,27 +69,43 @@
                             <tbody>
                                 <tr>
                                     <td i18n="attitudeYaw"></td>
-                                    <td class="attiYaw"></td>
+                                    <td class="attiYaw text-right"></td>
                                 </tr>
                                 <tr style="display:none">
                                     <td i18n="baroTitle"></td>
-                                    <td class="baroVal"></td>
+                                    <td class="baroVal text-right"></td>
                                 </tr>
                                 <tr>
                                     <td i18n="cornerUL"></td>
-                                    <td class="cornerULVal"></td>
+                                    <td class="cornerULVal text-right"></td>
                                 </tr>
                                 <tr>
                                     <td i18n="cornerUR"></td>
-                                    <td class="cornerURVal"></td>
+                                    <td class="cornerURVal text-right"></td>
                                 </tr>
                                 <tr>
                                     <td i18n="cornerBL"></td>
-                                    <td class="cornerBLVal"></td>
+                                    <td class="cornerBLVal text-right"></td>
                                 </tr>
                                 <tr>
                                     <td i18n="cornerBR"></td>
-                                    <td class="cornerBRVal"></td>
+                                    <td class="cornerBRVal text-right"></td>
+                                </tr>
+                                <tr class="model-display">
+                                    <td i18n="collisionUL"></td>
+                                    <td class="collisionULVal collisionval_td text-right">0</td>
+                                </tr>
+                                <tr class="model-display">
+                                    <td i18n="collisionUR"></td>
+                                    <td class="collisionURVal collisionval_td text-right">0</td>
+                                </tr>
+                                <tr class="model-display">
+                                    <td i18n="collisionBL"></td>
+                                    <td class="collisionBLVal collisionval_td text-right">0</td>
+                                </tr>
+                                <tr class="model-display">
+                                    <td i18n="collisionBR"></td>
+                                    <td class="collisionBRVal collisionval_td text-right">0</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -107,15 +123,15 @@
                             
                             <tr>
                                 <td i18n="gyroX"></td>
-                                <td class="gyroXData"></td>
+                                <td class="gyroXData text-right"></td>
                             </tr>
                             <tr>
                                 <td i18n="gyroY"></td>
-                                <td class="gyroYData"></td>
+                                <td class="gyroYData text-right"></td>
                             </tr>
                             <tr>
                                 <td i18n="gyroZ"></td>
-                                <td class="gyroZData"></td>
+                                <td class="gyroZData text-right"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -132,15 +148,15 @@
                             <tbody>
                             <tr>
                                 <td i18n="accX"></td>
-                                <td class="accXData"></td>
+                                <td class="accXData text-right"></td>
                             </tr>
                             <tr>
                                 <td i18n="accY"></td>
-                                <td class="accYData"></td>
+                                <td class="accYData text-right"></td>
                             </tr>
                             <tr>
                                 <td i18n="accZ"></td>
-                                <td class="accZData"></td>
+                                <td class="accZData text-right"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -154,6 +170,27 @@
                 <div class="grid-col col3">
                     <div class="gui_box grey">
                         <div class="gui_box_titlebar">
+                            <div class="spacer_box_title" i18n="initialActualCurrentInfoHead"></div>
+                        </div>
+                        <div class="spacer_box">
+                            <table id="actualCurrentTable" width="100%" border="0" cellpadding="0" cellspacing="0" class="cf_table">
+                                <tbody>
+                                    <tr>
+                                        <td i18n="leftMotorActualCurrText"></td>
+                                        <td class="leftMotorActualCurrValue text-right">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td i18n="rightMotorActualCurrText"></td>
+                                        <td class="rightMotorActualCurrValue text-right">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-col col3">
+                    <div class="gui_box grey">
+                        <div class="gui_box_titlebar">
                             <div class="spacer_box_title" i18n="initialRssiInfoHead"></div>
                         </div>
                         <div class="spacer_box">
@@ -162,7 +199,7 @@
                                 
                                 <tr>
                                     <td i18n="wifiRssiResultText"></td>
-                                    <td class="wifiRssiValue">0</td>
+                                    <td class="wifiRssiValue text-right">0</td>
                                 </tr>
 
                                 </tbody>
@@ -180,18 +217,18 @@
                                 <tbody>
                                     <tr>
                                         <td i18n="baroOriginalName"></td>
-                                        <td class="baroOriginalValue">0</td>
+                                        <td class="baroOriginalValue text-right">0</td>
                                     </tr>
                                     <tr>
                                         <td i18n="baroStandardName"></td>
-                                        <td class="baroStandardValue">0</td>
+                                        <td class="baroStandardValue text-right">0</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                <div class="grid-col col3">
+                <!-- <div class="grid-col col3">
                     <div class="gui_box grey model-display">
                         <div class="gui_box_titlebar">
                             <div class="spacer_box_title" i18n="initialCollisionInfoHead"></div>
@@ -201,27 +238,27 @@
                                 <tbody>
                                     <tr>
                                         <td i18n="collisionUL"></td>
-                                        <td class="collisionULVal">0</td>
+                                        <td class="collisionULVal text-right">0</td>
                                     </tr>
                                     <tr>
                                         <td i18n="collisionUR"></td>
-                                        <td class="collisionURVal">0</td>
+                                        <td class="collisionURVal text-right">0</td>
                                     </tr>
                                     <tr>
                                         <td i18n="collisionBL"></td>
-                                        <td class="collisionBLVal">0</td>
+                                        <td class="collisionBLVal text-right">0</td>
                                     </tr>
                                     <tr>
                                         <td i18n="collisionBR"></td>
-                                        <td class="collisionBRVal">0</td>
+                                        <td class="collisionBRVal text-right">0</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>
-                <div class="grid-col col3">
-                    <div class="gui_box grey model-display">
+                </div> -->
+                <div class="grid-col col3 model-display">
+                    <div class="gui_box grey">
                         <div class="gui_box_titlebar">
                             <div class="spacer_box_title" i18n="initialBatteryInfoHead"></div>
                         </div>
@@ -230,15 +267,19 @@
                                 <tbody>
                                     <tr>
                                         <td i18n="battStatus"></td>
-                                        <td class="battStatusVal">0</td>
+                                        <td class="battStatusVal text-right">0</td>
                                     </tr>
                                     <tr>
                                         <td i18n="battVoltage"></td>
-                                        <td class="battVoltageVal">0</td>
+                                        <td class="battVoltageVal text-right">0</td>
                                     </tr>
                                     <tr>
                                         <td i18n="battChgCurrent"></td>
-                                        <td class="battChgCurrentVal">0</td>
+                                        <td class="battChgCurrentVal text-right">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td i18n="battNum"></td>
+                                        <td class="battNumVal text-right">0</td>
                                     </tr>
                                 </tbody>
                             </table>
