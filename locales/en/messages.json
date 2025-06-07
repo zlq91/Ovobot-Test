@@ -7918,6 +7918,18 @@
     },
     "initialPlayVoiceButton": {
         "message": "Play this voice message"
+    },
+    "initialActualCurrentInfoHead":{
+        "message": "Actual current"
+    },
+    "leftMotorActualCurrText": {
+        "message": "Actual current of left wheel"
+    },
+    "rightMotorActualCurrText": {
+        "message": "Actual current of right wheel"
+    },
+    "battNum":{
+        "message": "Number of batteries"
     }
 
 }
