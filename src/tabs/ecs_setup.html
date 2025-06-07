@@ -91,6 +91,22 @@
                                     <td i18n="cornerBR"></td>
                                     <td class="cornerBRVal text-right"></td>
                                 </tr>
+                                <tr class="model-display">
+                                    <td i18n="collisionUL"></td>
+                                    <td class="collisionULVal collisionval_td text-right">0</td>
+                                </tr>
+                                <tr class="model-display">
+                                    <td i18n="collisionUR"></td>
+                                    <td class="collisionURVal collisionval_td text-right">0</td>
+                                </tr>
+                                <tr class="model-display">
+                                    <td i18n="collisionBL"></td>
+                                    <td class="collisionBLVal collisionval_td text-right">0</td>
+                                </tr>
+                                <tr class="model-display">
+                                    <td i18n="collisionBR"></td>
+                                    <td class="collisionBRVal collisionval_td text-right">0</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -154,6 +170,27 @@
                 <div class="grid-col col3">
                     <div class="gui_box grey">
                         <div class="gui_box_titlebar">
+                            <div class="spacer_box_title" i18n="initialActualCurrentInfoHead"></div>
+                        </div>
+                        <div class="spacer_box">
+                            <table id="actualCurrentTable" width="100%" border="0" cellpadding="0" cellspacing="0" class="cf_table">
+                                <tbody>
+                                    <tr>
+                                        <td i18n="leftMotorActualCurrText"></td>
+                                        <td class="leftMotorActualCurrValue text-right">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td i18n="rightMotorActualCurrText"></td>
+                                        <td class="rightMotorActualCurrValue text-right">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-col col3">
+                    <div class="gui_box grey">
+                        <div class="gui_box_titlebar">
                             <div class="spacer_box_title" i18n="initialRssiInfoHead"></div>
                         </div>
                         <div class="spacer_box">
@@ -191,7 +228,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid-col col3">
+                <!-- <div class="grid-col col3">
                     <div class="gui_box grey model-display">
                         <div class="gui_box_titlebar">
                             <div class="spacer_box_title" i18n="initialCollisionInfoHead"></div>
@@ -219,9 +256,9 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                <div class="grid-col col3">
-                    <div class="gui_box grey model-display">
+                </div> -->
+                <div class="grid-col col3 model-display">
+                    <div class="gui_box grey">
                         <div class="gui_box_titlebar">
                             <div class="spacer_box_title" i18n="initialBatteryInfoHead"></div>
                         </div>
@@ -239,6 +276,10 @@
                                     <tr>
                                         <td i18n="battChgCurrent"></td>
                                         <td class="battChgCurrentVal text-right">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td i18n="battNum"></td>
+                                        <td class="battNumVal text-right">0</td>
                                     </tr>
                                 </tbody>
                             </table>

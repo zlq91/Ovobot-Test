@@ -851,6 +851,11 @@ MspHelper.prototype.process_data = function (dataHandler) {
                             FC.OVOBOT_FUNCTION.batteryStatusVal = data.read8();
                             FC.OVOBOT_FUNCTION.batteryVoltageVal = data.readU8() / 10;
                             FC.OVOBOT_FUNCTION.batteryCurrentVal = data.read16() / 1000;
+                            FC.OVOBOT_FUNCTION.batteryNum = data.read8();
+                            break;
+                        case MSPCodes.MSP_MOTOR_CURRENT:
+                            FC.OVOBOT_FUNCTION.leftActualCurr = data.read16() / 100;
+                            FC.OVOBOT_FUNCTION.rightActualCurr = data.read16() / 100;
                             break;
                         default:
                             console.log("Unsupport text type");

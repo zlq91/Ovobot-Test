@@ -180,6 +180,11 @@ const INITIAL_WIN_FUNCTION = {
     batteryStatusVal: 0,
     batteryVoltageVal: 0,
     batteryCurrentVal: 0,
+    batteryNum: 0,
+
+    //边轮马达实际电流
+    leftActualCurr: 0,
+    rightActualCurr: 0,
 
     isSprayFun: 0,
     isVoiceFun: 0,

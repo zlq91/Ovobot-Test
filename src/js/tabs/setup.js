@@ -63,6 +63,7 @@ setup.initialize = function (callback) {
     //MSP.send_message(MSPCodes.MSP_ACC_TRIM, false, false, load_status);
     load_html();
 
+    let html_blank = '<div class="grid-col col3"></div>';
     let gyroX = Array.from({ length: self.bufLen });
     let gyroY = Array.from({ length: self.bufLen });
     let gyroZ = Array.from({ length: self.bufLen });
@@ -537,7 +538,23 @@ setup.initialize = function (callback) {
             arming_disable_flags_e = $('.arming-disable-flags'),
             batt_status_e = $('.battStatusVal'),
             batt_Voltage_e = $('.battVoltageVal'),
-            batt_Chg_Current_e = $('.battChgCurrentVal');
+            batt_Chg_Current_e = $('.battChgCurrentVal'),
+            batt_Num_e = $('.battNumVal'),
+            left_Motor_Actual_Curr_e = $('.leftMotorActualCurrValue'),
+            right_Motor_Actual_Curr_e = $('.rightMotorActualCurrValue');
+
+        if (FC.CONFIG.isCollision == 1) {
+            //显示碰撞开关表格tr
+            $('.collisionval_td').parent().removeClass('model-display');
+        } else {
+            $('.collisionval_td').parent().addClass('model-display');
+        }
+        if (FC.CONFIG.isBattery == 1) {
+            //显示电池信息
+            $('#batteryval_table').parent().parent().parent().removeClass('model-display');
+        } else {
+            $('#batteryval_table').closest('.grid-row').append(html_blank);
+        }
 
         // if (semver.lt(FC.CONFIG.apiVersion, API_VERSION_1_36)) {
         //     arming_disable_flags_e.hide();
@@ -690,6 +707,10 @@ setup.initialize = function (callback) {
             if (FC.ANALOG.rssi == 0) {
                 rows[18].style.background = "none";
             }
+            MSP.send_message(MSPCodes.MSP_MOTOR_CURRENT, false, false, function () {
+                left_Motor_Actual_Curr_e.text(FC.OVOBOT_FUNCTION.leftActualCurr + " A");
+                right_Motor_Actual_Curr_e.text(FC.OVOBOT_FUNCTION.rightActualCurr + " A");
+            });
             MSP.send_message(MSPCodes.MSP_WIFI_RSSI, false, false, function () {
                 if (FC.ANALOG.rssi == 1) {
                     rows[18].style.background = background_tr.tr_red;
@@ -783,8 +804,6 @@ setup.initialize = function (callback) {
                 }
                 //碰撞检测
                 if (FC.CONFIG.isCollision == 1) {
-                    //显示
-                    $('#collisionval_table').parent().parent().removeClass('model-display');
                     const c_ul_data = bitIsZero(FC.ANALOG.hitCorner, 3) ? 0 : 1;
                     const c_ur_data = bitIsZero(FC.ANALOG.hitCorner, 2) ? 0 : 1;
                     const c_bl_data = bitIsZero(FC.ANALOG.hitCorner, 1) ? 0 : 1;
@@ -794,24 +813,24 @@ setup.initialize = function (callback) {
                     collision_bl_e.text(c_bl_data);
                     collision_br_e.text(c_br_data);
                     if (c_ul_data == 0) {
-                        rows[21].style.background = background_tr.tr_red;
+                        rows[12].style.background = background_tr.tr_red;
                     } else {
-                        rows[21].style.background = background_tr.tr_green;
+                        rows[12].style.background = background_tr.tr_green;
                     }
                     if (c_ur_data == 0) {
-                        rows[22].style.background = background_tr.tr_red;
+                        rows[13].style.background = background_tr.tr_red;
                     } else {
-                        rows[22].style.background = background_tr.tr_green;
+                        rows[13].style.background = background_tr.tr_green;
                     }
                     if (c_bl_data == 0) {
-                        rows[23].style.background = background_tr.tr_red;
+                        rows[14].style.background = background_tr.tr_red;
                     } else {
-                        rows[23].style.background = background_tr.tr_green;
+                        rows[14].style.background = background_tr.tr_green;
                     }
                     if (c_br_data == 0) {
-                        rows[24].style.background = background_tr.tr_red;
+                        rows[15].style.background = background_tr.tr_red;
                     } else {
-                        rows[24].style.background = background_tr.tr_green;
+                        rows[15].style.background = background_tr.tr_green;
                     }
                 }
                 if (selfCheckState == 8) {
@@ -1131,26 +1150,26 @@ setup.initialize = function (callback) {
 
                 if (updateGyroData(FC.SENSOR_DATA.gyroscope[0], FC.SENSOR_DATA.gyroscope[1], FC.SENSOR_DATA.gyroscope[2])) {
                     if (elementAllSame(gyroX) || FC.SENSOR_DATA.gyroscope[0] > 20 || FC.SENSOR_DATA.gyroscope[0] < -20) {
-                        rows[12].style.background = background_tr.tr_red;
+                        rows[16].style.background = background_tr.tr_red;
                     } else {
-                        rows[12].style.background = background_tr.tr_green;
+                        rows[16].style.background = background_tr.tr_green;
                         if (selfCheckState == 1) {
                             gyrovalideCnt += 1;
                         }
                     }
 
                     if (elementAllSame(gyroY) || FC.SENSOR_DATA.gyroscope[1] > 20 || FC.SENSOR_DATA.gyroscope[1] < -20) {
-                        rows[13].style.background = background_tr.tr_red;
+                        rows[17].style.background = background_tr.tr_red;
                     } else {
-                        rows[13].style.background = background_tr.tr_green;
+                        rows[17].style.background = background_tr.tr_green;
                         if (selfCheckState == 1) {
                             gyrovalideCnt += 1;
                         }
                     }
                     if (elementAllSame(gyroZ) || FC.SENSOR_DATA.gyroscope[2] > 20 || FC.SENSOR_DATA.gyroscope[2] < -20) {
-                        rows[14].style.background = background_tr.tr_red;
+                        rows[18].style.background = background_tr.tr_red;
                     } else {
-                        rows[14].style.background = background_tr.tr_green;
+                        rows[18].style.background = background_tr.tr_green;
                         if (selfCheckState == 1) {
                             gyrovalideCnt += 1;
                         }
@@ -1164,26 +1183,26 @@ setup.initialize = function (callback) {
                 if (updateAccData(FC.SENSOR_DATA.accelerometer[0], FC.SENSOR_DATA.accelerometer[1], FC.SENSOR_DATA.accelerometer[2])) {
 
                     if (elementAllSame(accX) || FC.SENSOR_DATA.accelerometer[0] > 300 || FC.SENSOR_DATA.accelerometer[0] < -300) {
-                        rows[15].style.background = background_tr.tr_red;
+                        rows[19].style.background = background_tr.tr_red;
                     } else {
-                        rows[15].style.background = background_tr.tr_green;
+                        rows[19].style.background = background_tr.tr_green;
                         if (selfCheckState == 2) {
                             gyrovalideCnt += 1;
                         }
                     }
 
                     if (elementAllSame(accY) || FC.SENSOR_DATA.accelerometer[1] > 300 || FC.SENSOR_DATA.accelerometer[1] < -300) {
-                        rows[16].style.background = background_tr.tr_red;
+                        rows[20].style.background = background_tr.tr_red;
                     } else {
-                        rows[16].style.background = background_tr.tr_green;
+                        rows[20].style.background = background_tr.tr_green;
                         if (selfCheckState == 2) {
                             gyrovalideCnt += 1;
                         }
                     }
                     if (elementAllSame(accZ) || FC.SENSOR_DATA.accelerometer[2] < 3797 || FC.SENSOR_DATA.accelerometer[2] > 4396) {
-                        rows[17].style.background = background_tr.tr_red;
+                        rows[21].style.background = background_tr.tr_red;
                     } else {
-                        rows[17].style.background = background_tr.tr_green;
+                        rows[21].style.background = background_tr.tr_green;
                         if (selfCheckState == 2) {
                             gyrovalideCnt += 1;
                         }
@@ -1252,7 +1271,6 @@ setup.initialize = function (callback) {
             //电池相关
             if (FC.CONFIG.isBattery == 1) {
                 //显示电池信息
-                $('#batteryval_table').parent().parent().removeClass('model-display');
                 MSP.send_message(MSPCodes.MSP_GET_BATTERY, false, false, function () {
                     let battStatus;
                     switch (FC.OVOBOT_FUNCTION.batteryStatusVal) {
@@ -1279,7 +1297,7 @@ setup.initialize = function (callback) {
                     batt_status_e.text(battStatus);
                     batt_Voltage_e.text(FC.OVOBOT_FUNCTION.batteryVoltageVal + " V");
                     batt_Chg_Current_e.text(FC.OVOBOT_FUNCTION.batteryCurrentVal + " A");
-
+                    batt_Num_e.text(FC.OVOBOT_FUNCTION.batteryNum);
                 });
             }
 
