@@ -1681,6 +1681,11 @@ MspHelper.prototype.process_data = function (dataHandler) {
                 case MSPCodes.MSP_WATER_BOX:
                     FC.ANALOG.waterstate = data.readU8();
                     break;
+                case MSPCodes.MSP_SET_AUTO_TEST_RESULT:
+                    break;
+                case MSPCodes.MSP_GET_AUTO_TEST_RESULT:
+                    FC.OVOBOT_FUNCTION.autoTestResult = data.readU8();
+                    break;
                 default:
                     console.log(`Unknown code detected: ${code} (${getMSPCodeName(code)})`);
             }

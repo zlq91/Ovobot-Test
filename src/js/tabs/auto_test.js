@@ -5,6 +5,7 @@ import MSPCodes from "../msp/MSPCodes.js";
 import FC from "../fc.js";
 import MSP from "../msp.js";
 import { connectDisconnect } from "../serial_backend.js";
+import { get as getConfig, set as setConfig } from "../ConfigStorage";
 
 const auto_test = {
 };
@@ -653,7 +654,8 @@ auto_test.initialize = function (callback) {
                     }
                     
                     pingValue = FC.CONFIG.buildInfo;
-                    if(pingValue!=0){
+                    let value =getConfig('autoTest').autoTest;
+                    if(pingValue!=0 && getConfig('autoTest').autoTest == true){
                         GUI.interval_remove('setup_getRec_fast');
                         auto_test_button.trigger("click");
                     }

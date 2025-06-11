@@ -236,6 +236,9 @@ const MSPCodes = {
 
     //电池
     MSP_GET_BATTERY: 146,
+    //记录自动测试结果
+    MSP_SET_AUTO_TEST_RESULT: 147,
+    MSP_GET_AUTO_TEST_RESULT: 148,
 
     MSP_GET_FUNCTION: 151,
     MSP_SET_AUTO_PLAY_VOICE: 152,

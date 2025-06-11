@@ -7930,6 +7930,15 @@
     },
     "battNum":{
         "message": "Number of batteries"
+    },
+    "autoTest": {
+        "message": "Auto-Test"
+    },
+    "autoTestEnabled": {
+        "message": "Auto-Test: Open - After connecting, it will automatically enter the testing page to start testing"
+    },
+    "autoTestDisabled": {
+        "message": "Auto-Test: Disable - After connecting, enter the settings page"
     }
 
 }
