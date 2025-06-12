@@ -5367,12 +5367,6 @@
     "dialogConfirmResetTitle": {
         "message": "确认"
     },
-    "dialogConfirmResetConfirm": {
-        "message": "重置"
-    },
-    "dialogConfirmResetClose": {
-        "message": "取消"
-    },
     "modeCameraWifi": {
         "message": "摄像头 WI-FI 按键"
     },
@@ -6153,6 +6147,15 @@
     },
     "battNum":{
         "message": "电池数量"
+    },
+    "dialogConfirmResetNote": {
+        "message": "警告：确定已经将风机，马达摆放到安全位置？"
+    },
+    "dialogConfirmResetConfirm": {
+        "message": "确定"
+    },
+    "dialogConfirmResetClose": {
+        "message": "取消"
     }
 
 }

@@ -7191,15 +7191,6 @@
     "dialogConfirmResetTitle": {
         "message": "Confirm"
     },
-    "dialogConfirmResetNote": {
-        "message": "WARNING: Are you sure you want to reset <strong>ALL settings</strong> to an unconfigured state? This is <strong>not</strong> a \"factory reset\". It may cause unexpected issues, and it may be necessary to re-flash your firmware to be able to connect again."
-    },
-    "dialogConfirmResetConfirm": {
-        "message": "Reset"
-    },
-    "dialogConfirmResetClose": {
-        "message": "Cancel"
-    },
     "modeCameraWifi": {
         "message": "CAMERA WI-FI BUTTON"
     },
@@ -7939,6 +7930,15 @@
     },
     "autoTestDisabled": {
         "message": "Auto-Test: Disable - After connecting, enter the settings page"
+    },
+    "dialogConfirmResetNote": {
+        "message": "WARNING: Are you sure you have placed the fan and motor in a safe location?"
+    },
+    "dialogConfirmResetConfirm": {
+        "message": "Reset"
+    },
+    "dialogConfirmResetClose": {
+        "message": "Cancel"
     }
 
 }
