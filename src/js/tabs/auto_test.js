@@ -5,6 +5,7 @@ import MSPCodes from "../msp/MSPCodes.js";
 import FC from "../fc.js";
 import MSP from "../msp.js";
 import { connectDisconnect } from "../serial_backend.js";
+import { get as getConfig, set as setConfig } from "../ConfigStorage";
 
 const auto_test = {
 };
@@ -127,7 +128,6 @@ auto_test.initialize = function (callback) {
                 focusedButtons();
             }
         });
-
         auto_test_button.on('click', function () {
             clear_info();
             //查询软件是否有喷水和语音功能
@@ -247,6 +247,32 @@ auto_test.initialize = function (callback) {
             test_waterpump();
             test_fan();
             test_motor();
+        }
+        getErrompAutoTestResult();
+        function getErrompAutoTestResult() {
+            MSP.send_message(MSPCodes.MSP_GET_AUTO_TEST_RESULT, false, false, function () {
+                if(FC.OVOBOT_FUNCTION.autoTestResult == 0){
+                    //未测试
+                    test_result_empty.removeClass("model-display");
+                    test_result_passed.addClass("model-display");
+                    test_result_failed.addClass("model-display");
+                } else if(FC.OVOBOT_FUNCTION.autoTestResult == 2){
+                    //测试通过
+                    test_result_empty.addClass("model-display");
+                    test_result_passed.removeClass("model-display");
+                    test_result_failed.addClass("model-display");
+                }else if(FC.OVOBOT_FUNCTION.autoTestResult == 3){
+                    //测试失败
+                    test_result_empty.addClass("model-display");
+                    test_result_passed.addClass("model-display");
+                    test_result_failed.removeClass("model-display");
+                }
+            });
+        }
+        function setErrompAutoTestResult(testResult) {
+            MSP.send_message(MSPCodes.MSP_SET_AUTO_TEST_RESULT, [testResult], false, function () {
+                
+            });
         }
 
         function clear_info() {
@@ -624,21 +650,26 @@ auto_test.initialize = function (callback) {
         }
 
         function reverseTestResults() {
+            let result ;
             if (testResult.includes(3)) {
+                result = 3;
                 //测试失败
                 test_result_empty.addClass("model-display");
                 test_result_failed.removeClass("model-display");
                 test_result_passed.addClass("model-display");
             } else if (testResult.includes(1) || testResult.includes(0)) {
+                result = 0;
                 //说明存在未测试项,暂不写入结果
                 test_result_empty.removeClass("model-display");
                 test_result_passed.addClass("model-display");
                 test_result_failed.addClass("model-display");
             } else {
+                result = 2;
                 test_result_empty.addClass("model-display");
                 test_result_passed.removeClass("model-display");
                 test_result_failed.addClass("model-display");
             }
+            setErrompAutoTestResult(result);
             GUI.interval_remove('setup_auto_test_fast');
             GUI.interval_remove('setup_auto_test_cliff_fast');
             GUI.interval_add('setup_getRec_fast', getRec, 500, true);
@@ -653,7 +684,8 @@ auto_test.initialize = function (callback) {
                     }
                     
                     pingValue = FC.CONFIG.buildInfo;
-                    if(pingValue!=0){
+                    let value =getConfig('autoTest').autoTest;
+                    if(pingValue!=0 && getConfig('autoTest').autoTest == true){
                         GUI.interval_remove('setup_getRec_fast');
                         auto_test_button.trigger("click");
                     }

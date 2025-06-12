@@ -26,6 +26,7 @@ const PortHandler = new (function () {
         portOverride: getConfig("portOverride", "/dev/rfcomm0").portOverride,
         virtualMspVersion: "1.46.0",
         autoConnect: getConfig("autoConnect", false).autoConnect,
+        autoTest: getConfig("autoTest", false).autoTest,
     };
 
     this.portPickerDisabled = false;

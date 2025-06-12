@@ -311,11 +311,13 @@ class GuiControl {
     }
     selectDefaultTabWhenConnected() {
         const result = getConfig(["rememberLastTab", "lastTab"]);
-        const tab =
-            result.rememberLastTab && result.lastTab && this.allowedTabs.includes(result.lastTab.substring(4))
-                ? result.lastTab
-                : "tab_auto_test";
-
+        let tab = "tab_setup";
+        if(getConfig('autoTest').autoTest == true){
+            tab = "tab_auto_test";
+        }else if(result.rememberLastTab && result.lastTab && this.allowedTabs.includes(result.lastTab.substring(4))){
+            tab = result.lastTab;
+        }
+        
         $(`#tabs ul.mode-connected .${tab} a`).trigger("click");
     }
     showYesNoDialog(yesNoDialogSettings) {
