@@ -62,6 +62,15 @@
     "autoConnect": {
         "message": "自动连接"
     },
+    "autoTest": {
+        "message": "自动测试"
+    },
+    "autoTestEnabled": {
+        "message": "自动测试：开启 - 连接后会自动进入测试页面开始测试"
+    },
+    "autoTestDisabled": {
+        "message": "自动测试: 禁用- 连接后进入设置页面"
+    },
     "close": {
         "message": "关闭"
     },
@@ -482,7 +491,7 @@
         "message": "当前固件发布时间： <strong>$1<\/strong>"
     },
     "fcInfoReceived": {
-        "message": "飞控信息，识别名：<strong>$1<\/strong>，版本：<strong>$2<\/strong>"
+        "message": "软件信息，版本：<strong>$1<\/strong>"
     },
     "versionLabelTarget": {
         "message": "飞控型号"
@@ -5358,12 +5367,6 @@
     "dialogConfirmResetTitle": {
         "message": "确认"
     },
-    "dialogConfirmResetConfirm": {
-        "message": "重置"
-    },
-    "dialogConfirmResetClose": {
-        "message": "取消"
-    },
     "modeCameraWifi": {
         "message": "摄像头 WI-FI 按键"
     },
@@ -6144,6 +6147,15 @@
     },
     "battNum":{
         "message": "电池数量"
+    },
+    "dialogConfirmResetNote": {
+        "message": "警告：确定已经将风机，马达摆放到安全位置？"
+    },
+    "dialogConfirmResetConfirm": {
+        "message": "确定"
+    },
+    "dialogConfirmResetClose": {
+        "message": "取消"
     }
 
 }

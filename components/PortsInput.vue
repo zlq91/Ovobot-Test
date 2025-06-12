@@ -55,6 +55,15 @@
         </div>
         <div id="auto-connect-and-baud">
             <div
+                id="auto-test-switch"
+                :title="modelValue.autoTest ? $t('autoTestEnabled') : $t('autoTestDisabled')"
+            >
+                <input id="auto-test" v-model="autoTest" class="auto_test togglesmall" type="checkbox" />
+                <span class="auto_test">
+                    {{ $t("autoTest") }}
+                </span>
+            </div>
+            <div
                 id="auto-connect-switch"
                 :title="modelValue.autoConnect ? $t('autoConnectEnabled') : $t('autoConnectDisabled')"
             >
@@ -98,6 +107,7 @@ export default defineComponent({
                 selectedPort: "noselection",
                 selectedBauds: 115200,
                 autoConnect: true,
+                autoTest: false,
             }),
         },
         connectedSerialDevices: {
@@ -143,6 +153,7 @@ export default defineComponent({
         const selectedPort = ref(props.modelValue.selectedPort); // Access through modelValue
         const selectedBauds = ref(props.modelValue.selectedBauds); // Access through modelValue
         const autoConnect = ref(props.modelValue.autoConnect); // Access through modelValue
+        const autoTest = ref(props.modelValue.autoTest); // Access through modelValue
         const baudRates = ref([
             { value: "1000000", label: "1000000" },
             { value: "500000", label: "500000" },
@@ -171,6 +182,10 @@ export default defineComponent({
             emit("update:modelValue", { ...props.modelValue, autoConnect: newValue });
             setConfig({ autoConnect: newValue });
         });
+        watch(autoTest, (newValue) => {
+            emit("update:modelValue", { ...props.modelValue, autoTest: newValue });
+            setConfig({ autoTest: newValue });
+        });
 
         const onChangePort = (event) => {
             const value = event.target.value;
@@ -189,6 +204,7 @@ export default defineComponent({
             selectedPort,
             selectedBauds,
             autoConnect,
+            autoTest,
             baudRates,
             onChangePort,
         };
