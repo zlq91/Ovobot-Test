@@ -491,7 +491,7 @@
         "message": "当前固件发布时间： <strong>$1<\/strong>"
     },
     "fcInfoReceived": {
-        "message": "飞控信息，识别名：<strong>$1<\/strong>，版本：<strong>$2<\/strong>"
+        "message": "软件信息，版本：<strong>$1<\/strong>"
     },
     "versionLabelTarget": {
         "message": "飞控型号"
