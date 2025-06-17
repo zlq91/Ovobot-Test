@@ -3,7 +3,7 @@
   "productName": "Ovobot",
   "displayName": "Ovobot - Configuration and management tool",
   "description": "Crossplatform configuration and management tool for the Ovobot flight control firmware.",
-  "version": "11.0.0",
+  "version": "2.0.0",
   "type": "module",
   "main": "index.html",
   "scripts": {
