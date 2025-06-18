@@ -39,6 +39,7 @@ auto_test.initialize = function (callback) {
             model_motor_status = $("#model-motor-status"),
             model_cliff_status = $("#model-cliff-status"),
             test_result_empty = $(".test-result-empty"),
+            test_under_testing = $(".test-under-testing"),
             test_result_passed = $(".test-result-passed"),
             test_result_failed = $(".test-result-failed"),
             yes_spray_btn = $(".yes-spray-btn"),
@@ -88,7 +89,7 @@ auto_test.initialize = function (callback) {
                 }
             }).length > 0;
             if (!atLeastOneDialogOpen) {//没有弹框弹出
-                buttonsObj = $("#auto-test-button a");
+                buttonsObj = null;
             } else {
                 buttonsObj = $("#" + showModel.find("div.buttons").attr("id") + " a");
             }
@@ -96,26 +97,32 @@ auto_test.initialize = function (callback) {
             focusedIndex = bindKey(focusedIndex, buttonsObj);
         }
         function setFocus(index, obj) {
-            obj.removeClass('focused'); // 先移除所有按钮的聚焦样式
-            if (!obj.eq(index).hasClass("no-click")) {
-                obj.eq(index).addClass('focused'); // 为当前聚焦的按钮添加样式
-                obj.eq(index).focus(); // 将焦点设置到当前按钮
+            if(obj != null){
+                obj.removeClass('focused'); // 先移除所有按钮的聚焦样式
+                if (!obj.eq(index).hasClass("no-click")) {
+                    obj.eq(index).addClass('focused'); // 为当前聚焦的按钮添加样式
+                    obj.eq(index).focus(); // 将焦点设置到当前按钮
+                } else {
+                    index += 1;
+                    setFocus(index, obj);
+                }
             } else {
-                index += 1;
-                setFocus(index, obj);
+                index = null;
             }
             return index;
         }
 
         function bindKey(index, obj) {
-            obj.on('keydown', function (e) {
-                if (e.key === "Tab") { // 检查是否是 Tab 键被按下
-                    e.preventDefault(); // 阻止默认行为，防止浏览器切换焦点
-                    e.stopPropagation();
-                    index = (index + 1) % obj.length; // 计算下一个按钮的索引，实现循环
-                    index = setFocus(index, obj); // 设置焦点和样式
-                }
-            });
+            if(obj != null){
+                obj.on('keydown', function (e) {
+                    if (e.key === "Tab") { // 检查是否是 Tab 键被按下
+                        e.preventDefault(); // 阻止默认行为，防止浏览器切换焦点
+                        e.stopPropagation();
+                        index = (index + 1) % obj.length; // 计算下一个按钮的索引，实现循环
+                        index = setFocus(index, obj); // 设置焦点和样式
+                    }
+                });
+            }
             return index;
         }
         $(document).keydown(function (event) {
@@ -129,19 +136,23 @@ auto_test.initialize = function (callback) {
             }
         });
         auto_test_button.on('click', function () {
-            clear_info();
-            //查询软件是否有喷水和语音功能
-            software_function();
-            GUI.interval_add('setup_auto_test_gyro_fast', test_gyro, 50, true);
-            GUI.interval_add('setup_auto_test_cliff_fast', test_cliff, 50, true);
-            GUI.interval_add('setup_auto_test_fast', auto_test, 50, true);
-            let timerIdCallGyro = setTimeout(() => {
-                GUI.interval_remove('setup_auto_test_gyro_fast');
-                isTestedGyro = true;
-                once_test();
-            }, 1000);
-            timers.push(timerIdCallGyro);
-            result_back();
+            if (!$(this).hasClass("no-click")) {
+                $(this).find("a").addClass('no-click');
+                clear_info();
+                test_under_testing.removeClass("model-display");
+                //查询软件是否有喷水和语音功能
+                software_function();
+                GUI.interval_add('setup_auto_test_gyro_fast', test_gyro, 50, true);
+                GUI.interval_add('setup_auto_test_cliff_fast', test_cliff, 50, true);
+                GUI.interval_add('setup_auto_test_fast', auto_test, 50, true);
+                let timerIdCallGyro = setTimeout(() => {
+                    GUI.interval_remove('setup_auto_test_gyro_fast');
+                    isTestedGyro = true;
+                    once_test();
+                }, 1000);
+                timers.push(timerIdCallGyro);
+                result_back();
+            }
         });
 
         $(".retest-btn a").on('click', function () {
@@ -254,16 +265,19 @@ auto_test.initialize = function (callback) {
                 if(FC.OVOBOT_FUNCTION.autoTestResult == 0){
                     //未测试
                     test_result_empty.removeClass("model-display");
+                    test_under_testing.addClass("model-display");
                     test_result_passed.addClass("model-display");
                     test_result_failed.addClass("model-display");
                 } else if(FC.OVOBOT_FUNCTION.autoTestResult == 2){
                     //测试通过
                     test_result_empty.addClass("model-display");
+                    test_under_testing.addClass("model-display");
                     test_result_passed.removeClass("model-display");
                     test_result_failed.addClass("model-display");
                 }else if(FC.OVOBOT_FUNCTION.autoTestResult == 3){
                     //测试失败
                     test_result_empty.addClass("model-display");
+                    test_under_testing.addClass("model-display");
                     test_result_passed.addClass("model-display");
                     test_result_failed.removeClass("model-display");
                 }
@@ -303,6 +317,7 @@ auto_test.initialize = function (callback) {
             updateDialogMessages(model_waterpump_status, 0);
             updateDialogMessages(model_voice_status, 0);
             test_result_empty.removeClass("model-display");
+            test_under_testing.addClass("model-display");
             test_result_passed.addClass("model-display");
             test_result_failed.addClass("model-display");
         }
@@ -655,17 +670,20 @@ auto_test.initialize = function (callback) {
                 result = 3;
                 //测试失败
                 test_result_empty.addClass("model-display");
+                test_under_testing.addClass("model-display");
                 test_result_failed.removeClass("model-display");
                 test_result_passed.addClass("model-display");
             } else if (testResult.includes(1) || testResult.includes(0)) {
                 result = 0;
                 //说明存在未测试项,暂不写入结果
                 test_result_empty.removeClass("model-display");
+                test_under_testing.addClass("model-display");
                 test_result_passed.addClass("model-display");
                 test_result_failed.addClass("model-display");
             } else {
                 result = 2;
                 test_result_empty.addClass("model-display");
+                test_under_testing.addClass("model-display");
                 test_result_passed.removeClass("model-display");
                 test_result_failed.addClass("model-display");
             }
