@@ -77,64 +77,33 @@ auto_test.initialize = function (callback) {
         const dialogConfirmUnderingTestSpary = $(".dialogConfirmUnderingTest-Spary")[0];
         const dialogConfirmUnderingTestVoice = $(".dialogConfirmUnderingTest-Voice")[0];
 
-        focusedButtons();
-        function focusedButtons() {
+        let yes;
+        let no;
+        // checkDialogIsOpen();
+        function checkDialogIsOpen(){
             let showModel;
-            let buttonsObj;
-            let focusedIndex = 0;
             let atLeastOneDialogOpen = $('dialog').filter(function () {
                 if ($(this).prop('open')) {
                     showModel = $(this);
                     return $(this).prop('open');
                 }
             }).length > 0;
-            if (!atLeastOneDialogOpen) {//没有弹框弹出
-                buttonsObj = null;
-            } else {
-                buttonsObj = $("#" + showModel.find("div.buttons").attr("id") + " a");
-            }
-            focusedIndex = setFocus(focusedIndex, buttonsObj);
-            focusedIndex = bindKey(focusedIndex, buttonsObj);
-        }
-        function setFocus(index, obj) {
-            if(obj != null){
-                obj.removeClass('focused'); // 先移除所有按钮的聚焦样式
-                if (!obj.eq(index).hasClass("no-click")) {
-                    obj.eq(index).addClass('focused'); // 为当前聚焦的按钮添加样式
-                    obj.eq(index).focus(); // 将焦点设置到当前按钮
-                } else {
-                    index += 1;
-                    setFocus(index, obj);
-                }
-            } else {
-                index = null;
-            }
-            return index;
-        }
-
-        function bindKey(index, obj) {
-            if(obj != null){
-                obj.on('keydown', function (e) {
-                    if (e.key === "Tab") { // 检查是否是 Tab 键被按下
-                        e.preventDefault(); // 阻止默认行为，防止浏览器切换焦点
-                        e.stopPropagation();
-                        index = (index + 1) % obj.length; // 计算下一个按钮的索引，实现循环
-                        index = setFocus(index, obj); // 设置焦点和样式
+            if(atLeastOneDialogOpen){//有弹框弹出
+                yes = $("#" + showModel.find("div.buttons").attr("id") + " a.yes");
+                no = $("#" + showModel.find("div.buttons").attr("id") + " a.no");
+                $(document).keydown(function (event) {
+                    if (event.key === "Y" || event.key === "y") { // Enter 键的键码是 13
+                        yes.trigger('click');
+                    }
+                });
+                $(document).keydown(function (event) {
+                    if (event.key === "N" || event.key === "n") { // Enter 键的键码是 13
+                        no.trigger('click');
                     }
                 });
             }
-            return index;
         }
-        $(document).keydown(function (event) {
-            if (event.which === 13 || event.key === "Enter") { // Enter 键的键码是 13
-                event.preventDefault(); // 阻止默认行为，防止浏览器切换焦点
-                event.stopPropagation();
-                let focusedElement = $(':focus'); // 获取当前聚焦的元素
-                // console.log("================focusedElement:" + JSON.stringify(focusedElement, null, 2));
-                focusedElement.click(); // 触发点击事件
-                focusedButtons();
-            }
-        });
+        
         auto_test_button.on('click', function () {
             if (!$(this).hasClass("no-click")) {
                 $(this).find("a").addClass('no-click');
@@ -568,8 +537,7 @@ auto_test.initialize = function (callback) {
                     //调用喷水
                     MSP.send_message(MSPCodes.MSP_SET_SPRAY, [1], false, function () {
                         dialogConfirmUnderingTestSpary.showModal();
-                        // focused(".button-spray");
-                        focusedButtons();
+                        checkDialogIsOpen();
                     });
 
                 } else {
@@ -586,7 +554,7 @@ auto_test.initialize = function (callback) {
                     MSP.send_message(MSPCodes.MSP_SET_AUTO_PLAY_VOICE,[FC.OVOBOT_FUNCTION.voiceIndex], false, function () {
                         //显示弹框
                         dialogConfirmUnderingTestVoice.showModal();
-                        focusedButtons();
+                        checkDialogIsOpen();
                     });
                 } else {
                     updateDialogMessages(model_voice_status, 0);
