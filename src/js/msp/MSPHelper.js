@@ -320,9 +320,7 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     FC.GPS_DATA.update = data.readU8();
                     break;
                 case MSPCodes.MSP_ATTITUDE:
-                    FC.SENSOR_DATA.kinematics[0] = data.read16() / 10.0; // x
-                    FC.SENSOR_DATA.kinematics[1] = data.read16() / 10.0; // y
-                    FC.SENSOR_DATA.kinematics[2] = data.read16(); // z
+                    FC.SENSOR_DATA.kinematics[0] = data.read16();
                     break;
                 case MSPCodes.MSP_ALTITUDE:
                     FC.SENSOR_DATA.altitude = parseFloat((data.read32() / 100.0).toFixed(2)); // correct scale factor
@@ -838,24 +836,6 @@ MspHelper.prototype.process_data = function (dataHandler) {
                             break;
                         case MSPCodes.BUILD_KEY:
                             FC.CONFIG.buildKey = self.getText(data);
-                            break;
-                        case MSPCodes.MSP_BARO_DIFF:
-                            FC.OVOBOT_FUNCTION.barodiff = data.readU16();
-                            FC.OVOBOT_FUNCTION.baroOriginal = data.readU16();
-                            FC.OVOBOT_FUNCTION.baroStandard = data.readU16();
-                            break;
-                        case MSPCodes.MSP_WIFI_RSSI:
-                            FC.ANALOG.rssi = data.readU8();
-                            break;
-                        case MSPCodes.MSP_GET_BATTERY:
-                            FC.OVOBOT_FUNCTION.batteryStatusVal = data.read8();
-                            FC.OVOBOT_FUNCTION.batteryVoltageVal = data.readU8() / 10;
-                            FC.OVOBOT_FUNCTION.batteryCurrentVal = data.read16() / 1000;
-                            FC.OVOBOT_FUNCTION.batteryNum = data.read8();
-                            break;
-                        case MSPCodes.MSP_MOTOR_CURRENT:
-                            FC.OVOBOT_FUNCTION.leftActualCurr = data.read16() / 100;
-                            FC.OVOBOT_FUNCTION.rightActualCurr = data.read16() / 100;
                             break;
                         default:
                             console.log("Unsupport text type");
@@ -1680,6 +1660,24 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     break;
                 case MSPCodes.MSP_WATER_BOX:
                     FC.ANALOG.waterstate = data.readU8();
+                    break;
+                case MSPCodes.MSP_BARO_DIFF:
+                    FC.OVOBOT_FUNCTION.barodiff = data.readU16();
+                    FC.OVOBOT_FUNCTION.baroOriginal = data.readU16();
+                    FC.OVOBOT_FUNCTION.baroStandard = data.readU16();
+                    break;
+                case MSPCodes.MSP_WIFI_RSSI:
+                    FC.ANALOG.rssi = data.readU8();
+                    break;
+                case MSPCodes.MSP_GET_BATTERY:
+                    FC.OVOBOT_FUNCTION.batteryStatusVal = data.read8();
+                    FC.OVOBOT_FUNCTION.batteryVoltageVal = data.readU8() / 10;
+                    FC.OVOBOT_FUNCTION.batteryCurrentVal = data.read16() / 1000;
+                    FC.OVOBOT_FUNCTION.batteryNum = data.read8();
+                    break;
+                case MSPCodes.MSP_MOTOR_CURRENT:
+                    FC.OVOBOT_FUNCTION.leftActualCurr = data.read16() / 100;
+                    FC.OVOBOT_FUNCTION.rightActualCurr = data.read16() / 100;
                     break;
                 case MSPCodes.MSP_SET_AUTO_TEST_RESULT:
                     break;

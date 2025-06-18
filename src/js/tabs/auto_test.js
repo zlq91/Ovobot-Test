@@ -39,6 +39,7 @@ auto_test.initialize = function (callback) {
             model_motor_status = $("#model-motor-status"),
             model_cliff_status = $("#model-cliff-status"),
             test_result_empty = $(".test-result-empty"),
+            test_under_testing = $(".test-under-testing"),
             test_result_passed = $(".test-result-passed"),
             test_result_failed = $(".test-result-failed"),
             yes_spray_btn = $(".yes-spray-btn"),
@@ -76,72 +77,51 @@ auto_test.initialize = function (callback) {
         const dialogConfirmUnderingTestSpary = $(".dialogConfirmUnderingTest-Spary")[0];
         const dialogConfirmUnderingTestVoice = $(".dialogConfirmUnderingTest-Voice")[0];
 
-        focusedButtons();
-        function focusedButtons() {
+        let yes;
+        let no;
+        // checkDialogIsOpen();
+        function checkDialogIsOpen(){
             let showModel;
-            let buttonsObj;
-            let focusedIndex = 0;
             let atLeastOneDialogOpen = $('dialog').filter(function () {
                 if ($(this).prop('open')) {
                     showModel = $(this);
                     return $(this).prop('open');
                 }
             }).length > 0;
-            if (!atLeastOneDialogOpen) {//没有弹框弹出
-                buttonsObj = $("#auto-test-button a");
-            } else {
-                buttonsObj = $("#" + showModel.find("div.buttons").attr("id") + " a");
+            if(atLeastOneDialogOpen){//有弹框弹出
+                yes = $("#" + showModel.find("div.buttons").attr("id") + " a.yes");
+                no = $("#" + showModel.find("div.buttons").attr("id") + " a.no");
+                $(document).keydown(function (event) {
+                    if (event.key === "Y" || event.key === "y") { // Enter 键的键码是 13
+                        yes.trigger('click');
+                    }
+                });
+                $(document).keydown(function (event) {
+                    if (event.key === "N" || event.key === "n") { // Enter 键的键码是 13
+                        no.trigger('click');
+                    }
+                });
             }
-            focusedIndex = setFocus(focusedIndex, buttonsObj);
-            focusedIndex = bindKey(focusedIndex, buttonsObj);
         }
-        function setFocus(index, obj) {
-            obj.removeClass('focused'); // 先移除所有按钮的聚焦样式
-            if (!obj.eq(index).hasClass("no-click")) {
-                obj.eq(index).addClass('focused'); // 为当前聚焦的按钮添加样式
-                obj.eq(index).focus(); // 将焦点设置到当前按钮
-            } else {
-                index += 1;
-                setFocus(index, obj);
-            }
-            return index;
-        }
-
-        function bindKey(index, obj) {
-            obj.on('keydown', function (e) {
-                if (e.key === "Tab") { // 检查是否是 Tab 键被按下
-                    e.preventDefault(); // 阻止默认行为，防止浏览器切换焦点
-                    e.stopPropagation();
-                    index = (index + 1) % obj.length; // 计算下一个按钮的索引，实现循环
-                    index = setFocus(index, obj); // 设置焦点和样式
-                }
-            });
-            return index;
-        }
-        $(document).keydown(function (event) {
-            if (event.which === 13 || event.key === "Enter") { // Enter 键的键码是 13
-                event.preventDefault(); // 阻止默认行为，防止浏览器切换焦点
-                event.stopPropagation();
-                let focusedElement = $(':focus'); // 获取当前聚焦的元素
-                // console.log("================focusedElement:" + JSON.stringify(focusedElement, null, 2));
-                focusedElement.click(); // 触发点击事件
-                focusedButtons();
-            }
-        });
+        
         auto_test_button.on('click', function () {
-            clear_info();
-            //查询软件是否有喷水和语音功能
-            software_function();
-            GUI.interval_add('setup_auto_test_gyro_fast', test_gyro, 50, true);
-            GUI.interval_add('setup_auto_test_cliff_fast', test_cliff, 50, true);
-            GUI.interval_add('setup_auto_test_fast', auto_test, 50, true);
-            let timerIdCallGyro = setTimeout(() => {
-                GUI.interval_remove('setup_auto_test_gyro_fast');
-                isTestedGyro = true;
-                once_test();
-            }, 1000);
-            timers.push(timerIdCallGyro);
-            result_back();
+            if (!$(this).hasClass("no-click")) {
+                $(this).find("a").addClass('no-click');
+                clear_info();
+                test_under_testing.removeClass("model-display");
+                //查询软件是否有喷水和语音功能
+                software_function();
+                GUI.interval_add('setup_auto_test_gyro_fast', test_gyro, 50, true);
+                GUI.interval_add('setup_auto_test_cliff_fast', test_cliff, 50, true);
+                GUI.interval_add('setup_auto_test_fast', auto_test, 50, true);
+                let timerIdCallGyro = setTimeout(() => {
+                    GUI.interval_remove('setup_auto_test_gyro_fast');
+                    isTestedGyro = true;
+                    once_test();
+                }, 1000);
+                timers.push(timerIdCallGyro);
+                result_back();
+            }
         });
 
         $(".retest-btn a").on('click', function () {
@@ -254,16 +234,19 @@ auto_test.initialize = function (callback) {
                 if(FC.OVOBOT_FUNCTION.autoTestResult == 0){
                     //未测试
                     test_result_empty.removeClass("model-display");
+                    test_under_testing.addClass("model-display");
                     test_result_passed.addClass("model-display");
                     test_result_failed.addClass("model-display");
                 } else if(FC.OVOBOT_FUNCTION.autoTestResult == 2){
                     //测试通过
                     test_result_empty.addClass("model-display");
+                    test_under_testing.addClass("model-display");
                     test_result_passed.removeClass("model-display");
                     test_result_failed.addClass("model-display");
                 }else if(FC.OVOBOT_FUNCTION.autoTestResult == 3){
                     //测试失败
                     test_result_empty.addClass("model-display");
+                    test_under_testing.addClass("model-display");
                     test_result_passed.addClass("model-display");
                     test_result_failed.removeClass("model-display");
                 }
@@ -303,6 +286,7 @@ auto_test.initialize = function (callback) {
             updateDialogMessages(model_waterpump_status, 0);
             updateDialogMessages(model_voice_status, 0);
             test_result_empty.removeClass("model-display");
+            test_under_testing.addClass("model-display");
             test_result_passed.addClass("model-display");
             test_result_failed.addClass("model-display");
         }
@@ -553,8 +537,7 @@ auto_test.initialize = function (callback) {
                     //调用喷水
                     MSP.send_message(MSPCodes.MSP_SET_SPRAY, [1], false, function () {
                         dialogConfirmUnderingTestSpary.showModal();
-                        // focused(".button-spray");
-                        focusedButtons();
+                        checkDialogIsOpen();
                     });
 
                 } else {
@@ -571,7 +554,7 @@ auto_test.initialize = function (callback) {
                     MSP.send_message(MSPCodes.MSP_SET_AUTO_PLAY_VOICE,[FC.OVOBOT_FUNCTION.voiceIndex], false, function () {
                         //显示弹框
                         dialogConfirmUnderingTestVoice.showModal();
-                        focusedButtons();
+                        checkDialogIsOpen();
                     });
                 } else {
                     updateDialogMessages(model_voice_status, 0);
@@ -655,17 +638,20 @@ auto_test.initialize = function (callback) {
                 result = 3;
                 //测试失败
                 test_result_empty.addClass("model-display");
+                test_under_testing.addClass("model-display");
                 test_result_failed.removeClass("model-display");
                 test_result_passed.addClass("model-display");
             } else if (testResult.includes(1) || testResult.includes(0)) {
                 result = 0;
                 //说明存在未测试项,暂不写入结果
                 test_result_empty.removeClass("model-display");
+                test_under_testing.addClass("model-display");
                 test_result_passed.addClass("model-display");
                 test_result_failed.addClass("model-display");
             } else {
                 result = 2;
                 test_result_empty.addClass("model-display");
+                test_under_testing.addClass("model-display");
                 test_result_passed.removeClass("model-display");
                 test_result_failed.addClass("model-display");
             }
