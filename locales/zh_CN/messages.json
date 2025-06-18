@@ -687,12 +687,6 @@
     "initialSetupMagHead": {
         "message": "磁力计"
     },
-    "initialSetupBattery": {
-        "message": "电池电压："
-    },
-    "initialSetupBatteryValue": {
-        "message": "$1 V"
-    },
     "initialSetupDrawn": {
         "message": "已用容量："
     },
