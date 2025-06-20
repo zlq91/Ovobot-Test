@@ -746,6 +746,8 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     FC.CONFIG.isBattery = bitValue;
                     bitValue = bitIsOne(val, 3);
                     FC.CONFIG.isCollision = bitValue;
+                    bitValue = bitIsOne(val, 4);
+                    FC.CONFIG.isBaro = bitValue;
                     break;
 
                 case MSPCodes.MSP_FC_VARIANT:
@@ -1662,9 +1664,9 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     FC.ANALOG.waterstate = data.readU8();
                     break;
                 case MSPCodes.MSP_BARO_DIFF:
-                    FC.OVOBOT_FUNCTION.barodiff = data.readU16();
-                    FC.OVOBOT_FUNCTION.baroOriginal = data.readU16();
-                    FC.OVOBOT_FUNCTION.baroStandard = data.readU16();
+                    FC.OVOBOT_FUNCTION.barodiff = data.readU32();
+                    FC.OVOBOT_FUNCTION.baroOriginal = data.readU32();
+                    FC.OVOBOT_FUNCTION.baroStandard = data.readU32();
                     break;
                 case MSPCodes.MSP_WIFI_RSSI:
                     FC.ANALOG.rssi = data.readU8();

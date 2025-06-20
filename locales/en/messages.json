@@ -7808,6 +7808,9 @@
     "baroStandardName": {
         "message": "Standard pressure"
     },
+    "baroDiffName":{
+        "message":"Air pressure difference"
+    },
     "initialBatteryInfoHead": {
         "message": "Battery"
     },

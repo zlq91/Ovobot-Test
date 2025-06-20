@@ -535,6 +535,7 @@ setup.initialize = function (callback) {
             wifi_rssi_e = $('.wifiRssiValue'),
             baro_original_value_e = $('.baroOriginalValue'),
             baro_standard_value_e = $('.baroStandardValue'),
+            baro_diff_value_e = $('.baroDiffValue'),
             arming_disable_flags_e = $('.arming-disable-flags'),
             batt_status_e = $('.battStatusVal'),
             batt_Voltage_e = $('.battVoltageVal'),
@@ -548,6 +549,12 @@ setup.initialize = function (callback) {
             $('.collisionval_td').parent().removeClass('model-display');
         } else {
             $('.collisionval_td').parent().addClass('model-display');
+        }
+        if (FC.CONFIG.isBaro == 1) {
+            //显示气压信息
+            $('#baroval_table').parent().parent().parent().removeClass('model-display');
+        } else {
+            $('#baroval_table').closest('.grid-row').append(html_blank);
         }
         if (FC.CONFIG.isBattery == 1) {
             //显示电池信息
@@ -1262,12 +1269,14 @@ setup.initialize = function (callback) {
                 acc_y_e.text(FC.SENSOR_DATA.accelerometer[1]);
                 acc_z_e.text(FC.SENSOR_DATA.accelerometer[2]);
             });
-
-            //气压
-            MSP.send_message(MSPCodes.MSP_BARO_DIFF, false, false, function () {
-                baro_original_value_e.text(FC.OVOBOT_FUNCTION.baroOriginal);
-                baro_standard_value_e.text(FC.OVOBOT_FUNCTION.baroStandard);
-            });
+            if (FC.CONFIG.isBaro == 1) {
+                //气压
+                MSP.send_message(MSPCodes.MSP_BARO_DIFF, false, false, function () {
+                    baro_original_value_e.text(FC.OVOBOT_FUNCTION.baroOriginal);
+                    baro_standard_value_e.text(FC.OVOBOT_FUNCTION.baroStandard);
+                    baro_diff_value_e.text(FC.OVOBOT_FUNCTION.barodiff);
+                });
+            }
             //电池相关
             if (FC.CONFIG.isBattery == 1) {
                 //显示电池信息

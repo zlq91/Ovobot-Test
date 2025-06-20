@@ -58,6 +58,7 @@ const INITIAL_CONFIG = {
     pidType: 1,//pidtype类型，1速度，2吸力
     isBattery: 0,//0不显示电池tab；1显示
     isCollision: 0,//0不显示碰撞检测table；1显示
+    isBaro:0,//0不显示气压功能；1显示
 };
 
 const INITIAL_ANALOG = {

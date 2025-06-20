@@ -47,10 +47,11 @@ auto_test.initialize = function (callback) {
             yes_voice_btn = $(".yes-voice-btn"),
             no_voice_btn = $(".no-voice-btn"),
             model_waterpump_status = $("#model-waterpump-status"),
-            model_voice_status = $("#model-voice-status");
+            model_voice_status = $("#model-voice-status"),
+            model_baro_status = $("#model-baro-status");
 
         let timers = [];
-        let testResult = [0, 0, 0, 0, 0, 0, 0];//index: 0适配器，1风机，2马达，3陀螺，4喷水，5光电，6语音；值代表的状态：0未测试，2测试通过，3测试失败
+        let testResult = [0, 0, 0, 0, 0, 0, 0, 0];//index: 0适配器，1风机，2马达，3陀螺，4喷水，5光电，6语音,7气压；值代表的状态：0未测试，2测试通过，3测试失败
         let cilffValue = new Array(2);
         let cilffHitValue = new Array(2);
         let gyroXData = [];
@@ -62,6 +63,7 @@ auto_test.initialize = function (callback) {
 
         let isSprayFun = false;//是否有喷水功能
         let isVoiceFun = false;//是否有语音功能
+        let isBaroFun = false;
 
         let model_id;
         let isAutoTest = true;
@@ -103,7 +105,7 @@ auto_test.initialize = function (callback) {
                 });
             }
         }
-        
+        software_function();       
         auto_test_button.on('click', function () {
             if (!$(this).hasClass("no-click")) {
                 $(this).find("a").addClass('no-click');
@@ -178,6 +180,11 @@ auto_test.initialize = function (callback) {
                         isAutoTest = false;
                         software_function();
                         test_voice();
+                    } else if (model_id.indexOf("baro") !== -1) {
+                        testResult[7] = 0;
+                        software_function();
+                        updateDialogMessages(model_baro_status, 0);
+                        test_baro();
                     }
                     result_back(model_id);
                 }
@@ -222,6 +229,7 @@ auto_test.initialize = function (callback) {
         function auto_test() {
             test_adapter();
             test_cliff();
+            test_baro();
         }
         function once_test() {
             test_waterpump();
@@ -260,7 +268,7 @@ auto_test.initialize = function (callback) {
 
         function clear_info() {
             clearAllTimers();
-            testResult = [0, 0, 0, 0, 0, 0, 0];//index: 0适配器，1风机，2马达，3陀螺，4喷水，5光电，6语音；值代表的状态：0未测试，2测试通过，3测试失败
+            testResult = [0, 0, 0, 0, 0, 0, 0, 0];//index: 0适配器，1风机，2马达，3陀螺，4喷水，5光电，6语音；值代表的状态：0未测试，2测试通过，3测试失败
             gyroXData = [];
             gyroYData = [];
             gyroZData = [];
@@ -274,6 +282,7 @@ auto_test.initialize = function (callback) {
 
             isSprayFun = false;//是否有喷水功能
             isVoiceFun = false;//是否有语音功能
+            isBaroFun = false;
 
             isAutoTest = true;
 
@@ -285,6 +294,7 @@ auto_test.initialize = function (callback) {
             updateDialogMessages(model_cliff_status, 0);
             updateDialogMessages(model_waterpump_status, 0);
             updateDialogMessages(model_voice_status, 0);
+            updateDialogMessages(model_baro_status, 0);
             test_result_empty.removeClass("model-display");
             test_under_testing.addClass("model-display");
             test_result_passed.addClass("model-display");
@@ -330,6 +340,18 @@ auto_test.initialize = function (callback) {
                         updateDialogMessages(model_motor_status, 3);
                     }
                 }
+                //气压
+                if (FC.CONFIG.isBaro == 1) {
+                    if (modelId == model_baro_status.attr("id") || modelId == undefined) {
+                        if (testResult[7] == 2) {
+                            updateDialogMessages(model_baro_status, 2);
+                        } else if (testResult[7] == 3) {
+                            updateDialogMessages(model_baro_status, 3);
+                        }
+                    }
+                }else {//没有气压功能默认测试是成功的
+                    updateDialogMessages(model_baro_status, 2);
+                }
 
                 //光电开关最后判断
                 if (modelId == model_cliff_status.attr("id") || modelId == undefined) {
@@ -366,26 +388,36 @@ auto_test.initialize = function (callback) {
         }
 
         function software_function() {
+            if (FC.CONFIG.isBaro == 1) {
+                isBaroFun = true;
+                //显示气压模块
+                model_baro_status.closest('.grid-row').children('div').removeClass("model-display");
+            } else {
+                isBaroFun = false;
+                testResult[7] = 2;
+                //关闭气压模块
+                model_baro_status.closest('.grid-row').children("div").addClass("model-display");
+            }
             MSP.send_message(MSPCodes.MSP_GET_FUNCTION, false, false, function () {
                 if (FC.OVOBOT_FUNCTION.isSprayFun == 1) {
                     isSprayFun = true;
                     //显示喷水模块
-                    model_waterpump_status.closest('.grid-row').removeClass("model-display");
+                    model_waterpump_status.closest('.grid-row').children('div').removeClass("model-display");
                 } else {
                     isSprayFun = false;
                     testResult[4] = 2;//没有此功能时，默认测试通过
                     //关闭喷水模块
-                    model_waterpump_status.closest('.grid-row').addClass("model-display");
+                    model_waterpump_status.closest('.grid-row').children('div').addClass("model-display");
                 }
                 if (FC.OVOBOT_FUNCTION.isVoiceFun == 1) {
                     isVoiceFun = true;
                     //显示语音模块
-                    model_voice_status.closest('.grid-row').removeClass("model-display");
+                    model_voice_status.closest('.grid-row').children('div').removeClass("model-display");
                 } else {
                     isVoiceFun = false;
                     testResult[6] = 2;
                     //关闭语音模块
-                    model_voice_status.closest('.grid-row').addClass("model-display");
+                    model_voice_status.closest('.grid-row').children('div').addClass("model-display");
                 }
             });
         }
@@ -594,6 +626,26 @@ auto_test.initialize = function (callback) {
                     }
                 }
             });
+        }
+        function test_baro(){
+            if (isBaroFun == true) {
+                //测试状态改变
+                updateDialogMessages(model_baro_status, 1);
+                //气压
+                MSP.send_message(MSPCodes.MSP_BARO_DIFF, false, false, function () {
+                    const baroOriginal = FC.OVOBOT_FUNCTION.baroOriginal;
+                    const baroStandard = FC.OVOBOT_FUNCTION.baroStandard;
+                    if(baroOriginal> 90000 && baroOriginal<102000){
+                        testResult[7] = 2;
+                    }else {
+                        testResult[7] = 3;
+                    }
+
+                });
+            }else {
+                updateDialogMessages(model_baro_status, 0);
+            }
+            
         }
 
         function bitIsZero(x, bitIndex) {
