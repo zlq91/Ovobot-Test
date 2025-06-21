@@ -7942,6 +7942,9 @@
     },
     "dialogConfirmResetClose": {
         "message": "Cancel"
+    },
+    "initialAccCaliButton": {
+        "message": "Acceleration calibration"
     }
 
 }
