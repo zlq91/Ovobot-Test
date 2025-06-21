@@ -237,7 +237,7 @@ function setConnectionTimeout() {
                 }, 100);
             }
         },
-        10000,
+        5000,
     );
 }
 
