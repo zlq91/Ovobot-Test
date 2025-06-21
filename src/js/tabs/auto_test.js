@@ -725,6 +725,7 @@ auto_test.initialize = function (callback) {
                     let value =getConfig('autoTest').autoTest;
                     if(pingValue!=0 && getConfig('autoTest').autoTest == true){
                         GUI.interval_remove('setup_getRec_fast');
+                        clear_info();
                         auto_test_button.trigger("click");
                     }
                 }
