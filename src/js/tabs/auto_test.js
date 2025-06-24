@@ -513,11 +513,20 @@ auto_test.initialize = function (callback) {
             MSP.send_message(MSPCodes.MSP_ANALOG, false, false, function () {
                 //风机电流
                 if(type == 1){
-                    if (FC.ANALOG.fanAdc < 2500 || FC.ANALOG.fanAdc > 3100) {
-                        testResult[1] = 3;
+                    if(FC.CONFIG.isFanPositive == 1){
+                        if (FC.ANALOG.fanAdc > 0 && FC.ANALOG.fanAdc < 1000) {
+                            testResult[1] = 2;
+                        } else {
+                            testResult[1] = 3;
+                        }
                     } else {
-                        testResult[1] = 2;
+                        if (FC.ANALOG.fanAdc < 2500 || FC.ANALOG.fanAdc > 3100) {
+                            testResult[1] = 3;
+                        } else {
+                            testResult[1] = 2;
+                        }
                     }
+                    
                 }
                 //马达电流
                 if(type == 2){
