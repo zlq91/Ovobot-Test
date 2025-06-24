@@ -512,19 +512,21 @@ auto_test.initialize = function (callback) {
             //电流
             MSP.send_message(MSPCodes.MSP_ANALOG, false, false, function () {
                 //风机电流
-
-                if (type == 1 && (FC.ANALOG.fanAdc < 2500 || FC.ANALOG.fanAdc > 3100)) {
-                    testResult[1] = 3;
-                } else {
-                    testResult[1] = 2;
+                if(type == 1){
+                    if (FC.ANALOG.fanAdc < 2500 || FC.ANALOG.fanAdc > 3100) {
+                        testResult[1] = 3;
+                    } else {
+                        testResult[1] = 2;
+                    }
                 }
                 //马达电流
-                if (type == 2 && (FC.ANALOG.leftMotorAdc < 2500 || FC.ANALOG.leftMotorAdc > 3100 || FC.ANALOG.rightMotorAdc < 2500 || FC.ANALOG.rightMotorAdc > 3100)) {
-                    testResult[2] = 3;
-                } else {
-                    testResult[2] = 2;
+                if(type == 2){
+                    if (FC.ANALOG.leftMotorAdc < 2500 || FC.ANALOG.leftMotorAdc > 3100 || FC.ANALOG.rightMotorAdc < 2500 || FC.ANALOG.rightMotorAdc > 3100) {
+                        testResult[2] = 3;
+                    } else {
+                        testResult[2] = 2;
+                    }
                 }
-
             });
         }
         //陀螺仪检测
@@ -732,6 +734,7 @@ auto_test.initialize = function (callback) {
             GUI.interval_remove('setup_auto_test_fast');
             GUI.interval_remove('setup_auto_test_cliff_fast');
             GUI.interval_add('setup_getRec_fast', getRec, 500, true);
+            auto_test_button.find("a").removeClass('no-click');
         }
         function getRec(){
             MSP.callbacks=[];
