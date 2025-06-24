@@ -59,6 +59,7 @@ const INITIAL_CONFIG = {
     isBattery: 0,//0不显示电池tab；1显示
     isCollision: 0,//0不显示碰撞检测table；1显示
     isBaro:0,//0不显示气压功能；1显示
+    isCliff:0//0不显示气压功能；1显示
 };
 
 const INITIAL_ANALOG = {

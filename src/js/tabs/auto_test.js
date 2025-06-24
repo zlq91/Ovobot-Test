@@ -64,6 +64,7 @@ auto_test.initialize = function (callback) {
         let isSprayFun = false;//是否有喷水功能
         let isVoiceFun = false;//是否有语音功能
         let isBaroFun = false;
+        let isCliffFun = false;
 
         let model_id;
         let isAutoTest = true;
@@ -283,6 +284,7 @@ auto_test.initialize = function (callback) {
             isSprayFun = false;//是否有喷水功能
             isVoiceFun = false;//是否有语音功能
             isBaroFun = false;
+            isCliffFun = false;
 
             isAutoTest = true;
 
@@ -354,32 +356,36 @@ auto_test.initialize = function (callback) {
                 }
 
                 //光电开关最后判断
-                if (modelId == model_cliff_status.attr("id") || modelId == undefined) {
-                    // console.log("======================cilffValue[0]:" + cilffValue[0] + " || ===================cilffValue[1]:" + cilffValue[1]);
-                    let exists_1 = cilffValue[0] == undefined ? true : cilffValue[0].includes(0);
-                    let exists_0 = cilffValue[1] == undefined ? true : cilffValue[1].includes(1);
-                    
-                    
-                    if (exists_1 || exists_0) {
-                        testResult[5] = 3;
-                        updateDialogMessages(model_cliff_status, 3);
-                    } else {
-                        testResult[5] = 2;
-                        updateDialogMessages(model_cliff_status, 2);
-                    }
-
-                    //碰撞检测
-                    if (FC.CONFIG.isCollision == 1) {
-                        let c_exists_1 = cilffHitValue[0] == undefined ? true : cilffHitValue[0].includes(0);
-                        let c_exists_0 = cilffHitValue[1] == undefined ? true : cilffHitValue[1].includes(1);
-                        if (exists_1 || exists_0 || c_exists_1 || c_exists_0) {
+                if (FC.CONFIG.isCliff == 1) {
+                    if (modelId == model_cliff_status.attr("id") || modelId == undefined) {
+                        // console.log("======================cilffValue[0]:" + cilffValue[0] + " || ===================cilffValue[1]:" + cilffValue[1]);
+                        let exists_1 = cilffValue[0] == undefined ? true : cilffValue[0].includes(0);
+                        let exists_0 = cilffValue[1] == undefined ? true : cilffValue[1].includes(1);
+                        
+                        
+                        if (exists_1 || exists_0) {
                             testResult[5] = 3;
                             updateDialogMessages(model_cliff_status, 3);
                         } else {
                             testResult[5] = 2;
                             updateDialogMessages(model_cliff_status, 2);
                         }
+
+                        //碰撞检测
+                        if (FC.CONFIG.isCollision == 1) {
+                            let c_exists_1 = cilffHitValue[0] == undefined ? true : cilffHitValue[0].includes(0);
+                            let c_exists_0 = cilffHitValue[1] == undefined ? true : cilffHitValue[1].includes(1);
+                            if (exists_1 || exists_0 || c_exists_1 || c_exists_0) {
+                                testResult[5] = 3;
+                                updateDialogMessages(model_cliff_status, 3);
+                            } else {
+                                testResult[5] = 2;
+                                updateDialogMessages(model_cliff_status, 2);
+                            }
+                        }
                     }
+                }else {
+                    updateDialogMessages(model_cliff_status, 2);
                 }
                 //整体测试结果
                 reverseTestResults();
@@ -397,6 +403,16 @@ auto_test.initialize = function (callback) {
                 testResult[7] = 2;
                 //关闭气压模块
                 model_baro_status.closest('.grid-row').children("div").addClass("model-display");
+            }
+            if (FC.CONFIG.isCliff == 1) {
+                isCliffFun = true;
+                //显示光电模块
+                model_cliff_status.closest('.grid-row').children('div').removeClass("model-display");
+            } else {
+                isCliffFun = false;
+                testResult[5] = 2;
+                //关闭光电模块
+                model_cliff_status.closest('.grid-row').children("div").addClass("model-display");
             }
             MSP.send_message(MSPCodes.MSP_GET_FUNCTION, false, false, function () {
                 if (FC.OVOBOT_FUNCTION.isSprayFun == 1) {
@@ -598,34 +614,39 @@ auto_test.initialize = function (callback) {
         //光电
         function test_cliff() {
             //测试状态改变
-            updateDialogMessages(model_cliff_status, 1);
-            MSP.send_message(MSPCodes.MSP_FOURCORNER, false, false, function () {
-                const ul_data = bitIsZero(FC.ANALOG.corner, 3) ? 0 : 1;
-                const ur_data = bitIsZero(FC.ANALOG.corner, 2) ? 0 : 1;
-                const bl_data = bitIsZero(FC.ANALOG.corner, 1) ? 0 : 1;
-                const br_data = bitIsZero(FC.ANALOG.corner, 0) ? 0 : 1;
-                if (FC.ANALOG.corner == 0x0f) {
-                    cilffValue[0] = [ul_data, ur_data, bl_data, br_data];
-                }
-                if (FC.ANALOG.corner == 0x00) {
-                    cilffValue[1] = [ul_data, ur_data, bl_data, br_data];
-                }
-                // console.log("======================FC.ANALOG.corner:" + FC.ANALOG.corner);
+            if(isCliffFun == true){
+                updateDialogMessages(model_cliff_status, 1);
+                MSP.send_message(MSPCodes.MSP_FOURCORNER, false, false, function () {
+                    const ul_data = bitIsZero(FC.ANALOG.corner, 3) ? 0 : 1;
+                    const ur_data = bitIsZero(FC.ANALOG.corner, 2) ? 0 : 1;
+                    const bl_data = bitIsZero(FC.ANALOG.corner, 1) ? 0 : 1;
+                    const br_data = bitIsZero(FC.ANALOG.corner, 0) ? 0 : 1;
+                    if (FC.ANALOG.corner == 0x0f) {
+                        cilffValue[0] = [ul_data, ur_data, bl_data, br_data];
+                    }
+                    if (FC.ANALOG.corner == 0x00) {
+                        cilffValue[1] = [ul_data, ur_data, bl_data, br_data];
+                    }
+                    // console.log("======================FC.ANALOG.corner:" + FC.ANALOG.corner);
 
-                //碰撞检测
-                if (FC.CONFIG.isCollision == 1) {
-                    const c_ul_data = bitIsZero(FC.ANALOG.hitCorner, 3) ? 0 : 1;
-                    const c_ur_data = bitIsZero(FC.ANALOG.hitCorner, 2) ? 0 : 1;
-                    const c_bl_data = bitIsZero(FC.ANALOG.hitCorner, 1) ? 0 : 1;
-                    const c_br_data = bitIsZero(FC.ANALOG.hitCorner, 0) ? 0 : 1;
-                    if (FC.ANALOG.hitCorner == 0x0f) {
-                        cilffHitValue[0] = [c_ul_data, c_ur_data, c_bl_data, c_br_data];
+                    //碰撞检测
+                    if (FC.CONFIG.isCollision == 1) {
+                        const c_ul_data = bitIsZero(FC.ANALOG.hitCorner, 3) ? 0 : 1;
+                        const c_ur_data = bitIsZero(FC.ANALOG.hitCorner, 2) ? 0 : 1;
+                        const c_bl_data = bitIsZero(FC.ANALOG.hitCorner, 1) ? 0 : 1;
+                        const c_br_data = bitIsZero(FC.ANALOG.hitCorner, 0) ? 0 : 1;
+                        if (FC.ANALOG.hitCorner == 0x0f) {
+                            cilffHitValue[0] = [c_ul_data, c_ur_data, c_bl_data, c_br_data];
+                        }
+                        if (FC.ANALOG.hitCorner == 0x00) {
+                            cilffHitValue[1] = [c_ul_data, c_ur_data, c_bl_data, c_br_data];
+                        }
                     }
-                    if (FC.ANALOG.hitCorner == 0x00) {
-                        cilffHitValue[1] = [c_ul_data, c_ur_data, c_bl_data, c_br_data];
-                    }
-                }
-            });
+                });
+            }else {
+                updateDialogMessages(model_cliff_status, 0);
+            }
+            
         }
         function test_baro(){
             if (isBaroFun == true) {

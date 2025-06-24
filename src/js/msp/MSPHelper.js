@@ -748,6 +748,8 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     FC.CONFIG.isCollision = bitValue;
                     bitValue = bitIsOne(val, 4);
                     FC.CONFIG.isBaro = bitValue;
+                    bitValue = bitIsOne(val, 5);
+                    FC.CONFIG.isCliff = bitValue;
                     break;
 
                 case MSPCodes.MSP_FC_VARIANT:
