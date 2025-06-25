@@ -52,7 +52,7 @@ class MSPConnectorImpl {
                         disconnectAndCleanup();
                     }
                 },
-                10000,
+                5000,
             );
 
             serial.removeEventListener("receive", readSerialAdapter);

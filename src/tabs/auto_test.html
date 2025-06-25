@@ -238,7 +238,7 @@
                 </div>
             </div>
         </div>
-        <div class="grid-row model_waterpump model-display">
+        <div class="grid-row model_waterpump ">
             <div class="grid-col col12">
                 <div class="grid-row-title">
                     <img src="images/ovobot_images/model_open_close.png" class="model_open_close rotate-90"
@@ -332,7 +332,7 @@
                 </div>
             </div>
         </div>
-        <div class="grid-row model_voice model-display">
+        <div class="grid-row model_voice ">
             <div class="grid-col col12">
                 <div class="grid-row-title">
                     <img src="images/ovobot_images/model_open_close.png" class="model_open_close rotate-90"
@@ -373,6 +373,53 @@
                     </div>
                     <div class="grid-col col1">
                         <div class="default_btn model-gyro-btn retest-btn" id="btn_voice">
+                            <a class="clockwise" i18n="retest" tabindex="0"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-row model_baro">
+            <div class="grid-col col12">
+                <div class="grid-row-title">
+                    <img src="images/ovobot_images/model_open_close.png" class="model_open_close rotate-90"
+                        alt="公司Logo" />
+                    <span class="grid-col col12" i18n="baroTitleTest"></span>
+                </div>
+            </div>
+            <div class="grid-col col12 grid-row-content " id="model-baro-status">
+                <div class="grid-row">
+                    <div class="grid-col col5 test-status">
+                        <span i18n="testStatus"></span>
+                    </div>
+                    <div class="grid-col col6 not-tested ">
+                        <div class="svg-dot-position">
+                            <svg width="16" height="16">
+                                <circle cx="8" cy="8" r="8" fill="white" />
+                            </svg>
+                        </div>
+                        <span i18n="notTested"></span>
+                    </div>
+                    <div class="grid-col col6 under-testing model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="yellow" />
+                        </svg>
+                        <span i18n="underTesting"></span>
+                    </div>
+                    <div class="grid-col col6 test-passed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="green" />
+                        </svg>
+                        <span i18n="testPassed"></span>
+                    </div>
+                    <div class="grid-col col6 test-failed model-display">
+                        <svg width="16" height="16">
+                            <circle cx="8" cy="8" r="8" fill="red" />
+                        </svg>
+                        <span i18n="testFailed"></span>
+                    </div>
+                    <div class="grid-col col1">
+                        <div class="default_btn model-gyro-btn retest-btn" id="btn_baro">
                             <a class="clockwise" i18n="retest" tabindex="0"></a>
                         </div>
                     </div>

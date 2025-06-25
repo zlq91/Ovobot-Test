@@ -560,7 +560,7 @@
         "message": "Failed to initiate unprotect routine"
     },
     "noConfigurationReceived": {
-        "message": "No configuration received within <span class=\"message-negative\">10 seconds</span>, communication <span class=\"message-negative\">failed</span>"
+        "message": "No configuration received within <span class=\"message-negative\">5 seconds</span>, communication <span class=\"message-negative\">failed</span>"
     },
     "firmwareVersionNotSupported": {
         "message": "This firmware version is <span class=\"message-negative\">not supported</span>. Please upgrade to firmware that supports api version <strong>$1</strong> or higher. Use CLI for backup before flashing. CLI backup/restore procedure is in the documention.<br />Alternatively download and use an old version of the configurator if you are not ready to upgrade."
@@ -7808,6 +7808,9 @@
     "baroStandardName": {
         "message": "Standard pressure"
     },
+    "baroDiffName":{
+        "message":"Air pressure difference"
+    },
     "initialBatteryInfoHead": {
         "message": "Battery"
     },
@@ -7939,6 +7942,9 @@
     },
     "dialogConfirmResetClose": {
         "message": "Cancel"
+    },
+    "initialAccCaliButton": {
+        "message": "Acceleration calibration"
     }
 
 }

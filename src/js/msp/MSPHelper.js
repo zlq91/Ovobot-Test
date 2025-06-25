@@ -738,14 +738,20 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     FC.CONFIG.build = data.readU8();
                     let val = data.readU8();
                     // 创建位掩码
-                    let bitValue = bitIsOne(val, 0);  // 对于第一位，应该是 1 << 0
-                    FC.CONFIG.isConfig = bitValue;
-                    bitValue = bitIsOne(val, 1);
-                    FC.CONFIG.pidType = bitValue;
-                    bitValue = bitIsOne(val, 2);
-                    FC.CONFIG.isBattery = bitValue;
-                    bitValue = bitIsOne(val, 3);
-                    FC.CONFIG.isCollision = bitValue;
+                    // let bitValue = bitIsOne(val, 0);  // 对于第一位，应该是 1 << 0
+                    FC.CONFIG.isConfig = bitIsOne(val, 0);
+                    // bitValue = bitIsOne(val, 1);
+                    FC.CONFIG.pidType = bitIsOne(val, 1);
+                    // bitValue = bitIsOne(val, 2);
+                    FC.CONFIG.isBattery = bitIsOne(val, 2);
+                    // bitValue = bitIsOne(val, 3);
+                    FC.CONFIG.isCollision = bitIsOne(val, 3);
+                    // bitValue = bitIsOne(val, 4);
+                    FC.CONFIG.isBaro = bitIsOne(val, 4);
+                    // bitValue = bitIsOne(val, 5);
+                    FC.CONFIG.isCliff = bitIsOne(val, 5);
+                    // bitValue = bitIsOne(val, 6);
+                    FC.CONFIG.isFanPositive = bitIsOne(val, 6);
                     break;
 
                 case MSPCodes.MSP_FC_VARIANT:
@@ -1662,9 +1668,9 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     FC.ANALOG.waterstate = data.readU8();
                     break;
                 case MSPCodes.MSP_BARO_DIFF:
-                    FC.OVOBOT_FUNCTION.barodiff = data.readU16();
-                    FC.OVOBOT_FUNCTION.baroOriginal = data.readU16();
-                    FC.OVOBOT_FUNCTION.baroStandard = data.readU16();
+                    FC.OVOBOT_FUNCTION.barodiff = data.readU32();
+                    FC.OVOBOT_FUNCTION.baroOriginal = data.readU32();
+                    FC.OVOBOT_FUNCTION.baroStandard = data.readU32();
                     break;
                 case MSPCodes.MSP_WIFI_RSSI:
                     FC.ANALOG.rssi = data.readU8();

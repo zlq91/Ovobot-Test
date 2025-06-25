@@ -232,9 +232,12 @@ function setConnectionTimeout() {
                 gui_log(i18n.getMessage("noConfigurationReceived"));
 
                 connectDisconnect();
+                setTimeout(function () {
+                    $("a.connection_button__link").trigger("click");
+                }, 100);
             }
         },
-        10000,
+        5000,
     );
 }
 
