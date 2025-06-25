@@ -5737,6 +5737,9 @@
     "voiceTitle": {
         "message": "语音"
     },
+    "baroTitleTest": {
+        "message": "气压"
+    },
     "testStatus": {
         "message": "测试状态:"
     },
@@ -5925,6 +5928,9 @@
     },
     "baroStandardName":{
         "message": "标准气压"
+    },
+    "baroDiffName":{
+        "message":"气压差值"
     },
     "initialBatteryInfoHead": {
         "message": "电池"
