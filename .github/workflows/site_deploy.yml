@@ -8,7 +8,7 @@ on:
  
 jobs:
   
-  check_comments_and_build:
+  install_node_and_deploy:
     runs-on: ubuntu-latest 
     steps:
     - uses: actions/checkout@v2
