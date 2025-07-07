@@ -1668,9 +1668,10 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     FC.ANALOG.waterstate = data.readU8();
                     break;
                 case MSPCodes.MSP_BARO_DIFF:
-                    FC.OVOBOT_FUNCTION.barodiff = data.readU32();
+                    FC.OVOBOT_FUNCTION.fanDiff = data.readU32();
                     FC.OVOBOT_FUNCTION.baroOriginal = data.readU32();
                     FC.OVOBOT_FUNCTION.baroStandard = data.readU32();
+                    FC.OVOBOT_FUNCTION.barodiff = FC.OVOBOT_FUNCTION.baroStandard-FC.OVOBOT_FUNCTION.baroOriginal;
                     break;
                 case MSPCodes.MSP_WIFI_RSSI:
                     FC.ANALOG.rssi = data.readU8();

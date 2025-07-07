@@ -168,9 +168,10 @@ const INITIAL_WIN_FUNCTION = {
     gyroupdiffthreshold: 0,
     gyroupthreshold: 0,
     //气压
-    barodiff: 0,//差值
+    fanDiff: 0,//差值
     baroOriginal: 0,//实时值
     baroStandard: 0,//标准值
+    barodiff: 0,//差值
 
     //pid
     pidKpVal: 0,
