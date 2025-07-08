@@ -33,7 +33,7 @@ jobs:
  
     - name: Deploy to GitHub Pages
       if: ${{ github.ref == 'refs/heads/main' }}
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.ZLQ_TOKEN }}
         publish_dir: ./docs  # 确保这里的路径正确，通常是 'docs' 或 'build' 等目录
