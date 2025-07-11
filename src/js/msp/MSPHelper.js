@@ -738,20 +738,27 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     FC.CONFIG.build = data.readU8();
                     let val = data.readU8();
                     // 创建位掩码
-                    // let bitValue = bitIsOne(val, 0);  // 对于第一位，应该是 1 << 0
+                    let bitValue = bitIsOne(val, 0);  // 对于第一位，应该是 1 << 0
                     FC.CONFIG.isConfig = bitIsOne(val, 0);
-                    // bitValue = bitIsOne(val, 1);
+                    bitValue = bitIsOne(val, 1);
                     FC.CONFIG.pidType = bitIsOne(val, 1);
-                    // bitValue = bitIsOne(val, 2);
+                    bitValue = bitIsOne(val, 2);
                     FC.CONFIG.isBattery = bitIsOne(val, 2);
-                    // bitValue = bitIsOne(val, 3);
+                    bitValue = bitIsOne(val, 3);
                     FC.CONFIG.isCollision = bitIsOne(val, 3);
-                    // bitValue = bitIsOne(val, 4);
+                    bitValue = bitIsOne(val, 4);
                     FC.CONFIG.isBaro = bitIsOne(val, 4);
                     // bitValue = bitIsOne(val, 5);
                     FC.CONFIG.isCliff = bitIsOne(val, 5);
                     // bitValue = bitIsOne(val, 6);
                     FC.CONFIG.isFanPositive = bitIsOne(val, 6);
+                    // 创建位掩码
+                    let isFun = data.readU8();
+                    let bitValue_f = bitIsOne(isFun, 0);  // 对于第一位，应该是 1 << 0
+                    FC.OVOBOT_FUNCTION.isSprayFun = bitValue_f;
+                    bitValue_f = bitIsOne(isFun, 1);
+                    FC.OVOBOT_FUNCTION.isVoiceFun = bitValue_f;
+                    FC.OVOBOT_FUNCTION.voiceIndex = data.readU16();
                     break;
 
                 case MSPCodes.MSP_FC_VARIANT:
@@ -1637,15 +1644,6 @@ MspHelper.prototype.process_data = function (dataHandler) {
                         self.mspMultipleCache = [];
                     }
 
-                    break;
-                case MSPCodes.MSP_GET_FUNCTION:
-                    // 创建位掩码
-                    let isFun = data.readU8();
-                    let bitValue_f = bitIsOne(isFun, 0);  // 对于第一位，应该是 1 << 0
-                    FC.OVOBOT_FUNCTION.isSprayFun = bitValue_f;
-                    bitValue_f = bitIsOne(isFun, 1);
-                    FC.OVOBOT_FUNCTION.isVoiceFun = bitValue_f;
-                    FC.OVOBOT_FUNCTION.voiceIndex = data.readU16();
                     break;
                 case MSPCodes.MSP_ADAPTER:
                     FC.ANALOG.adapter = data.readU8();//parseFloat((data.read32() / 100.0).toFixed(2)); // correct scale factor

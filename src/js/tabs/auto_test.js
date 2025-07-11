@@ -414,28 +414,26 @@ auto_test.initialize = function (callback) {
                 //关闭光电模块
                 model_cliff_status.closest('.grid-row').children("div").addClass("model-display");
             }
-            MSP.send_message(MSPCodes.MSP_GET_FUNCTION, false, false, function () {
-                if (FC.OVOBOT_FUNCTION.isSprayFun == 1) {
-                    isSprayFun = true;
-                    //显示喷水模块
-                    model_waterpump_status.closest('.grid-row').children('div').removeClass("model-display");
-                } else {
-                    isSprayFun = false;
-                    testResult[4] = 2;//没有此功能时，默认测试通过
-                    //关闭喷水模块
-                    model_waterpump_status.closest('.grid-row').children('div').addClass("model-display");
-                }
-                if (FC.OVOBOT_FUNCTION.isVoiceFun == 1) {
-                    isVoiceFun = true;
-                    //显示语音模块
-                    model_voice_status.closest('.grid-row').children('div').removeClass("model-display");
-                } else {
-                    isVoiceFun = false;
-                    testResult[6] = 2;
-                    //关闭语音模块
-                    model_voice_status.closest('.grid-row').children('div').addClass("model-display");
-                }
-            });
+            if (FC.OVOBOT_FUNCTION.isSprayFun == 1) {
+                isSprayFun = true;
+                //显示喷水模块
+                model_waterpump_status.closest('.grid-row').children('div').removeClass("model-display");
+            } else {
+                isSprayFun = false;
+                testResult[4] = 2;//没有此功能时，默认测试通过
+                //关闭喷水模块
+                model_waterpump_status.closest('.grid-row').children('div').addClass("model-display");
+            }
+            if (FC.OVOBOT_FUNCTION.isVoiceFun == 1) {
+                isVoiceFun = true;
+                //显示语音模块
+                model_voice_status.closest('.grid-row').children('div').removeClass("model-display");
+            } else {
+                isVoiceFun = false;
+                testResult[6] = 2;
+                //关闭语音模块
+                model_voice_status.closest('.grid-row').children('div').addClass("model-display");
+            }
         }
 
         //适配器检测
