@@ -193,6 +193,7 @@ const INITIAL_WIN_FUNCTION = {
     isSprayFun: 0,
     isVoiceFun: 0,
     voiceIndex: 0,
+    remoteIrCommand:0,
     //自动测试结果记录
     autoTestResult: 0,
 

@@ -1686,6 +1686,9 @@ MspHelper.prototype.process_data = function (dataHandler) {
                 case MSPCodes.MSP_GET_AUTO_TEST_RESULT:
                     FC.OVOBOT_FUNCTION.autoTestResult = data.readU8();
                     break;
+                case MSPCodes.MSP_GET_REMOTE:
+                    FC.OVOBOT_FUNCTION.remoteIrCommand = data.readU8();
+                    break;
                 default:
                     console.log(`Unknown code detected: ${code} (${getMSPCodeName(code)})`);
             }
