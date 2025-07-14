@@ -5740,6 +5740,9 @@
     "baroTitleTest": {
         "message": "气压"
     },
+    "remoteTitleTest": {
+        "message": "遥控器"
+    },
     "testStatus": {
         "message": "测试状态:"
     },
