@@ -48,10 +48,12 @@ auto_test.initialize = function (callback) {
             no_voice_btn = $(".no-voice-btn"),
             model_waterpump_status = $("#model-waterpump-status"),
             model_voice_status = $("#model-voice-status"),
-            model_baro_status = $("#model-baro-status");
+            model_baro_status = $("#model-baro-status"),
+            model_remote_status = $("#model-remote-status");
+
 
         let timers = [];
-        let testResult = [0, 0, 0, 0, 0, 0, 0, 0];//index: 0适配器，1风机，2马达，3陀螺，4喷水，5光电，6语音,7气压；值代表的状态：0未测试，2测试通过，3测试失败
+        let testResult = [0, 0, 0, 0, 0, 0, 0, 0,0];//index: 0适配器，1风机，2马达，3陀螺，4喷水，5光电，6语音,7气压,8遥控器；值代表的状态：0未测试，2测试通过，3测试失败
         let cilffValue = new Array(2);
         let cilffHitValue = new Array(2);
         let gyroXData = [];
@@ -71,6 +73,7 @@ auto_test.initialize = function (callback) {
         let isTestedGyro = false;//是否已经测试完陀螺仪
 
         let pingValue = 0;
+        let irCommandValue = [];
 
         // let fanCurrentStatic = [];
         // let motorCurrentStatic = [];
@@ -116,6 +119,7 @@ auto_test.initialize = function (callback) {
                 software_function();
                 GUI.interval_add('setup_auto_test_gyro_fast', test_gyro, 50, true);
                 GUI.interval_add('setup_auto_test_cliff_fast', test_cliff, 50, true);
+                GUI.interval_add('setup_auto_test_remote_fast', test_remote, 50, true);
                 GUI.interval_add('setup_auto_test_fast', auto_test, 50, true);
                 let timerIdCallGyro = setTimeout(() => {
                     GUI.interval_remove('setup_auto_test_gyro_fast');
@@ -186,6 +190,10 @@ auto_test.initialize = function (callback) {
                         software_function();
                         updateDialogMessages(model_baro_status, 0);
                         test_baro();
+                    } else if (model_id.indexOf("remote") !== -1) {
+                        testResult[8] = 0;
+                        updateDialogMessages(model_remote_status, 0);
+                        test_remote();
                     }
                     result_back(model_id);
                 }
@@ -231,6 +239,7 @@ auto_test.initialize = function (callback) {
             test_adapter();
             test_cliff();
             test_baro();
+            test_remote();
         }
         function once_test() {
             test_waterpump();
@@ -269,7 +278,7 @@ auto_test.initialize = function (callback) {
 
         function clear_info() {
             clearAllTimers();
-            testResult = [0, 0, 0, 0, 0, 0, 0, 0];//index: 0适配器，1风机，2马达，3陀螺，4喷水，5光电，6语音；值代表的状态：0未测试，2测试通过，3测试失败
+            testResult = [0, 0, 0, 0, 0, 0, 0, 0, 0];//index: 0适配器，1风机，2马达，3陀螺，4喷水，5光电，6语音；值代表的状态：0未测试，2测试通过，3测试失败
             gyroXData = [];
             gyroYData = [];
             gyroZData = [];
@@ -280,6 +289,7 @@ auto_test.initialize = function (callback) {
 
             cilffValue = [];
             cilffHitValue = [];
+            irCommandValue = [];
 
             isSprayFun = false;//是否有喷水功能
             isVoiceFun = false;//是否有语音功能
@@ -297,6 +307,7 @@ auto_test.initialize = function (callback) {
             updateDialogMessages(model_waterpump_status, 0);
             updateDialogMessages(model_voice_status, 0);
             updateDialogMessages(model_baro_status, 0);
+            updateDialogMessages(model_remote_status, 0);
             test_result_empty.removeClass("model-display");
             test_under_testing.addClass("model-display");
             test_result_passed.addClass("model-display");
@@ -353,6 +364,17 @@ auto_test.initialize = function (callback) {
                     }
                 }else {//没有气压功能默认测试是成功的
                     updateDialogMessages(model_baro_status, 2);
+                }
+
+                //遥控器
+                if (modelId == model_remote_status.attr("id") || modelId == undefined) {
+                    if(irCommandValue.some(element => element !== 0)){
+                        testResult[8] == 2;
+                        updateDialogMessages(model_remote_status, 2);
+                    }else {
+                        testResult[8] == 3;
+                        updateDialogMessages(model_remote_status, 3);
+                    }
                 }
 
                 //光电开关最后判断
@@ -677,6 +699,16 @@ auto_test.initialize = function (callback) {
             }
             
         }
+        function test_remote(){
+            //测试状态改变
+            updateDialogMessages(model_remote_status, 1);
+            //遥控器
+            MSP.send_message(MSPCodes.MSP_GET_REMOTE, false, false, function () {
+                 let mm=FC.OVOBOT_FUNCTION.remoteIrCommand;
+                irCommandValue.push(FC.OVOBOT_FUNCTION.remoteIrCommand);
+
+            });
+        }
 
         function bitIsZero(x, bitIndex) {
             return (((x >> bitIndex) & 1) == 1) ? false : true;
@@ -740,6 +772,7 @@ auto_test.initialize = function (callback) {
             setErrompAutoTestResult(result);
             GUI.interval_remove('setup_auto_test_fast');
             GUI.interval_remove('setup_auto_test_cliff_fast');
+            GUI.interval_remove('setup_auto_test_remote_fast');
             GUI.interval_add('setup_getRec_fast', getRec, 500, true);
             auto_test_button.find("a").removeClass('no-click');
         }
