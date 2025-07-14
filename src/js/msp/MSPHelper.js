@@ -736,7 +736,7 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     FC.CONFIG.firmwareVersion = `${data.readU8()}.${data.readU8()}.${data.readU8()}`;
                     FC.CONFIG.apiVersion = `${data.readU8()}.${data.readU8()}.0`;
                     FC.CONFIG.build = data.readU8();
-                    let val = data.readU8();
+                    let val = data.readU16();
                     // 创建位掩码
                     let bitValue = bitIsOne(val, 0);  // 对于第一位，应该是 1 << 0
                     FC.CONFIG.isConfig = bitIsOne(val, 0);
@@ -752,13 +752,10 @@ MspHelper.prototype.process_data = function (dataHandler) {
                     FC.CONFIG.isCliff = bitIsOne(val, 5);
                     // bitValue = bitIsOne(val, 6);
                     FC.CONFIG.isFanPositive = bitIsOne(val, 6);
-                    // 创建位掩码
-                    let isFun = data.readU8();
-                    let bitValue_f = bitIsOne(isFun, 0);  // 对于第一位，应该是 1 << 0
+                    let bitValue_f = bitIsOne(val, 7);  // 对于第一位，应该是 1 << 0
                     FC.OVOBOT_FUNCTION.isSprayFun = bitValue_f;
-                    bitValue_f = bitIsOne(isFun, 1);
+                    bitValue_f = bitIsOne(val, 8);
                     FC.OVOBOT_FUNCTION.isVoiceFun = bitValue_f;
-                    FC.OVOBOT_FUNCTION.voiceIndex = data.readU16();
                     break;
 
                 case MSPCodes.MSP_FC_VARIANT:

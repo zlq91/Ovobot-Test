@@ -608,7 +608,7 @@ auto_test.initialize = function (callback) {
             updateDialogMessages(model_voice_status, 1);
             let timerIdVoice = setTimeout(() => {
                 if (isVoiceFun) {
-                    MSP.send_message(MSPCodes.MSP_SET_AUTO_PLAY_VOICE,[FC.OVOBOT_FUNCTION.voiceIndex], false, function () {
+                    MSP.send_message(MSPCodes.MSP_SET_AUTO_PLAY_VOICE,false, false, function () {
                         //显示弹框
                         dialogConfirmUnderingTestVoice.showModal();
                         checkDialogIsOpen();
