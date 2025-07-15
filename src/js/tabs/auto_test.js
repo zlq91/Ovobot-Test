@@ -62,6 +62,9 @@ auto_test.initialize = function (callback) {
         let accXData = [];
         let accYData = [];
         let accZData = [];
+        let fanCurrData = [];
+        let motorLeftCurrData = [];
+        let motorRightCurrData = [];
 
         let isSprayFun = false;//是否有喷水功能
         let isVoiceFun = false;//是否有语音功能
@@ -111,23 +114,27 @@ auto_test.initialize = function (callback) {
         }
         software_function();       
         auto_test_button.on('click', function () {
+            clear_info();
+            software_function();
             if (!$(this).hasClass("no-click")) {
                 $(this).find("a").addClass('no-click');
-                clear_info();
                 test_under_testing.removeClass("model-display");
                 //查询软件是否有喷水和语音功能
-                software_function();
-                GUI.interval_add('setup_auto_test_gyro_fast', test_gyro, 50, true);
-                GUI.interval_add('setup_auto_test_cliff_fast', test_cliff, 50, true);
-                GUI.interval_add('setup_auto_test_remote_fast', test_remote, 50, true);
-                GUI.interval_add('setup_auto_test_fast', auto_test, 50, true);
-                let timerIdCallGyro = setTimeout(() => {
-                    GUI.interval_remove('setup_auto_test_gyro_fast');
-                    isTestedGyro = true;
-                    once_test();
-                }, 1000);
-                timers.push(timerIdCallGyro);
-                result_back();
+                // software_function();
+                let timerIdAll= setTimeout(() => {
+                    GUI.interval_add('setup_auto_test_gyro_fast', test_gyro, 50, true);
+                    GUI.interval_add('setup_auto_test_cliff_fast', test_cliff, 50, true);
+                    GUI.interval_add('setup_auto_test_remote_fast', test_remote, 50, true);
+                    GUI.interval_add('setup_auto_test_fast', auto_test, 50, true);
+                    let timerIdCallGyro = setTimeout(() => {
+                        GUI.interval_remove('setup_auto_test_gyro_fast');
+                        isTestedGyro = true;
+                        once_test();
+                    }, 1000);
+                    timers.push(timerIdCallGyro);
+                    result_back();
+                }, 10);
+                timers.push(timerIdAll);
             }
         });
 
@@ -157,10 +164,13 @@ auto_test.initialize = function (callback) {
                         test_adapter();
                     } else if (model_id.indexOf("fan") !== -1) {
                         testResult[1] = 0;
+                        fanCurrData = [];
                         updateDialogMessages(model_fan_status, 0);
                         test_fan();
                     } else if (model_id.indexOf("motor") !== -1) {
                         testResult[2] = 0;
+                        motorLeftCurrData = [];
+                        motorRightCurrData = [];
                         updateDialogMessages(model_motor_status, 0);
                         test_motor();
                     } else if (model_id.indexOf("cliff") !== -1) {
@@ -192,6 +202,7 @@ auto_test.initialize = function (callback) {
                         test_baro();
                     } else if (model_id.indexOf("remote") !== -1) {
                         testResult[8] = 0;
+                        irCommandValue =[];
                         updateDialogMessages(model_remote_status, 0);
                         test_remote();
                     }
@@ -239,10 +250,16 @@ auto_test.initialize = function (callback) {
             test_adapter();
             test_cliff();
             test_baro();
-            test_remote();
         }
         function once_test() {
-            test_waterpump();
+            if(isSprayFun){
+                test_waterpump();
+            }else {
+                if(isVoiceFun){
+                    test_voice();
+                }
+            }
+            
             test_fan();
             test_motor();
         }
@@ -285,6 +302,10 @@ auto_test.initialize = function (callback) {
             accXData = [];
             accYData = [];
             accZData = [];
+            fanCurrData = [];
+            motorLeftCurrData = [];
+            motorRightCurrData = [];
+
             model_id = undefined;
 
             cilffValue = [];
@@ -339,18 +360,48 @@ auto_test.initialize = function (callback) {
                 }
                 //风机
                 if (modelId == model_fan_status.attr("id") || modelId == undefined) {
-                    if (testResult[1] == 2) {
-                        updateDialogMessages(model_fan_status, 2);
-                    } else if (testResult[1] == 3) {
-                        updateDialogMessages(model_fan_status, 3);
-                    }
+                    // fanCurrData[];
+                    fanCurrData.forEach(function (fanCurr) {
+                        // 遍历数组，对每个元素进行操作
+                        if(FC.CONFIG.isFanPositive == 1){
+                            if(fanCurr < 0 || fanCurr > 1000){
+                                testResult[1] = 3;
+                                updateDialogMessages(model_fan_status, 3);
+                            } else {
+                                testResult[1] = 2;
+                                updateDialogMessages(model_fan_status, 2);
+                            }
+                        } else {
+                            if(fanCurr < 2500 || fanCurr < 3100){
+                                testResult[1] = 3;
+                                updateDialogMessages(model_fan_status, 3);
+                            } else {
+                                testResult[1] = 2;
+                                updateDialogMessages(model_fan_status, 2);
+                            }
+                        }
+                    });
                 }
                 //马达
                 if (modelId == model_motor_status.attr("id") || modelId == undefined) {
-                    if (testResult[2] == 2) {
-                        updateDialogMessages(model_motor_status, 2);
-                    } else if (testResult[2] == 3) {
+                    // motorCurrData[];
+                    let motorTestResult;
+                    motorLeftCurrData.forEach(function (motorLeftCurr) {
+                        if(motorLeftCurr < 2500 || motorLeftCurr > 3100){
+                            motorTestResult = 3;
+                        }
+                    });
+                    motorRightCurrData.forEach(function (motorRightCurr) {
+                        if(motorRightCurr < 2500 || motorRightCurr > 3100){
+                            motorTestResult = 3;
+                        }
+                    });
+                    if(motorTestResult == 3){
+                        testResult[2] = 3;
                         updateDialogMessages(model_motor_status, 3);
+                    }else {
+                        testResult[2] = 2;
+                        updateDialogMessages(model_motor_status, 2);
                     }
                 }
                 //气压
@@ -369,10 +420,10 @@ auto_test.initialize = function (callback) {
                 //遥控器
                 if (modelId == model_remote_status.attr("id") || modelId == undefined) {
                     if(irCommandValue.some(element => element !== 0)){
-                        testResult[8] == 2;
+                        testResult[8] = 2;
                         updateDialogMessages(model_remote_status, 2);
                     }else {
-                        testResult[8] == 3;
+                        testResult[8] = 3;
                         updateDialogMessages(model_remote_status, 3);
                     }
                 }
@@ -411,7 +462,7 @@ auto_test.initialize = function (callback) {
                 }
                 //整体测试结果
                 reverseTestResults();
-            }, 3010);
+            }, 3020);
             timers.push(timerIdOtherResult);
         }
 
@@ -473,13 +524,15 @@ auto_test.initialize = function (callback) {
 
         //风机检测
         function test_fan() {
+            // fanCurrData = [];
+            // motorCurrData = [];
             updateDialogMessages(model_fan_status, 1);
             //检测静态电流
-            get_fan_motor(1);
+            // get_fan_motor(1);
             let timerIdFanOn = setTimeout(() => {
                 // console.log("===============testResult[1]:" + testResult[1]);
                 //风机动态电流检测
-                if (testResult[1] == 2) {
+                // if (testResult[1] == 2) {
                     //开启风机
                     MSP.send_message(MSPCodes.MSP_SET_FAN, [60], false, function () {
                         get_fan_motor(1);
@@ -491,8 +544,8 @@ auto_test.initialize = function (callback) {
                         });
                     }, 2000);
                     timers.push(timerIdFanOff);
-                }
-            }, 100);
+                // }
+            }, 10);
             timers.push(timerIdFanOn);
         }
         //马达检测
@@ -500,11 +553,11 @@ auto_test.initialize = function (callback) {
             updateDialogMessages(model_motor_status, 1);
 
             //检测静态电流
-            get_fan_motor(2);
+            // get_fan_motor(2);
 
             //马达动态电流检测
             let timerIdMotorPositive = setTimeout(() => {
-                if (testResult[2] == 2) {
+                // if (testResult[2] == 2) {
                     //马达正转
                     MSP.send_message(MSPCodes.MSP_SET_MOTOR, [1], false, function () {
                         get_fan_motor(2);
@@ -523,8 +576,8 @@ auto_test.initialize = function (callback) {
                         });
                     }, 2000);
                     timers.push(timerIdMotorOff);
-                }
-            }, 100);
+                // }
+            }, 10);
             timers.push(timerIdMotorPositive);
         }
         //type:1风机；2马达
@@ -533,28 +586,12 @@ auto_test.initialize = function (callback) {
             MSP.send_message(MSPCodes.MSP_ANALOG, false, false, function () {
                 //风机电流
                 if(type == 1){
-                    if(FC.CONFIG.isFanPositive == 1){
-                        if (FC.ANALOG.fanAdc > 0 && FC.ANALOG.fanAdc < 1000) {
-                            testResult[1] = 2;
-                        } else {
-                            testResult[1] = 3;
-                        }
-                    } else {
-                        if (FC.ANALOG.fanAdc < 2500 || FC.ANALOG.fanAdc > 3100) {
-                            testResult[1] = 3;
-                        } else {
-                            testResult[1] = 2;
-                        }
-                    }
-                    
+                    fanCurrData.push(FC.ANALOG.fanAdc);                    
                 }
                 //马达电流
                 if(type == 2){
-                    if (FC.ANALOG.leftMotorAdc < 2500 || FC.ANALOG.leftMotorAdc > 3100 || FC.ANALOG.rightMotorAdc < 2500 || FC.ANALOG.rightMotorAdc > 3100) {
-                        testResult[2] = 3;
-                    } else {
-                        testResult[2] = 2;
-                    }
+                    motorLeftCurrData.push(FC.ANALOG.leftMotorAdc);
+                    motorRightCurrData.push(FC.ANALOG.rightMotorAdc);
                 }
             });
         }
@@ -762,6 +799,46 @@ auto_test.initialize = function (callback) {
                 test_under_testing.addClass("model-display");
                 test_result_passed.addClass("model-display");
                 test_result_failed.addClass("model-display");
+                //未测试项已经超时，出现问题，允许重新测试 
+                // let testResult = [0, 0, 0, 0, 0, 0, 0, 0,0];//index: 0适配器，1风机，2马达，3陀螺，4喷水，5光电，6语音,7气压,8遥控器；值代表的状态：0未测试，2测试通过，3测试失败
+
+                for (let i = 0; i < testResult.length; i++) {
+                    if (testResult[i] === 1 || testResult[i] === 0) {
+                        let id ;
+                        switch (i){
+                            case 0:
+                                id = model_adpter_status;
+                            break;
+                            case 1:
+                                id = model_fan_status;
+                            break;
+                            case 2:
+                                id = model_motor_status;
+                            break;
+                            case 3:
+                                id = model_gyro_status;
+                            break;
+                            case 4:
+                                id = model_waterpump_status;
+                            break;
+                            case 5:
+                                id = model_cliff_status;
+                            break;
+                            case 6:
+                                id = model_voice_status;
+                            break;
+                            case 7:
+                                id = model_baro_status;
+                            break;
+                            case 8:
+                                id = model_remote_status;
+                            break;
+                        } 
+                        if(id != null && id != undefined){
+                            id.find("a").removeClass("no-click");
+                        }
+                    }
+}
             } else {
                 result = 2;
                 test_result_empty.addClass("model-display");
@@ -774,7 +851,10 @@ auto_test.initialize = function (callback) {
             GUI.interval_remove('setup_auto_test_cliff_fast');
             GUI.interval_remove('setup_auto_test_remote_fast');
             GUI.interval_add('setup_getRec_fast', getRec, 500, true);
-            auto_test_button.find("a").removeClass('no-click');
+            setTimeout(function () {
+                auto_test_button.find("a").removeClass('no-click');
+            }, 1000);
+            
         }
         function getRec(){
             MSP.callbacks=[];
