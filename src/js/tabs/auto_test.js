@@ -181,7 +181,6 @@ auto_test.initialize = function (callback) {
                         GUI.interval_add('setup_auto_test_cliff_fast', test_cliff, 50, true);
                         setTimeout(function () {
                             GUI.interval_remove('setup_auto_test_cliff_fast');
-                            isTestedGyro = true;
                         }, 1000);
                     } else if (model_id.indexOf("waterpump") !== -1) {
                         testResult[4] = 0;
@@ -204,7 +203,10 @@ auto_test.initialize = function (callback) {
                         testResult[8] = 0;
                         irCommandValue =[];
                         updateDialogMessages(model_remote_status, 0);
-                        test_remote();
+                        GUI.interval_add('setup_auto_test_remote_fast', test_remote, 50, true);
+                        setTimeout(function () {
+                            GUI.interval_remove('setup_auto_test_remote_fast');
+                        }, 1000);
                     }
                     result_back(model_id);
                 }
