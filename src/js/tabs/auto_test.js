@@ -372,7 +372,7 @@ auto_test.initialize = function (callback) {
                                 updateDialogMessages(model_fan_status, 2);
                             }
                         } else {
-                            if(fanCurr < 2500 || fanCurr < 3100){
+                            if(fanCurr < 2500 || fanCurr > 3100){
                                 testResult[1] = 3;
                                 updateDialogMessages(model_fan_status, 3);
                             } else {
