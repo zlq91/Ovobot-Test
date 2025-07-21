@@ -526,59 +526,47 @@ auto_test.initialize = function (callback) {
 
         //风机检测
         function test_fan() {
-            // fanCurrData = [];
-            // motorCurrData = [];
             updateDialogMessages(model_fan_status, 1);
-            //检测静态电流
-            // get_fan_motor(1);
             let timerIdFanOn = setTimeout(() => {
                 // console.log("===============testResult[1]:" + testResult[1]);
                 //风机动态电流检测
-                // if (testResult[1] == 2) {
-                    //开启风机
-                    MSP.send_message(MSPCodes.MSP_SET_FAN, [60], false, function () {
+                //开启风机
+                MSP.send_message(MSPCodes.MSP_SET_FAN, [60], false, function () {
+                    get_fan_motor(1);
+                });
+                //关闭风机
+                let timerIdFanOff = setTimeout(() => {
+                    MSP.send_message(MSPCodes.MSP_SET_FAN, [0], false, function () {
                         get_fan_motor(1);
                     });
-                    //关闭风机
-                    let timerIdFanOff = setTimeout(() => {
-                        MSP.send_message(MSPCodes.MSP_SET_FAN, [0], false, function () {
-                            get_fan_motor(1);
-                        });
-                    }, 2000);
-                    timers.push(timerIdFanOff);
-                // }
+                }, 2000);
+                timers.push(timerIdFanOff);
             }, 10);
             timers.push(timerIdFanOn);
         }
         //马达检测
         function test_motor() {
             updateDialogMessages(model_motor_status, 1);
-
-            //检测静态电流
-            // get_fan_motor(2);
-
             //马达动态电流检测
             let timerIdMotorPositive = setTimeout(() => {
-                // if (testResult[2] == 2) {
-                    //马达正转
-                    MSP.send_message(MSPCodes.MSP_SET_MOTOR, [1], false, function () {
+                //马达正转
+                MSP.send_message(MSPCodes.MSP_SET_MOTOR, [1], false, function () {
+                    get_fan_motor(2);
+                });
+                let timerIdMotorNegative = setTimeout(() => {
+                    //马达反转
+                    MSP.send_message(MSPCodes.MSP_SET_MOTOR, [2], false, function () {
                         get_fan_motor(2);
                     });
-                    let timerIdMotorNegative = setTimeout(() => {
-                        //马达反转
-                        MSP.send_message(MSPCodes.MSP_SET_MOTOR, [2], false, function () {
-                            get_fan_motor(2);
-                        });
-                    }, 1000);
-                    timers.push(timerIdMotorNegative);
-                    //关闭马达
-                    let timerIdMotorOff = setTimeout(() => {
-                        MSP.send_message(MSPCodes.MSP_SET_MOTOR, [0], false, function () {
-                            get_fan_motor(2);
-                        });
-                    }, 2000);
-                    timers.push(timerIdMotorOff);
-                // }
+                }, 1000);
+                timers.push(timerIdMotorNegative);
+                //关闭马达
+                let timerIdMotorOff = setTimeout(() => {
+                    MSP.send_message(MSPCodes.MSP_SET_MOTOR, [0], false, function () {
+                        get_fan_motor(2);
+                    });
+                }, 2000);
+                timers.push(timerIdMotorOff);
             }, 10);
             timers.push(timerIdMotorPositive);
         }
